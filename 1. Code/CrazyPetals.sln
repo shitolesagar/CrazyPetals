@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyPetals.Web", "CrazyPetals.Web\CrazyPetals.Web.csproj", "{B21A84C8-21B2-467C-A923-50404E0EFE64}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyPetals.WebApi", "CrazyPetals.WebApi\CrazyPetals.WebApi.csproj", "{167C9F2F-3CD9-4CF3-8E14-D022F5C298ED}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyPetals.Entities", "CrazyPetals.Entities\CrazyPetals.Entities.csproj", "{C04FCE74-A927-4A27-8445-4AF1DD9B45C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrazyPetals.Repository", "CrazyPetals.Repository\CrazyPetals.Repository.csproj", "{1F2BC602-22B3-4E32-A21E-3A32309CB29D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyPetals.Abstraction", "CrazyPetals.Abstraction\CrazyPetals.Abstraction.csproj", "{0C59C6BE-1A8D-4F38-A3B5-FDBD4D3B556C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrazyPetals.Service", "CrazyPetals.Service\CrazyPetals.Service.csproj", "{A8A343FF-1726-4460-9172-23B0932D76FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B21A84C8-21B2-467C-A923-50404E0EFE64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B21A84C8-21B2-467C-A923-50404E0EFE64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B21A84C8-21B2-467C-A923-50404E0EFE64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B21A84C8-21B2-467C-A923-50404E0EFE64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{167C9F2F-3CD9-4CF3-8E14-D022F5C298ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{167C9F2F-3CD9-4CF3-8E14-D022F5C298ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{167C9F2F-3CD9-4CF3-8E14-D022F5C298ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{167C9F2F-3CD9-4CF3-8E14-D022F5C298ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C04FCE74-A927-4A27-8445-4AF1DD9B45C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C04FCE74-A927-4A27-8445-4AF1DD9B45C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C04FCE74-A927-4A27-8445-4AF1DD9B45C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C04FCE74-A927-4A27-8445-4AF1DD9B45C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F2BC602-22B3-4E32-A21E-3A32309CB29D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F2BC602-22B3-4E32-A21E-3A32309CB29D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F2BC602-22B3-4E32-A21E-3A32309CB29D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F2BC602-22B3-4E32-A21E-3A32309CB29D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C59C6BE-1A8D-4F38-A3B5-FDBD4D3B556C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C59C6BE-1A8D-4F38-A3B5-FDBD4D3B556C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C59C6BE-1A8D-4F38-A3B5-FDBD4D3B556C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C59C6BE-1A8D-4F38-A3B5-FDBD4D3B556C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8A343FF-1726-4460-9172-23B0932D76FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A343FF-1726-4460-9172-23B0932D76FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8A343FF-1726-4460-9172-23B0932D76FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A343FF-1726-4460-9172-23B0932D76FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DA713FFF-7CCB-4B8B-B6CA-D57E735D89CC}
+	EndGlobalSection
+EndGlobal
