@@ -43,7 +43,7 @@ namespace CrazyPetals.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Account/Error");
             }
 
             app.UseStaticFiles();
@@ -53,7 +53,7 @@ namespace CrazyPetals.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Account}/{action=Login}/{id?}");
             });
         }
     }
