@@ -659,9 +659,10 @@ label {
 
 /*PRIMARY BTN*/
 .primary-btn, .primary-btn:focus, .primary-btn:hover {
-    background: #464de4;
+    background: #ac396f;
     color: #fff;
 }
+
 /*SECONDARY BTN*/
 .btn-secondary, .btn-secondary:focus, .btn-secondary:hover {
     background: #fff;
@@ -1233,7 +1234,7 @@ ul {
 
 /*FIXED HEADER AND SIDEBAR*/
 .left_col {
-    background: #6cbe96;
+    background: #ac396f;
     border-right: solid 1px #D9DEE4;
     width: 300px;
     min-height: 100%;
@@ -1333,7 +1334,7 @@ input[type=file]{
 
 .scroll-view {
     width: 100%;
-    background: #6cbe96;
+    background: #ac396f;
 }
 
 .logo-wrapper {
@@ -1492,25 +1493,29 @@ input[type=file]{
         border: 1px solid transparent;
     }
 
-    .nav.side-menu > li.active > a {
-        background: #60a384;
-        /* background: linear-gradient(to right, #3b29b3,#bb68d4); */
-        color: #fff;
-        font-weight: 400;
-        border-left: 0px;
-        border: 1px solid #4c8457;
-        box-shadow: inset 0px 11px 8px -10px #4c8457, inset 0px -8px 8px -10px #4c8457;
+    .nav.side-menu > li {
+        width:100%;
     }
 
-    .nav.side-menu > li > a:hover,
-    .nav > li > a:focus {
-        background: #60a384;
-        /* background: linear-gradient(to right, #371afb78,#bb68d4ab); */
-        color: #fff !important;
-        font-weight: 400;
-        border: 1px solid #4c8457;
-        box-shadow: inset 0px 11px 8px -10px #4c8457, inset 0px -8px 8px -10px #4c8457;
-    }
+        .nav.side-menu > li.active > a {
+            background: #e04a90;
+            /* background: linear-gradient(to right, #3b29b3,#bb68d4); */
+            color: #fff;
+            font-weight: 400;
+            border-left: 0px;
+            border: 1px solid #fff;
+            box-shadow: inset 0px 11px 8px -10px #fff, inset 0px -8px 8px -10px #fff;
+        }
+
+        .nav.side-menu > li > a:hover,
+        .nav > li > a:focus {
+            background: #e04a90;
+            /* background: linear-gradient(to right, #371afb78,#bb68d4ab); */
+            color: #fff !important;
+            font-weight: 400;
+            border: 1px solid #fff;
+            box-shadow: inset 0px 11px 8px -10px #fff, inset 0px -8px 8px -10px #fff;
+        }
 
 .nav.child_menu {
     display: none;
@@ -1553,7 +1558,6 @@ input[type=file]{
     font-size: 14px;
     color: #fff;
     font-weight: 300;
-    border-bottom: 1px solid #4c8457;
 }
 
 .nav.child_menu li li:hover,
@@ -2565,7 +2569,7 @@ ul, ol {
 
 
 .btn.btn-primary {
-    background: #424fe9;
+    background: #ac396f;
     color: #fff;
 }
 

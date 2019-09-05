@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["activetab"] = "dashboard";
+}
+
+@{
+    ViewData["Title"] = "Category";
+    string stringHtml = "<span class=\"display-inline\">Categories</span>";
+    string AddButton = string.Format("<a class=\"btn btn-primary m-r-20 add-icon\" href=\"/category/add\"  ><span class=\"addIcon-txt\">Add New Category</span><img src=\"/images/icons/Plus.png\" /> </a>");
+
+    ViewData["TabButton"] = AddButton;
+    ViewData["TabHeading"] = stringHtml;
+    ViewData["ActiveTab"] = "dashboard";
+}
+
+
+<h1>Index</h1>
+

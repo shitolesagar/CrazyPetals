@@ -9,7 +9,7 @@
     </div>
 
     <p class="f-normal f-18 m-b-30 f-semi-bold">Login</p>
-    <form asp-action="Login" asp-controller="Account" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal container" autocomplete="off">
+    <form asp-action="Login" asp-controller="Account" spellcheck="false" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal container" autocomplete="off">
         @Html.AntiForgeryToken()
         <div class="row">
             <div class="col-sm-9 col-md-8 col-lg-6 mx-auto">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="p-t-20 p-b-10">
-                        <button type="submit" class="btn btn-block btn-primary">Login</button>
+                        <button type="submit" class="btn btn-block primary-btn">Login</button>
                     </div>
                 </div>
             </div>

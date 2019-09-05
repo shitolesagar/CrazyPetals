@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using CrazyPetals.Abstraction.Service;
 using CrazyPetals.Entities.Constant;
+using CrazyPetals.Entities.Database;
 using CrazyPetals.Web.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -23,12 +24,14 @@ namespace CrazyPetals.Web.Controllers
         {
             _userService = userService;
         }
+
+        #region Login
         [ResponseCache(NoStore = true, Duration = 0)]
         public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Dashboard");
+                return RedirectToAction("Index", "Category");
             }
             return View();
         }
@@ -38,29 +41,33 @@ namespace CrazyPetals.Web.Controllers
         {
             try
             {
-                ////var user = await _userService.GetUserByEmail(model.Email);
-                //if (user != null)
-                //{
-                //    if (!VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt))
-                //    {
-
-                //        ModelState.AddModelError("Password", StringConstants.LoginError);
-                //        return View(model);
-                //    }
-
-                    
-                //    await SignInAsync(user);
+                // ApplicationUser user = await _userService.GetUserByEmail(model.Email);
+                ApplicationUser user = new ApplicationUser()
+                {
+                    Email = "admin@gmail.com",
+                    Name = "Admin",
+                    RoleId = 1,
+                    Id = 1
+                };
+                if (user != null)
+                {
+                    //if (!VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt))
+                    //{
+                    //    ModelState.AddModelError("Password", StringConstants.LoginError);
+                    //    return View(model);
+                    //}
+                    await SignInAsync(user);
                     return RedirectToAction("Index", "Category");
-               // }
+                }
                 ModelState.AddModelError("Password", StringConstants.LoginError);
             }
             catch (Exception e)
             {
 
             }
-
             return View(model);
         }
+        #endregion
 
         #region Logout
         [HttpPost]
@@ -70,8 +77,6 @@ namespace CrazyPetals.Web.Controllers
             return RedirectToAction("Login");
         }
         #endregion
-
-        
 
         #region Private Methods
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
@@ -99,24 +104,19 @@ namespace CrazyPetals.Web.Controllers
             return true;
         }
 
-        private async Task SignInAsync(Object user)
+        private async Task SignInAsync(ApplicationUser user)
         {
             var claims = new List<Claim>
                     {
-                        //new Claim(ClaimTypes.Name," user.UserName"),
-                        //new Claim(ClaimTypes.GivenName, user.UserName),
-                        //new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                        new Claim(ClaimTypes.Name, user.Name),
+                        new Claim(ClaimTypes.Email, user.Email),
+                        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
                     };
             var claimsIdentity = new ClaimsIdentity(
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-
             var authProperties = new AuthenticationProperties
             {
-
-
-                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(30),
-
+                ExpiresUtc = DateTimeOffset.UtcNow.AddHours(5),
             };
 
             await HttpContext.SignInAsync(
@@ -126,10 +126,13 @@ namespace CrazyPetals.Web.Controllers
         }
         #endregion
 
+        #region Error View
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        #endregion
+
     }
 }
