@@ -18,4 +18,12 @@
     <ProjectReference Include="..\CrazyPetals.Entities\CrazyPetals.Entities.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\CrazyPetals.Abstraction\CrazyPetals.Abstraction.csproj" />
+    <ProjectReference Include="..\CrazyPetals.Entities\CrazyPetals.Entities.csproj" />
+    <ProjectReference Include="..\CrazyPetals.Repository\CrazyPetals.Repository.csproj" />
+    <ProjectReference Include="..\CrazyPetals.Service\CrazyPetals.Service.csproj" />
+  </ItemGroup>
+
 </Project>
