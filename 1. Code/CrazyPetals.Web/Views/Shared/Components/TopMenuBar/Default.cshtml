@@ -1,0 +1,37 @@
+﻿     <!-- header -->
+<div class="top_nav">
+    <div class="nav_menu">
+        <nav>
+            <div class="navbar nav_title">
+
+                <span class="f-bold f-24 display-inline m-r-40">@Html.Raw(ViewData["TabHeading"])</span>
+                @Html.Raw(ViewData["TabButton"])
+                <div class=" display-inline desktopView-search">
+                    <div class="position-relative custom-search">
+                        @Html.Raw(ViewData["TabSearch"])
+                    </div>
+                </div>
+                
+            </div>
+            @*<div class="welcome pull-right">
+                <ul>
+                    <li class="submenu">
+                        <img src="~/images/icons/notificationBell.png" class="m-r-10" />
+                    </li>
+                    <li class="submenu">
+                        <img src="~/images/icons/userProfile.png" />
+                    </li>
+                </ul>
+            </div>*@
+            <div class="clearfix"></div>
+            <div class="display-inline mobileView-search">
+                <div class="position-relative custom-search">
+                    @Html.Raw(ViewData["TabSearch"])
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="clearfix"></div>
+
+</div>
+<!-- header end-->

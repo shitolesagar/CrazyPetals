@@ -17,18 +17,29 @@
     </environment>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800" rel="stylesheet">
+    @RenderSection("Styles", required: false)
     <link rel="stylesheet" href="~/css/main.css" />
 </head>
 <body>
-    <div class="">
+    <div>
         <div class="main_container">
-            <div role="main">
-                @RenderBody()
+            <!-- SIDE MENU-->
+            @await Component.InvokeAsync("SideMenuBar", new { activetab = ViewData["ActiveTab"] })
+            <!-- TOP NAV -->
+            <!-- CONTENT -->
+            <div class="right_col" role="main">
+                @await Component.InvokeAsync("TopMenuBar", new { tabHeading = ViewData["TabHeading"], tabSearch = ViewData["TabSearch"], tabButton = ViewData["TabButton"] })
+                <div class="main-content">
+                    @RenderBody()
+                </div>
             </div>
+            <div id="alertPopup" class="alert alert-success " hidden></div>
+            <div id="alertErrorPopup" class="alert alert-danger" hidden></div>
         </div>
     </div>
-
-
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
@@ -49,5 +60,22 @@
     </environment>
     <script src="~/js/main.js"></script>
     @RenderSection("Scripts", required: false)
+    <script>
+        function ShowSlackbarSucessMessage(alertMsg) {
+            $("#alertPopup").append("<strong>" + alertMsg + "</strong>")
+                .removeAttr("hidden")
+                .fadeTo(2000, 500).slideUp(500, function () {
+                    $("#alertPopup").slideUp(500);
+                });
+        }
+        function ShowSlackbarErrorMessage(alertMsg) {
+            $("#alertErrorPopup").append("<strong>" + alertMsg + "</strong>")
+                .removeAttr("hidden")
+                .fadeTo(2000, 500).slideUp(500, function () {
+                    $("#alertErrorPopup").slideUp(500);
+                    $("#alertErrorPopup").text('');
+                });
+        }
+    </script>
 </body>
 </html>
