@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CrazyPetals.Repository.Configurations
 {
-    internal class BannerConfiguration : IEntityTypeConfiguration<Banner>
+    internal class ForgotPasswordConfiguration : IEntityTypeConfiguration<ForgotPassword>
     {
-        public void Configure(EntityTypeBuilder<Banner> builder)
+        public void Configure(EntityTypeBuilder<ForgotPassword> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseMySqlIdentityColumn();
