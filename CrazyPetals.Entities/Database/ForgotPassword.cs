@@ -8,10 +8,13 @@ namespace CrazyPetals.Entities.Database
     public class ForgotPassword
     {
         public int Id { get; set; }
-        public int OTP { get; set; }
+        public string OTP { get; set; }
         public string VerificationCode { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime ExpireDate { get; set; }
         public bool IsUsed { get; set; }
         public string AppId { get; set; }
+
+        public int ApplicationUserId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

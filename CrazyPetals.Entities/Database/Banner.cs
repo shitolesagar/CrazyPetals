@@ -12,5 +12,7 @@ namespace CrazyPetals.Entities.Database
         public string Title { get; set; }
         public string RedirectClick { get; set; }
         public string AppId { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime ExpiryDate { get; set; }
     }
 }

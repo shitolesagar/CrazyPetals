@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CrazyPetals.Abstraction\CrazyPetals.Abstraction.csproj" />
     <ProjectReference Include="..\CrazyPetals.Entities\CrazyPetals.Entities.csproj" />
   </ItemGroup>
 

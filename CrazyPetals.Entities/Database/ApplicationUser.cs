@@ -24,5 +24,6 @@ namespace CrazyPetals.Entities.Database
         public ICollection<ActivityLog> ActivityLogs { get; set; }
         public ICollection<CartDetails> CartDetails { get; set; }
         public ICollection<UserAddress> UserAddresses { get; set; }
+        public ICollection<ForgotPassword> ForgotPasswords { get; set; }
     }
 }

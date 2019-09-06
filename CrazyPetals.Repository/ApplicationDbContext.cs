@@ -41,6 +41,27 @@ namespace CrazyPetals.Repository
         {
             modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new ActivityLogConfiguration());
+            modelBuilder.ApplyConfiguration(new AppThemeConfiguration());
+            modelBuilder.ApplyConfiguration(new BannerConfiguration());
+            modelBuilder.ApplyConfiguration(new CartDetailsConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new ColorsConfiguration());
+            modelBuilder.ApplyConfiguration(new ExternalLoginConfiguration());
+            modelBuilder.ApplyConfiguration(new FilterConfiguration());
+            modelBuilder.ApplyConfiguration(new FilterProductConfiguration());
+            modelBuilder.ApplyConfiguration(new ForgotPasswordConfiguration());
+            modelBuilder.ApplyConfiguration(new NotificationConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderDetailsConfiguration());
+            modelBuilder.ApplyConfiguration(new VersionControlConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderSummaryConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductColorConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductImagesConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductSizeConfiguration());
+            modelBuilder.ApplyConfiguration(new SizeConfiguration());
+            modelBuilder.ApplyConfiguration(new SmtpMailConfiguration());
+            modelBuilder.ApplyConfiguration(new UserAddressConfiguration());
         }
     }
 }
