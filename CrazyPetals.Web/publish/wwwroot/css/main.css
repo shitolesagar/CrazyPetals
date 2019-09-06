@@ -659,7 +659,7 @@ label {
 
 /*PRIMARY BTN*/
 .primary-btn, .primary-btn:focus, .primary-btn:hover {
-    background: #ac396f;
+    background: #7a6da2;
     color: #fff;
 }
 
@@ -1234,7 +1234,7 @@ ul {
 
 /*FIXED HEADER AND SIDEBAR*/
 .left_col {
-    background: #ac396f;
+    background: #dca7c2;
     border-right: solid 1px #D9DEE4;
     width: 300px;
     min-height: 100%;
@@ -1334,7 +1334,7 @@ input[type=file]{
 
 .scroll-view {
     width: 100%;
-    background: #ac396f;
+    background: #dca7c2;
 }
 
 .logo-wrapper {
@@ -1498,7 +1498,7 @@ input[type=file]{
     }
 
         .nav.side-menu > li.active > a {
-            background: #e04a90;
+            background: #7a6da2;
             /* background: linear-gradient(to right, #3b29b3,#bb68d4); */
             color: #fff;
             font-weight: 400;
@@ -1509,7 +1509,7 @@ input[type=file]{
 
         .nav.side-menu > li > a:hover,
         .nav > li > a:focus {
-            background: #e04a90;
+            background: #7a6da2;
             /* background: linear-gradient(to right, #371afb78,#bb68d4ab); */
             color: #fff !important;
             font-weight: 400;
@@ -2569,7 +2569,7 @@ ul, ol {
 
 
 .btn.btn-primary {
-    background: #ac396f;
+    background: #7a6da2;
     color: #fff;
 }
 
