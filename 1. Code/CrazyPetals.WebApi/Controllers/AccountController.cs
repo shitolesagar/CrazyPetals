@@ -5,8 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using CrazyPetals.Abstraction;
 using CrazyPetals.Abstraction.Repositories;
+using CrazyPetals.Abstraction.Service;
 using CrazyPetals.Entities.Database;
 using CrazyPetals.Entities.Resources;
+using CrazyPetals.Service;
 using CrazyPetals.Service.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,19 +17,30 @@ namespace CrazyPetals.WebApi.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly string[] ACCEPTED_FILE_TYPES = new[] { ".jpg", ".jpeg", ".png" };
+        private readonly IUserService _userService;
         private ICategoryRepository _categoryRepository;
         private IUnitOfWork _unitOfWork;
         private IProductImagesRepository _productImagesRepository;
+        private IUserAddressRepository _userAddressRepository;
+        private IOrderSummaryRepository _orderSummaryRepository;
+        private IOrderDetailsRepository _orderDetailsRepository;
         private IApplicationUserRepository _applicationUserRepository;
+        private IForgotPasswordRepository _forgotPasswordRepository;
+        private IEmailService _emailService;
 
-        private readonly string[] ACCEPTED_FILE_TYPES = new[] { ".jpg", ".jpeg", ".png" };
-
-        public AccountController(ICategoryRepository categoryRepository, IApplicationUserRepository applicationUserRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
+        public AccountController(IUserService userService, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, ICategoryRepository categoryRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderSummaryRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
         {
+             _userService = userService;
             _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;
             _productImagesRepository = productImagesRepository;
+            _userAddressRepository = userAddressRepository;
+            _orderSummaryRepository = orderSummaryRepository;
+            _orderDetailsRepository = orderDetailsRepository;
             _applicationUserRepository = applicationUserRepository;
+            _forgotPasswordRepository = forgotPasswordRepository;
+            _emailService = emailService;
         }
         public IActionResult Index()
         {
@@ -38,67 +51,56 @@ namespace CrazyPetals.WebApi.Controllers
         [Route("api/Account/Register")]
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Register([FromBody] Register request)
+        public IActionResult Register([FromBody] Register request)
         {
-            var user = _applicationUserRepository.FindByEmail(request.EmailId);
-            try
-            {
-                if (user != null)
-                {
-                    return Ok(new { statusCode = StringConstants.StatusCode20, message = StringConstants.UserExist });
-                }
-                else
-                {
-                    if (request.AppId != null)
-                    {
-                        user = new ApplicationUser
-                        {
-                            Name = request.Name,
-                            Email = request.EmailId,
-                            AppId = request.AppId,
-                        };
-                    }
-                    else
-                    {
-                        return Ok(new { statusCode = StringConstants.StatusCode20, message = StringConstants.AppIdNull });
-                    }
-                    if (!string.IsNullOrEmpty(request.Password))
-                    {
-                        CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+            if (string.IsNullOrEmpty(request.AppId))
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = StringConstants.AppIdNull });
 
-                        user.PasswordHash = passwordHash;
-                        user.PasswordSalt = passwordSalt;
-                        user.CreatedDate = DateTime.Now;
-                    }
-                    _applicationUserRepository.Add(user);
-                    await _unitOfWork.SaveChangesAsync();
-                    var obj = new RegisterApiResponseResource
-                    {
-                        Id = user.Id,
-                        Name = user.Name,
-                        Email = user.Email,
-                    };
-                    return Ok(new { statusCode = StringConstants.StatusCode10, message = StringConstants.UserSaved, data = obj });
-                }
-            }
-            catch (Exception e)
+            var response =  _userService.RegisterUser(request);
+
+            if(response.error==true)
             {
-                Debug.Print(e.Message);
-                return Ok(new { statusCode = StringConstants.StatusCode20, message = StringConstants.ServerError });
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = response.Message });
             }
+            return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message, data = response.data });
+           
         }
         #endregion
 
-        #region PrivateMethos
-        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+
+        #region Login
+        [Route("api/Account/Login")]
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult Login([FromBody] LoginRequest request)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            var response = _userService.LoginUser(request);
+
+            if (response.error == true)
             {
-                passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = response.Message });
             }
+            return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message });
         }
 
+        #endregion
+
+
+        #region Forgot Password (sendOtp)
+        [Route("api/Account/SendOtp")]
+        [AllowAnonymous]
+        [HttpGet]
+        public  IActionResult SendOtp([FromQuery]BaseRequest request)
+        {
+            var response = _userService.OTPSend(request);
+
+            if (response.error == true)
+            {
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = response.Message });
+            }
+            return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message });
+
+        }
         #endregion
 
     }

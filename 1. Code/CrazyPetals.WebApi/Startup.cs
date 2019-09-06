@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using CrazyPetals.Abstraction;
 using CrazyPetals.Abstraction.Repositories;
+using CrazyPetals.Abstraction.Service;
 using CrazyPetals.Repository;
 using CrazyPetals.Repository.Repositories;
+using CrazyPetals.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -29,6 +32,7 @@ namespace CrazyPetals.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IActivityLogRepository, ActivityLogRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IAppThemeRepository, AppThemeRepository>();
@@ -51,6 +55,12 @@ namespace CrazyPetals.WebApi
             services.AddScoped<ISmtpMailRepository, SmtpMailRepository>();
             services.AddScoped<IUserAddressRepository, UserAddressRepository>();
             services.AddScoped<IVersionControlRepository, VersionControlRepository>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseMySql("server=165.22.60.17;port=3306;uid=admin;password=Omni#1234$;database=CrazyPetalsDB_testing;");
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -62,6 +72,8 @@ namespace CrazyPetals.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            
 
             app.UseMvc();
         }

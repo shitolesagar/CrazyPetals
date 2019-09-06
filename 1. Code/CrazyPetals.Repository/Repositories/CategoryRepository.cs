@@ -7,6 +7,7 @@ namespace CrazyPetals.Repository.Repositories
     {
         public CategoryRepository(ApplicationDbContext context) : base(context)
         {
+
         }
     }
 }

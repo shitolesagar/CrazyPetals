@@ -11,6 +11,8 @@ namespace CrazyPetals.Repository.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseMySqlIdentityColumn();
             builder.Property(x => x.AppId).HasMaxLength(30);
+
+            builder.HasOne(x => x.ApplicationUser).WithMany(x => x.ForgotPasswords).HasForeignKey(x => x.ApplicationUserId);
         }
     }
 }

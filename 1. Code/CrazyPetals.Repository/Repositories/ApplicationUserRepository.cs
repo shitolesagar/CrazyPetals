@@ -1,6 +1,8 @@
 ﻿using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Entities.Database;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CrazyPetals.Repository.Repositories
 {
