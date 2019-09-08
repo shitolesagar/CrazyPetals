@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CrazyPetals.Web.Controllers
 {
-    public class CategoryController : Controller
+    public class NotificationController : Controller
     {
         public IActionResult Index()
         {

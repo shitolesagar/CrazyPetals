@@ -1012,13 +1012,13 @@ select::-ms-expand {
     display: none;
 }
 
-.custom-select {
+.my-custom-select {
     position: relative;
     width: 250px;
     display: inline-block;
 }
 
-    .custom-select:before {
+    .my-custom-select:before {
         content: "";
         background: #fff;
         top: 1px;
@@ -1028,7 +1028,7 @@ select::-ms-expand {
         pointer-events: none;
     }
 
-    .custom-select:after {
+    .my-custom-select:after {
         content: "\f107";
         font-family: FontAwesome;
         position: absolute;
@@ -1072,7 +1072,7 @@ select::-ms-expand {
 .bootstrap-select .dropdown-toggle:focus {
     outline: none !important;
 }
-    .custom-select .select-dropDown {
+    .my-custom-select .select-dropDown {
     color: #000;
     appearance: none;
     -moz-appearance: none;
@@ -1259,7 +1259,7 @@ ul {
     background: #fff;
     padding: 20px;
     border-radius: 4px;
-    min-height: 500px;
+    /*min-height: 300px;*/
     position: relative;
 }
 
@@ -1287,7 +1287,7 @@ ul {
 }
 
 .detailBtn-group {
-    position: absolute;
+    /*position: absolute;*/
     bottom: 20px;
     left: 20px;
 }
@@ -1310,6 +1310,11 @@ ul {
 }
 .detailMain-img {
     width: 100%;
+    object-fit: contain;
+    height: 250px;
+}
+.add-banner-img {
+    width: 50%;
     object-fit: contain;
     height: 250px;
 }
@@ -2816,14 +2821,14 @@ img.profile-details {
 
 /* responsive */
 @media(max-width:1380px){
-    .dropDownLabel-mob ~ .custom-select{
+    .dropDownLabel-mob ~ .my-custom-select{
         width: calc(100% - 140px);
       }
 }
 
 @media(max-width:1199px){
     
-    .dropDownLabel-mob ~ .custom-select{
+    .dropDownLabel-mob ~ .my-custom-select{
         width: calc(100% - 160px);
         margin-bottom:15px;
     }
@@ -2924,7 +2929,7 @@ img.profile-details {
     .dropDownLabel-mob{
         width:95px;
     }
-    .dropDownLabel-mob ~ .custom-select{
+    .dropDownLabel-mob ~ .my-custom-select{
         width: calc(100% - 110px);
         margin-bottom:15px;
     }
@@ -2934,7 +2939,7 @@ img.profile-details {
     .right_col{
         padding-top:110px;
     }
-    .dropDownLabel-mob ~ .custom-select{
+    .dropDownLabel-mob ~ .my-custom-select{
         width: 100%;
     }
     .desktopView-search{

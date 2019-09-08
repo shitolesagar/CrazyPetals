@@ -6,20 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CrazyPetals.Web.Controllers
 {
-    public class CategoryController : Controller
+    public class OrdersController : Controller
     {
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Add()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Add(Object model)
         {
             return View();
         }

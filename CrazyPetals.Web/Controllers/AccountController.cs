@@ -116,7 +116,7 @@ namespace CrazyPetals.Web.Controllers
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties
             {
-                ExpiresUtc = DateTimeOffset.UtcNow.AddHours(5),
+                ExpiresUtc = DateTimeOffset.UtcNow.AddSeconds(10),
             };
 
             await HttpContext.SignInAsync(

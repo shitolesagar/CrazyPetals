@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CrazyPetals.Web.Controllers
 {
-    public class CategoryController : Controller
+    public class SubcategoryController : Controller
     {
         public IActionResult Index()
         {
