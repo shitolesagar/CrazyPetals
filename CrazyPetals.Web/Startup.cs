@@ -34,6 +34,7 @@ namespace CrazyPetals.Web
                     .AddCookie(options =>
                     {
                         options.LoginPath = "/account/login";
+                        options.Cookie.Name = "Crazypetals";
                     });
             
             services.AddMvc(config =>
