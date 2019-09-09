@@ -60,22 +60,5 @@
     </environment>
     <script src="~/js/main.js"></script>
     @RenderSection("Scripts", required: false)
-    <script>
-        function ShowSlackbarSucessMessage(alertMsg) {
-            $("#alertPopup").append("<strong>" + alertMsg + "</strong>")
-                .removeAttr("hidden")
-                .fadeTo(2000, 500).slideUp(500, function () {
-                    $("#alertPopup").slideUp(500);
-                });
-        }
-        function ShowSlackbarErrorMessage(alertMsg) {
-            $("#alertErrorPopup").append("<strong>" + alertMsg + "</strong>")
-                .removeAttr("hidden")
-                .fadeTo(2000, 500).slideUp(500, function () {
-                    $("#alertErrorPopup").slideUp(500);
-                    $("#alertErrorPopup").text('');
-                });
-        }
-    </script>
 </body>
 </html>

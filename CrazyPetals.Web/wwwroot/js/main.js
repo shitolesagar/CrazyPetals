@@ -17,7 +17,7 @@ $('#menu-btn').click(function () {
         $('.hamburger-menu-icon').css({ 'position': 'relative', 'right': '0' });
         $('.hideMobile-txt').css('display', 'inline-block');
         $('.signOut-section').css({ 'left': '20px', 'right': 'auto' });
-        $('.dashboard-logo').css('visibility','visible');
+        $('.dashboard-logo').css('visibility', 'visible');
     }
     else if ($(this).prop("checked") == false) {
         $('.left_col').css('margin-left', '-250px');
@@ -43,3 +43,19 @@ $(window).resize(function () {
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
+
+function ShowSlackbarSucessMessage(alertMsg) {
+    $("#alertPopup").append("<strong>" + alertMsg + "</strong>")
+        .removeAttr("hidden")
+        .fadeTo(2000, 500).slideUp(500, function () {
+            $("#alertPopup").slideUp(500);
+        });
+}
+function ShowSlackbarErrorMessage(alertMsg) {
+    $("#alertErrorPopup").append("<strong>" + alertMsg + "</strong>")
+        .removeAttr("hidden")
+        .fadeTo(2000, 500).slideUp(500, function () {
+            $("#alertErrorPopup").slideUp(500);
+            $("#alertErrorPopup").text('');
+        });
+}

@@ -7,6 +7,8 @@ namespace CrazyPetals.Entities.Constant
     public static class StringConstants
     {
         public static string LoginError { get; } = "Email or Password is not valid.";
+        public static string AppId { get; } = "crazypattels";
+
         public static readonly string ServerError = "Something went wrong.";
         public static readonly string DeletedMessage = "Record Deleted Successfully";
         public static readonly string ProductDeleted = "Product Deleted Successfully";

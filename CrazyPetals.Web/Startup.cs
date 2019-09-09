@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CrazyPetals.Abstraction;
+using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Abstraction.Service;
+using CrazyPetals.Repository;
+using CrazyPetals.Repository.Repositories;
 using CrazyPetals.Service;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -11,6 +15,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -28,8 +33,15 @@ namespace CrazyPetals.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IFileServices, FileServices>();
+            services.AddScoped<IBannerService, BannerService>();
+            services.AddScoped<IBannerRepository, BannerRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-           // services.Configure<AppSettings>(Configuration.GetSection("ApplicationSettings"));
+            services.AddDbContext<ApplicationDbContext>(options =>
+               options.UseMySql(Configuration.GetConnectionString("defaultConnection")));
+
+            // services.Configure<AppSettings>(Configuration.GetSection("ApplicationSettings"));
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
