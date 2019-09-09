@@ -1,5 +1,6 @@
 ﻿using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Entities.Database;
+using System.Linq;
 
 namespace CrazyPetals.Repository.Repositories
 {
@@ -7,6 +8,11 @@ namespace CrazyPetals.Repository.Repositories
     {
         public VersionControlRepository(ApplicationDbContext context) : base(context)
         {
+        }
+
+        public VersionControl CurrentVersion(string AppId)
+        {
+            return Set.Where(x => x.CurrentLiveVersion == true && x.AppId == AppId).Single();
         }
     }
 }

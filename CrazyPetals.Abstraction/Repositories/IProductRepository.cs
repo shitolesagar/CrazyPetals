@@ -1,9 +1,18 @@
 ﻿using CrazyPetals.Entities.Database;
+using CrazyPetals.Entities.Resources;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CrazyPetals.Abstraction.Repositories
 {
     public interface IProductRepository : IRepository<Product>
     {
+        Task<List<Product>> GetProductList(ProductListRequestResource request);
 
+        Task<List<Product>> GetProductListForSearch(int take, string AppId, string search);
+
+        Product FindById(int Id, string AppId);
+
+        Task<Product> GetProductDetailAsync(int id, string AppId);
     }
 }

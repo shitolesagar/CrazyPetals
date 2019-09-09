@@ -80,7 +80,7 @@ namespace CrazyPetals.Service
                         user.CreatedDate = DateTime.Now;
                     }
                     _applicationUserRepository.Add(user);
-                      _unitOfWork.SaveChangesAsync();
+                      _unitOfWork.SaveChanges();
                     var obj = new RegisterApiResponseResource
                     {
                         Id = user.Id,
@@ -173,6 +173,29 @@ namespace CrazyPetals.Service
 
         #endregion
 
+        
+
+
+        #region ResetPassword
+        public CommonResponse ResetPassword(ResetPasswordRequest request)
+        {
+            CommonResponse res = new CommonResponse();
+            var user = _applicationUserRepository.FindByEmail(request.Email);
+            if (user != null && user.AppId == request.AppId)
+            {
+                CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+                user.PasswordHash = passwordHash;
+                user.PasswordSalt = passwordSalt;
+                 _unitOfWork.SaveChanges();
+                res.Message = StringConstants.PasswordReset;
+                return res;
+            }
+            res.error = true;
+            res.Message = StringConstants.ServerError;
+            return res;
+        }
+        #endregion
 
         #region Private Methods
 

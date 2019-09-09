@@ -56,6 +56,9 @@ namespace CrazyPetals.WebApi
             services.AddScoped<IUserAddressRepository, UserAddressRepository>();
             services.AddScoped<IVersionControlRepository, VersionControlRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICheckoutService, CheckoutService>();
+            services.AddScoped<IDelivery_chargeRepository, Delivery_chargeRepository>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {

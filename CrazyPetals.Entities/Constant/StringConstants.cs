@@ -46,7 +46,7 @@ namespace CrazyPetals.Entities.Constant
         public static readonly string AddressAdded = "Address Added Successfully.";
         public static readonly string AddressUpdated = "Address Updated Successfully.";
         public static readonly string AddressDeleted = "Address Deleted Successfully.";
-        public static readonly string UserExist = "User with this mobile number already exist";
+        public static readonly string UserExist = "User with this EmailId already exist";
         public static readonly string UserSaved = "User saved Successfully.";
         public static readonly string UserVerified = "User verified successfully.";
         public static readonly string NoUser = "User not found";
@@ -57,5 +57,7 @@ namespace CrazyPetals.Entities.Constant
         public static readonly string OrderPlaced = "Order Placed Successfully.";
         public static readonly string UserNotAuthorised = "You are not Authorize. Please contact Support team";
         public static readonly string OTPSent = "Reset password Code is sent on your registered mail";
+        public static readonly string OTPNotMatch = "Could not verify OTP";
+        public static readonly string Message = "Successfull";
     }
 }

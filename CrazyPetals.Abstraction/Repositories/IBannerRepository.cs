@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace CrazyPetals.Abstraction.Repositories
 {
-    public interface IUserAddressRepository : IRepository<UserAddress>
+    public interface IBannerRepository : IRepository<Banner>
     {
-        Task<List<UserAddress>> GetAllAddressForUser(string AppId, int ApplicationUserId);
+        Task<List<Banner>> GetBannerList(int skip, int take, string AppId);
     }
 }
