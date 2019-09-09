@@ -659,7 +659,7 @@ label {
 
 /*PRIMARY BTN*/
 .primary-btn, .primary-btn:focus, .primary-btn:hover {
-    background: #ac396f;
+    background: #7a6da2;
     color: #fff;
 }
 
@@ -1012,13 +1012,13 @@ select::-ms-expand {
     display: none;
 }
 
-.custom-select {
+.my-custom-select {
     position: relative;
     width: 250px;
     display: inline-block;
 }
 
-    .custom-select:before {
+    .my-custom-select:before {
         content: "";
         background: #fff;
         top: 1px;
@@ -1028,7 +1028,7 @@ select::-ms-expand {
         pointer-events: none;
     }
 
-    .custom-select:after {
+    .my-custom-select:after {
         content: "\f107";
         font-family: FontAwesome;
         position: absolute;
@@ -1072,7 +1072,7 @@ select::-ms-expand {
 .bootstrap-select .dropdown-toggle:focus {
     outline: none !important;
 }
-    .custom-select .select-dropDown {
+    .my-custom-select .select-dropDown {
     color: #000;
     appearance: none;
     -moz-appearance: none;
@@ -1234,7 +1234,7 @@ ul {
 
 /*FIXED HEADER AND SIDEBAR*/
 .left_col {
-    background: #ac396f;
+    background: #dca7c2;
     border-right: solid 1px #D9DEE4;
     width: 300px;
     min-height: 100%;
@@ -1259,7 +1259,7 @@ ul {
     background: #fff;
     padding: 20px;
     border-radius: 4px;
-    min-height: 500px;
+    /*min-height: 300px;*/
     position: relative;
 }
 
@@ -1287,7 +1287,7 @@ ul {
 }
 
 .detailBtn-group {
-    position: absolute;
+    /*position: absolute;*/
     bottom: 20px;
     left: 20px;
 }
@@ -1313,6 +1313,11 @@ ul {
     object-fit: contain;
     height: 250px;
 }
+.add-banner-img {
+    width: 50%;
+    object-fit: contain;
+    height: 250px;
+}
 .mainSub-img {
     width: 100%;
     object-fit: contain;
@@ -1334,7 +1339,7 @@ input[type=file]{
 
 .scroll-view {
     width: 100%;
-    background: #ac396f;
+    background: #dca7c2;
 }
 
 .logo-wrapper {
@@ -1498,7 +1503,7 @@ input[type=file]{
     }
 
         .nav.side-menu > li.active > a {
-            background: #e04a90;
+            background: #7a6da2;
             /* background: linear-gradient(to right, #3b29b3,#bb68d4); */
             color: #fff;
             font-weight: 400;
@@ -1509,7 +1514,7 @@ input[type=file]{
 
         .nav.side-menu > li > a:hover,
         .nav > li > a:focus {
-            background: #e04a90;
+            background: #7a6da2;
             /* background: linear-gradient(to right, #371afb78,#bb68d4ab); */
             color: #fff !important;
             font-weight: 400;
@@ -2569,7 +2574,7 @@ ul, ol {
 
 
 .btn.btn-primary {
-    background: #ac396f;
+    background: #7a6da2;
     color: #fff;
 }
 
@@ -2816,14 +2821,14 @@ img.profile-details {
 
 /* responsive */
 @media(max-width:1380px){
-    .dropDownLabel-mob ~ .custom-select{
+    .dropDownLabel-mob ~ .my-custom-select{
         width: calc(100% - 140px);
       }
 }
 
 @media(max-width:1199px){
     
-    .dropDownLabel-mob ~ .custom-select{
+    .dropDownLabel-mob ~ .my-custom-select{
         width: calc(100% - 160px);
         margin-bottom:15px;
     }
@@ -2924,7 +2929,7 @@ img.profile-details {
     .dropDownLabel-mob{
         width:95px;
     }
-    .dropDownLabel-mob ~ .custom-select{
+    .dropDownLabel-mob ~ .my-custom-select{
         width: calc(100% - 110px);
         margin-bottom:15px;
     }
@@ -2934,7 +2939,7 @@ img.profile-details {
     .right_col{
         padding-top:110px;
     }
-    .dropDownLabel-mob ~ .custom-select{
+    .dropDownLabel-mob ~ .my-custom-select{
         width: 100%;
     }
     .desktopView-search{

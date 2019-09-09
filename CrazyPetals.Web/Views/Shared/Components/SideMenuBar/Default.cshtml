@@ -16,9 +16,48 @@
         <div id="sidebar-menu" class="main_menu_side main_menu ">
             <div class="menu_section">
                 <ul class="nav side-menu">
-                    <li class="nav-item @(activetab == "dashboard" ? "active" :"" )"><a data-toggle="tooltip" data-placement="right" title="Categories" asp-controller="category" asp-action="index"> <img src="~/images/icons/grid.png" class="m-r-10 vertical-middle hamburger-menu-icon" /><span class="vertical-middle display-inline">Categories</span></a></li>
-                    <li class="nav-item @(activetab == "subcategory" ? "active" :"" )"> <a data-toggle="tooltip" data-placement="right" title="Subcategories" asp-controller="category" asp-action="index"><img src="~/images/icons/view-list-large.png" class="m-r-10 vertical-middle hamburger-menu-icon" /><span class="vertical-middle display-inline"> Subcategories</span></a></li>
-                    <li class="nav-item @(activetab == "product" ? "active" :"" )"> <a data-toggle="tooltip" data-placement="right" title="Products" asp-controller="category" asp-action="index"><img src="~/images/icons/product.png" class="m-r-10 vertical-middle hamburger-menu-icon" /><span class="vertical-middle display-inline">Products</span></a></li>
+                    <li class="nav-item @(activetab == "dashboard" ? "active" :"" )">
+                        <a title="Categories" asp-controller="category" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/grid.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Categories</span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(activetab == "subcategory" ? "active" :"" )">
+                        <a title="Subcategories" asp-controller="subcategory" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/view-list-large.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Subcategories</span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(activetab == "banner" ? "active" :"" )">
+                        <a title="Advertisement Banner" asp-controller="advertisementbanner" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/view-list-large.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Advertisement Banner</span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(activetab == "notification" ? "active" :"" )">
+                        <a title="Notification" asp-controller="notification" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/view-list-large.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Notification</span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(activetab == "user" ? "active" :"" )">
+                        <a title="Users" asp-controller="user" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/view-list-large.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">User</span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(activetab == "product" ? "active" :"" )">
+                        <a title="Product" asp-controller="product" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/product.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Products</span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(activetab == "order" ? "active" :"" )">
+                        <a title="Orders" asp-controller="orders" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/product.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Orders</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

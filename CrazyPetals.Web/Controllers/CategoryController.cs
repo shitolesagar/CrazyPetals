@@ -12,5 +12,16 @@ namespace CrazyPetals.Web.Controllers
         {
             return View();
         }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Add(Object model)
+        {
+            return View();
+        }
     }
 }

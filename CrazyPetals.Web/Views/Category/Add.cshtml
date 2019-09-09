@@ -1,0 +1,63 @@
+﻿@model CrazyPetals.Entities.WebViewModels.AddCategoryViewModel
+@{
+    ViewData["Title"] = "Add Category";
+    string stringHtml = "<span class=\"display-inline\">Add Category</span>";
+    ViewData["TabHeading"] = stringHtml;
+    ViewData["ActiveTab"] = "dashboard";
+}
+<div class="row">
+    <div class="col-md-6 detail-container">
+        <form asp-controller="category" asp-action="add" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
+            <div class="detail-container">
+                <img src="~/images/icons/default-img.png" id="tempImg" class="img-responsive detailView-img display-inline m-r-25" />
+                <label for="file-input" class="btn btn-primary">Add/Change Image</label>
+                <input type="file" id="file-input" name="file" class="form-control display-none" accept="image/*">
+                <div>
+                    <input type="text" asp-for="ImageUrl" class="display-none" />
+                    <span id="ImageName-error" class="text-danger mb-2" asp-validation-for="ImageUrl"></span>
+                </div>
+                <div class="row my-4">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label asp-for="CategoryName" class="control-label float-label">Category Name <span class="f-red">*</span></label>
+                            <input type="text" asp-for="CategoryName" class="form-control" maxlength="40" value="" />
+                            <span asp-validation-for="CategoryName" class="text-danger mb-3"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="detailBtn-group">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <a asp-controller="category" asp-action="index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script>
+        var _URL = window.URL || window.webkitURL;
+        $("#file-input").change(function (e) {
+            var file, img;
+            $("#ImageName-error").text('');
+            if ((file = this.files[0])) {
+                if (file.type === "image/png" || file.type === "image/jpeg" || file.type === "image/jpg") {
+                    img = new Image();
+                    img.onload = function () {
+                        $("#tempImg").attr("src", img.src);
+                    };
+                    img.src = _URL.createObjectURL(file);
+                    $("#ImageUrl").val("Dummy Image URL")
+                }
+                else {
+                    $("#ImageUrl").val("")
+                    $("#ImageName-error").text('File is not a valid image.');
+                }
+            }
+        });
+        $.validator.setDefaults({
+            ignore: [],
+        });
+    </script>
+}
