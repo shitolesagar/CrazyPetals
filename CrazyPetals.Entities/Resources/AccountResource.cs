@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -35,6 +36,7 @@ namespace CrazyPetals.Entities.Resources
         public string Name { get; set; }
         public string EmailId { get; set; }
         public string AppId { get; set; }
+        public IFormFile file { get; set; }
     }
     public class RegisterApiResponseResource
     {

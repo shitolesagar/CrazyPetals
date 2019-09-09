@@ -11,6 +11,7 @@ using CrazyPetals.Entities.Resources;
 using CrazyPetals.Service;
 using CrazyPetals.Service.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CrazyPetals.WebApi.Controllers
@@ -51,12 +52,12 @@ namespace CrazyPetals.WebApi.Controllers
         [Route("api/Account/Register")]
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Register([FromBody] Register request)
+        public async Task<IActionResult> Register(Register request)
         {
             if (string.IsNullOrEmpty(request.AppId))
                 return Ok(new { statusCode = StringConstants.StatusCode20, message = StringConstants.AppIdNull });
 
-            var response =  _userService.RegisterUser(request);
+            var response = await _userService.RegisterUser(request);
 
             if(response.error==true)
             {
