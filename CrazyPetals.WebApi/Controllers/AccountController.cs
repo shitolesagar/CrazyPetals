@@ -103,5 +103,41 @@ namespace CrazyPetals.WebApi.Controllers
         }
         #endregion
 
+
+        #region Forgot Password Verify OTP
+        [Route("api/Account/VerifyOtp")]
+        [AllowAnonymous]
+        [HttpPost]
+        public  IActionResult ForgotPassword([FromBody] VerifyOtpRequest request)
+        {
+            var userData =  _forgotPasswordRepository.FindByEmailOtp(request.Email, request.OTP);
+            if (userData != null)
+            {
+                //return Ok(CreateResponseAfterSuccessfulAuthantication(userData.ApplicationUser));
+            }
+            return BadRequest(
+               new { Message = "Could not verify OTP" }
+               );
+        }
+
+        #endregion
+
+
+        #region Reset Password
+        [Route("api/Account/ResetPassword")]
+        [HttpPost]
+        public IActionResult ResetPassword([FromBody] ResetPasswordRequest request)
+        {
+            var response = _userService.ResetPassword(request);
+
+            if (response.error == true)
+            {
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = response.Message });
+            }
+            return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message });
+        }
+
+        #endregion
+
     }
 }

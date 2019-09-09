@@ -11,5 +11,9 @@ namespace CrazyPetals.Abstraction.Service
         CommonResponse LoginUser(LoginRequest request);
 
         CommonResponse OTPSend(BaseRequest request);
+
+        
+
+        CommonResponse ResetPassword(ResetPasswordRequest request);
     }
 }
