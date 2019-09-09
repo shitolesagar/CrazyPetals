@@ -4,6 +4,7 @@ using CrazyPetals.Abstraction.Service;
 using CrazyPetals.Entities.Constant;
 using CrazyPetals.Entities.Database;
 using CrazyPetals.Entities.Resources;
+using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace CrazyPetals.Service
         private ICategoryRepository _categoryRepository;
         private IUnitOfWork _unitOfWork;
         private IEmailService _emailService;
+        private IFileServices _fileServices;
         private IProductImagesRepository _productImagesRepository;
         private IUserAddressRepository _userAddressRepository;
         private IOrderSummaryRepository _orderSummaryRepository;
@@ -28,7 +30,7 @@ namespace CrazyPetals.Service
         private IForgotPasswordRepository _forgotPasswordRepository;
 
 
-        public UserService(ICategoryRepository categoryRepository, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderSummaryRepository orderSummaryRepository,   IUserAddressRepository userAddressRepository,   IProductImagesRepository productImagesRepository,  IUnitOfWork unitOfWork )
+        public UserService(ICategoryRepository categoryRepository, IFileServices fileServices, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderSummaryRepository orderSummaryRepository,   IUserAddressRepository userAddressRepository,   IProductImagesRepository productImagesRepository,  IUnitOfWork unitOfWork )
         {
             _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;
@@ -39,6 +41,7 @@ namespace CrazyPetals.Service
             _applicationUserRepository = applicationUserRepository;
             _forgotPasswordRepository = forgotPasswordRepository;
             _emailService = emailService;
+            _fileServices = fileServices;
         }
 
         public UserService()
@@ -47,7 +50,7 @@ namespace CrazyPetals.Service
         }
 
         #region RegisterUser
-        public RegisterResponse RegisterUser(Register request)
+        public async Task<RegisterResponse> RegisterUser(Register request)
         {
             
             RegisterResponse res = new RegisterResponse();
@@ -62,6 +65,7 @@ namespace CrazyPetals.Service
                 }
                 else
                 {
+                    string relativePath = await _fileServices.SaveImageAndReturnRelativePath(request.file, FolderConstants.UserFolder);
                     user = new ApplicationUser
                     {
                         Name = request.Name,
@@ -69,6 +73,7 @@ namespace CrazyPetals.Service
                         AppId = request.AppId,
                         RoleId = 3,
                         MobileNumber = request.PhoneNumber,
+                        ProfilePicture = relativePath,
                     };
 
                     if (!string.IsNullOrEmpty(request.Password))
