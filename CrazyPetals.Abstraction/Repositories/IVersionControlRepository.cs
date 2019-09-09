@@ -4,6 +4,6 @@ namespace CrazyPetals.Abstraction.Repositories
 {
     public interface IVersionControlRepository : IRepository<VersionControl>
     {
-
+        VersionControl CurrentVersion(string AppId);
     }
 }

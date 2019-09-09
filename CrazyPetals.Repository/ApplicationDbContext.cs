@@ -36,6 +36,7 @@ namespace CrazyPetals.Repository
         public DbSet<SmtpMail> SmtpMail { get; set; }
         public DbSet<UserAddress> UserAddress { get; set; }
         public DbSet<VersionControl> VersionControl { get; set; }
+        public DbSet<Delivery_charge> delivery_Charges { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -62,6 +63,7 @@ namespace CrazyPetals.Repository
             modelBuilder.ApplyConfiguration(new SizeConfiguration());
             modelBuilder.ApplyConfiguration(new SmtpMailConfiguration());
             modelBuilder.ApplyConfiguration(new UserAddressConfiguration());
+            modelBuilder.ApplyConfiguration(new Delivery_chargeConfiguration());
         }
     }
 }
