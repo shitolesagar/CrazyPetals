@@ -53,65 +53,59 @@ namespace CrazyPetals.Service
         {
             
             RegisterResponse res = new RegisterResponse();
+            
+                 var user = _applicationUserRepository.FindByEmail(request.EmailId);
+
+
             try
             {
-                 var user = _applicationUserRepository.FindByEmail(request.EmailId);
-                return res;
+                if (user != null)
+                {
+                    res.error = true;
+                    res.Message = StringConstants.UserExist;
+                    return res;
+                }
+                else
+                {
+                    string relativePath = await _fileServices.SaveImageAndReturnRelativePath(request.file, FolderConstants.UserFolder);
+                    user = new ApplicationUser
+                    {
+                        Name = request.Name,
+                        Email = request.EmailId,
+                        AppId = request.AppId,
+                        RoleId = 3,
+                        MobileNumber = request.PhoneNumber,
+                        ProfilePicture = relativePath,
+                    };
+
+                    if (!string.IsNullOrEmpty(request.Password))
+                    {
+                        CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
+
+                        user.PasswordHash = passwordHash;
+                        user.PasswordSalt = passwordSalt;
+                        user.CreatedDate = DateTime.Now;
+                    }
+                    _applicationUserRepository.Add(user);
+                    _unitOfWork.SaveChanges();
+                    var obj = new RegisterApiResponseResource
+                    {
+                        Id = user.Id,
+                        Name = user.Name,
+                        Email = user.Email,
+                    };
+                    res.data = obj;
+                    res.Message = StringConstants.UserSaved;
+                    return res;
+                }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                string relativePath = await _fileServices.SaveImageAndReturnRelativePath(request.file, FolderConstants.UserFolder);
+                Debug.Print(e.Message);
+                res.error = true;
+                res.Message = StringConstants.ServerError;
                 return res;
             }
-            //try
-            //{
-            //    if (user != null)
-            //    {
-            //        res.error = true;
-            //        res.Message = StringConstants.UserExist;
-            //        return res;
-            //    }
-            //    else
-            //    {
-            //        string relativePath = await _fileServices.SaveImageAndReturnRelativePath(request.file, FolderConstants.UserFolder);
-            //        user = new ApplicationUser
-            //        {
-            //            Name = request.Name,
-            //            Email = request.EmailId,
-            //            AppId = request.AppId,
-            //            RoleId = 3,
-            //            MobileNumber = request.PhoneNumber,
-            //            ProfilePicture = relativePath,
-            //        };
-
-            //        if (!string.IsNullOrEmpty(request.Password))
-            //        {
-            //            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
-
-            //            user.PasswordHash = passwordHash;
-            //            user.PasswordSalt = passwordSalt;
-            //            user.CreatedDate = DateTime.Now;
-            //        }
-            //        _applicationUserRepository.Add(user);
-            //          _unitOfWork.SaveChanges();
-            //        var obj = new RegisterApiResponseResource
-            //        {
-            //            Id = user.Id,
-            //            Name = user.Name,
-            //            Email = user.Email,
-            //        };
-            //        res.data = obj;
-            //        res.Message = StringConstants.UserSaved;
-            //        return res;
-            //    }
-            //}
-            //catch (Exception e)
-            //{
-            //    Debug.Print(e.Message);
-            //    res.error = true;
-            //    res.Message = StringConstants.ServerError;
-            //    return res;
-            //}
         }
         #endregion
 
