@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using CrazyPetals.Abstraction;
 using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Abstraction.Service;
+using CrazyPetals.Entities.Constant;
 using CrazyPetals.Repository;
 using CrazyPetals.Repository.Repositories;
 using CrazyPetals.Service;
@@ -32,21 +34,55 @@ namespace CrazyPetals.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IUserService, UserService>();
+            
+            
+            
+
+            #region Services
             services.AddScoped<IFileServices, FileServices>();
+            services.AddScoped<IWebCategoryService, WebCategoryService>();
+            services.AddScoped<ISubcategoryService, SubcategoryService>();
             services.AddScoped<IBannerService, BannerService>();
+            services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IEmailService, EmailService>();
+            #endregion
+
+            #region Repostiory
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IFilterRepository, FilterRepository>();
             services.AddScoped<IBannerRepository, BannerRepository>();
+            services.AddScoped<INotificationRepository, NotificationRepository>();
+            services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IOrderSummaryRepository, OrderSummaryRepository>();
+            services.AddScoped<IForgotPasswordRepository, ForgotPasswordRepository>();
+            services.AddScoped<IOrderDetailsRepository, OrderDetailsRepository>();
+            services.AddScoped<IUserAddressRepository, UserAddressRepository>();
+            services.AddScoped<IProductImagesRepository, ProductImagesRepository>();
+            services.AddScoped<ISmtpMailRepository, SmtpMailRepository>();
+            #endregion
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseMySql(Configuration.GetConnectionString("defaultConnection")));
 
             // services.Configure<AppSettings>(Configuration.GetSection("ApplicationSettings"));
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-IN");
+                options.SupportedCultures = new List<CultureInfo> { new CultureInfo("en-US"), new CultureInfo("en-IN") };
+            });
+
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
                         options.LoginPath = "/account/login";
-                        options.Cookie.Name = "Crazypetals";
+                        options.Cookie.Name = StringConstants.AppId;
                     });
             
             services.AddMvc(config =>
@@ -78,7 +114,7 @@ namespace CrazyPetals.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=category}/{action=index}/{id?}");
+                    template: "{controller=account}/{action=login}/{id?}");
             });
         }
     }

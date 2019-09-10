@@ -3,10 +3,20 @@
     string stringHtml = "<span class=\"display-inline\">Users</span>";
     ViewData["TabHeading"] = stringHtml;
     ViewData["ActiveTab"] = "user";
+    var message = TempData["Message"] ?? string.Empty;
 }
 
 
-<h1>Comming soon</h1>
+
+@await Component.InvokeAsync("User", new { isPartial = false, filter = ViewBag.Filters })
 
 
 
+@section Scripts{
+    <script>
+        var message = "@message";
+        if (message) {
+            ShowSlackbarSucessMessage(message);
+        }
+    </script>
+}

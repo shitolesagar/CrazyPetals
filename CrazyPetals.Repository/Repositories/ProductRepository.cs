@@ -1,5 +1,6 @@
 ﻿using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Entities.Database;
+using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.Resources;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -32,6 +33,16 @@ namespace CrazyPetals.Repository.Repositories
         public Task<Product> GetProductDetailAsync(int id, string AppId)
         {
             return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Include(x => x.ProductColors).ThenInclude(y => y.Colors).Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+
+        public int GetIndexViewTotalCount(ProductFilter filter)
+        {
+            return Set.Count();
+        }
+
+        public Task<List<Product>> GetIndexViewRecordsAsync(ProductFilter filter, int skip, int pageSize)
+        {
+            return Set.Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
         }
     }
 }

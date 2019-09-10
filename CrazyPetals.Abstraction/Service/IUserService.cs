@@ -1,5 +1,7 @@
 ﻿using CrazyPetals.Entities.Database;
+using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.Resources;
+using CrazyPetals.Entities.WebViewModels;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
@@ -13,8 +15,8 @@ namespace CrazyPetals.Abstraction.Service
 
         CommonResponse OTPSend(BaseRequest request);
 
-        
-
         CommonResponse ResetPassword(ResetPasswordRequest request);
+
+        Task<UserWrapperViewModel> GetWrapperForIndexView(UserFilter filter);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CrazyPetals.Entities.Database;
+using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.Resources;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,5 +15,7 @@ namespace CrazyPetals.Abstraction.Repositories
         Product FindById(int Id, string AppId);
 
         Task<Product> GetProductDetailAsync(int id, string AppId);
+        int GetIndexViewTotalCount(ProductFilter filter);
+        Task<List<Product>> GetIndexViewRecordsAsync(ProductFilter filter, int skip, int pageSize);
     }
 }

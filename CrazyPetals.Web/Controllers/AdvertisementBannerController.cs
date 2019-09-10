@@ -20,7 +20,7 @@ namespace CrazyPetals.Web.Controllers
             _fileServices = fileServices;
             _bannerService = bannerService;
         }
-        public IActionResult Index(BannerFilters filter)
+        public IActionResult Index(BannerFilter filter)
         {
             ViewBag.Filters = filter;
             return View();
@@ -39,7 +39,7 @@ namespace CrazyPetals.Web.Controllers
 
             string relativePath = await _fileServices.SaveImageAndReturnRelativePath(model.File, FolderConstants.BannerFolder);
             await _bannerService.AddBannerAsync(model, relativePath);
-            TempData["Message"] = "Banner Added Sucessfully";
+            TempData["Message"] = MessageConstants.BannerAddSuccessMessage;
             return RedirectToAction("Index");
         }
     }

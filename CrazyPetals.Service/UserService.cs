@@ -3,13 +3,17 @@ using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Abstraction.Service;
 using CrazyPetals.Entities.Constant;
 using CrazyPetals.Entities.Database;
+using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.Resources;
+using CrazyPetals.Entities.WebViewModels;
+using CrazyPetals.Service.ExtensionMethods;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,11 +46,6 @@ namespace CrazyPetals.Service
             _forgotPasswordRepository = forgotPasswordRepository;
             _emailService = emailService;
             _fileServices = fileServices;
-        }
-
-        public UserService()
-        {
-
         }
 
         #region RegisterUser
@@ -287,6 +286,26 @@ namespace CrazyPetals.Service
                 strrandom += charArr.GetValue(pos);
             }
             return strrandom;
+        }
+
+        public async Task<UserWrapperViewModel> GetWrapperForIndexView(UserFilter filter)
+        {
+            UserWrapperViewModel ResponseModel = new UserWrapperViewModel
+            {
+                TotalCount = _applicationUserRepository.GetIndexViewTotalCount(filter)
+            };
+            ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
+            List<ApplicationUser> list = await _applicationUserRepository.GetIndexViewRecordsAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
+            ResponseModel.UserList = list.Select((x, index) => new UserListViewModel
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Role = x.Role.Name,
+                CreatedDate = x.CreatedDate.ToCrazyPattelsPattern(),
+                Number = ResponseModel.PagingData.FromRecord + index,
+            }).ToList();
+            ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
+            return ResponseModel;
         }
 
         #endregion

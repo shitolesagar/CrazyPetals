@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CrazyPetals.Web.Components
 {
-   
+
     public class BannerViewComponent : ViewComponent
     {
         private readonly IBannerService _bannerService;
@@ -20,24 +20,10 @@ namespace CrazyPetals.Web.Components
         {
             _bannerService = bannerService;
         }
-        public async Task<IViewComponentResult> InvokeAsync(BannerFilters filter, bool IsPartial)
+        public async Task<IViewComponentResult> InvokeAsync(BannerFilter filter, bool IsPartial)
         {
-            BannerWrapperViewModel ResponseModel = new BannerWrapperViewModel
-            {
-                TotalCount = _bannerService.GetAdminViewBannerCount(filter)
-            };
+            BannerWrapperViewModel ResponseModel = await _bannerService.GetWrapperForIndexView(filter);
             ViewBag.ShowEmptyState = !IsPartial;
-            ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
-            List<Banner> list = await _bannerService.GetAdminViewBannerAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
-            ResponseModel.BannerList = list.Select((x, index) => new BannerListViewModel
-            {
-                Id = x.Id,
-                Caption = x.Title,
-                CreatedDate = x.CreatedDate.ToCrazyPattelsPattern(),
-                ExpireDate = x.ExpiryDate?.ToCrazyPattelsPattern(),
-                ImagePath = x.Image,
-                Number = ResponseModel.PagingData.FromRecord + index,
-            }).ToList();
             return View(ResponseModel);
         }
     }

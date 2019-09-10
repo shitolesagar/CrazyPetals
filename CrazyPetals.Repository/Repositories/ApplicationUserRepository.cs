@@ -1,6 +1,8 @@
 ﻿using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Entities.Database;
+using CrazyPetals.Entities.Filters;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,6 +18,16 @@ namespace CrazyPetals.Repository.Repositories
         {
 
             return Set.FirstOrDefault(x => x.Email == Email);
+        }
+
+        public Task<List<ApplicationUser>> GetIndexViewRecordsAsync(UserFilter filter, int skip, int pageSize)
+        {
+            return Set.Include(x => x.Role).Skip(skip).Take(pageSize).ToListAsync();
+        }
+
+        public int GetIndexViewTotalCount(UserFilter filter)
+        {
+            return Set.Count();
         }
     }
 }
