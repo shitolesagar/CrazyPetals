@@ -48,11 +48,6 @@ namespace CrazyPetals.Service
             _fileServices = fileServices;
         }
 
-<<<<<<< HEAD
-       
-
-=======
->>>>>>> 06bbbaeae29033820d386137197d571d43693794
         #region RegisterUser
         public async Task<RegisterResponse> RegisterUser(Register request)
         {
