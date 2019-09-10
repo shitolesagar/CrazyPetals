@@ -1,12 +1,25 @@
 ﻿using System;
+using System.Threading.Tasks;
+using CrazyPetals.Abstraction.Service;
+using CrazyPetals.Entities.Constant;
+using CrazyPetals.Entities.Filters;
+using CrazyPetals.Entities.WebViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CrazyPetals.Web.Controllers
 {
+    
     public class SubcategoryController : Controller
     {
-        public IActionResult Index()
+        private readonly ISubcategoryService _subcategoryService;
+
+        public SubcategoryController(ISubcategoryService subcategoryService)
         {
+            _subcategoryService = subcategoryService;
+        }
+        public IActionResult Index(SubcategoryFilter filter)
+        {
+            ViewBag.Filters = filter;
             return View();
         }
 
@@ -16,9 +29,13 @@ namespace CrazyPetals.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Object model)
+        public async Task<IActionResult> Add(AddSubcategoryViewModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View();
+            await _subcategoryService.AddSubcategoryAsync(model);
+            TempData["Message"] = MessageConstants.SubcategoryAddSuccessMessage;
+            return RedirectToAction("Index");
         }
     }
 }

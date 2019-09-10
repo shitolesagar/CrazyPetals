@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CrazyPetals.Entities.Filters
 {
-    public class BannerFilters
+    public class FilterBase
     {
         public string search { get; set; }
         public int PageIndex { get; set; } = 1;

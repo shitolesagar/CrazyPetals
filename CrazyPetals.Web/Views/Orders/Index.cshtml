@@ -4,8 +4,20 @@
 
     ViewData["TabHeading"] = stringHtml;
     ViewData["ActiveTab"] = "order";
+    var message = TempData["Message"] ?? string.Empty;
 }
 
 
-<h1>Comming soon</h1>
 
+@await Component.InvokeAsync("Order", new { isPartial = false, filter = ViewBag.Filters })
+
+
+
+@section Scripts{
+    <script>
+        var message = "@message";
+        if (message) {
+            ShowSlackbarSucessMessage(message);
+        }
+    </script>
+}

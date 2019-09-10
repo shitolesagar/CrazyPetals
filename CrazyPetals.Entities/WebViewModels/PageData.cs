@@ -22,10 +22,5 @@ namespace CrazyPetals.Entities.WebViewModels
         public bool IsLast { get; set; }
         public int CurrentIndex { get; set; }
     }
-    public class SortingData
-    {
-        public bool IsDecending { get; set; }
-        public string ColumnName { get; set; }
-    }
 }
 

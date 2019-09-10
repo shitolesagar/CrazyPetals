@@ -2,14 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CrazyPetals.Abstraction.Service;
+using CrazyPetals.Entities.Constant;
+using CrazyPetals.Entities.Filters;
+using CrazyPetals.Entities.WebViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CrazyPetals.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        public IActionResult Index()
+        private readonly IWebCategoryService _categoryService;
+        private readonly IFileServices _fileServices;
+
+        public CategoryController(IWebCategoryService categoryService, IFileServices fileServices)
         {
+            _categoryService = categoryService;
+            _fileServices = fileServices;
+        }
+        public IActionResult Index(FilterBase filter)
+        {
+            ViewBag.Filters = filter;
             return View();
         }
 
@@ -19,9 +32,15 @@ namespace CrazyPetals.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Object model)
+        public async Task<IActionResult> Add(AddCategoryViewModel model)
         {
-            return View();
+            if (!ModelState.IsValid)
+                return View();
+
+            string relativePath = await _fileServices.SaveImageAndReturnRelativePath(model.File, FolderConstants.CategoriesFolder);
+            await _categoryService.AddCategoryAsync(model, relativePath);
+            TempData["Message"] = MessageConstants.CategoryAddSuccessMessage;
+            return RedirectToAction("Index");
         }
     }
 }

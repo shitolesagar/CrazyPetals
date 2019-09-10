@@ -1,0 +1,74 @@
+﻿@model CrazyPetals.Entities.WebViewModels.UserWrapperViewModel
+
+@if (Model.TotalCount <= 0)
+{
+    <div class="empty-state-question">
+        @if (ViewBag.ShowEmptyState == true)
+        {
+            <a asp-action="add" asp-controller="user" class="btn-add m-l-20"> Add New User </a>
+            <p class="m-t-25 f-22 f-bold">
+                Start adding user to your table
+            </p>
+            <p class="f-gray m-t-10 f-14">Click on "Add New User" button to add user to your table.</p>
+        }
+        else
+        {
+            <img src="~/images/search@2x.png" alt="Sorry" />
+            <p class="m-t-25 f-22 f-bold">
+                No Result Found!
+            </p>
+            <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
+        }
+    </div>
+}
+else
+{
+    <div id="tblContent" class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Role </th>
+                    <th>Created Date</th>
+                    <th class="text-center">Manage</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.UserList)
+                {
+                    <tr>
+                        <td>@user.Number</td>
+                        <td>
+                            @user.Name
+                        </td>
+                        <td>
+                            @user.Role
+                        </td>
+                        <td>
+                            @user.CreatedDate
+                        </td>
+                        <td class="text-center">
+                            <span class="display-inline position-relative more-action">
+                                <img src="~/images/icons/more-vertical.png" class="img-responsive  cursor-pointer" />
+                                <div class="editRemove-popup">
+                                    <ul>
+                                        <li><a asp-controller="user" asp-action="edit" asp-route-id="@user.Id"><img src="~/images/icons/edit.png" class="action-icon img-responsive" /> Edit</a> </li>
+                                        <li onclick="openModal('@user.Id')"><img src="~/images/icons/trash.png" class="action-icon" />Remove</li>
+                                    </ul>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <!--Pagination-->
+        <div class="pagination">
+            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex-1))" @(Model.PagingData.IsFirst ? "disabled" : "")><img src="~/images/icons/left.png" /></button>
+            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex+1))" @(Model.PagingData.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
+            <span class="m-l-20">Viewing <span class="f-semi-bold">@Model.PagingData.FromRecord - @Model.PagingData.UpToRecord</span> of <span class="f-semi-bold">@Model.TotalCount</span></span>
+        </div>
+    </div>
+}

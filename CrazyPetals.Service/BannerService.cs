@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using CrazyPetals.Abstraction;
@@ -9,6 +10,7 @@ using CrazyPetals.Entities.Constant;
 using CrazyPetals.Entities.Database;
 using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.WebViewModels;
+using CrazyPetals.Service.ExtensionMethods;
 
 namespace CrazyPetals.Service
 {
@@ -37,14 +39,25 @@ namespace CrazyPetals.Service
             return _unitOfWork.SaveChangesAsync();
         }
 
-        public Task<List<Banner>> GetAdminViewBannerAsync(BannerFilters filter, int skip, int pageSize)
+        public async Task<BannerWrapperViewModel> GetWrapperForIndexView(BannerFilter filter)
         {
-            return _bannerRepository.PageAllAsync(skip, pageSize);
-        }
-
-        public int GetAdminViewBannerCount(BannerFilters filter)
-        {
-            return _bannerRepository.GetAll().Count;
+            BannerWrapperViewModel ResponseModel = new BannerWrapperViewModel
+            {
+                TotalCount = _bannerRepository.GetIndexViewTotalCount(filter)
+            };
+            ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
+            List<Banner> list = await _bannerRepository.GetIndexViewRecordsAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
+            ResponseModel.BannerList = list.Select((x, index) => new BannerListViewModel
+            {
+                Id = x.Id,
+                Caption = x.Title,
+                CreatedDate = x.CreatedDate.ToCrazyPattelsPattern(),
+                ExpireDate = x.ExpiryDate?.ToCrazyPattelsPattern(),
+                ImagePath = x.Image,
+                Number = ResponseModel.PagingData.FromRecord + index,
+            }).ToList();
+            ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
+            return ResponseModel;
         }
     }
 }
