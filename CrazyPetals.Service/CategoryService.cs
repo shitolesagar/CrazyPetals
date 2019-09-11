@@ -68,7 +68,7 @@ namespace CrazyPetals.Service
                 StatusBarColor = appConfig.StatusBarColor,
                 TextColor = appConfig.TextColor,
                 AppName = appConfig.AppName,
-                AppLogoURL = appConfig.AppLogo,
+                AppLogoURL = StringConstants.CPImageUrl + appConfig.AppLogo,
                 CurrencySymbol = appConfig.CurrencySymbols
 
             };
@@ -115,7 +115,7 @@ namespace CrazyPetals.Service
                 {
                     Id = x.Id,
                     Title = x.Title,
-                    Image = x.Image
+                    Image = StringConstants.CPImageUrl + x.Image
 
                 }).ToList();
                 res.Message = StringConstants.Message;
@@ -147,7 +147,7 @@ namespace CrazyPetals.Service
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Image = x.Image
+                    Image =StringConstants.CPImageUrl+ x.Image
 
                 }).ToList();
                 res.Message = StringConstants.Message;
@@ -241,7 +241,7 @@ namespace CrazyPetals.Service
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Image = x.ProductImages.Where(y=>y.IsMain==true).FirstOrDefault().Image,
+                    Image = StringConstants.CPImageUrl + x.ProductImages.Where(y=>y.IsMain==true).FirstOrDefault().Image,
                     OriginalPrice = x.OriginalPrice,
                     DiscountedPrice = x.DiscountedPrice,
                     DiscountPercentage = x.DiscountPercentage,
@@ -294,7 +294,7 @@ namespace CrazyPetals.Service
                     Images = product.ProductImages.Where(y => y.ProductId==product.Id).Select(y => new ProductImagesResource()
                     {
                         Id = y.Id,
-                        Image = y.Image,
+                        Image = StringConstants.CPImageUrl + y.Image,
                         IsMaIN = y.IsMain,
                     }).ToList(),
                     ColorList = product.ProductColors.Where(y => y.ProductId == product.Id).Select(y => new ProductColorsResource()
@@ -350,7 +350,7 @@ namespace CrazyPetals.Service
                     {
                         Id = x.Id,
                         Name = x.Name,
-                        Image = x.ProductImages.Where(y => y.IsMain == true).FirstOrDefault().Image,
+                        Image = StringConstants.CPImageUrl + x.ProductImages.Where(y => y.IsMain == true).FirstOrDefault().Image,
                         OriginalPrice = x.OriginalPrice,
                         DiscountedPrice = x.DiscountedPrice,
                         DiscountPercentage = x.DiscountPercentage,
