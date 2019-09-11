@@ -1,0 +1,45 @@
+﻿@model CrazyPetals.Entities.WebViewModels.AddFilterViewModel
+@{
+    ViewData["Title"] = "Edit Filter";
+    string stringHtml = "<span class=\"display-inline\">Edit Filter</span>";
+    ViewData["TabHeading"] = stringHtml;
+    ViewData["ActiveTab"] = "filter";
+}
+<div class="row">
+    <div class="col-md-6 detail-container">
+        <form asp-controller="filter" asp-action="edit" autocomplete="off" spellcheck="false">
+            <div class="detail-container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label asp-for="FilterName" class="control-label float-label">Filter Name</label>
+                            <input type="text" asp-for="FilterName" class="form-control" maxlength="25" />
+                            <span asp-validation-for="FilterName" class="text-danger mb-3"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label class="float-label">Select Category</label>
+                            <div class="my-custom-select width-100">
+                                <select class="form-control select-dropDown" asp-for="CategoryId" value="" asp-items="ViewBag.CategoriesList">
+                                    <option value="">select</option>
+                                </select>
+                            </div>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="detailBtn-group">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a asp-controller="filter" asp-action="index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

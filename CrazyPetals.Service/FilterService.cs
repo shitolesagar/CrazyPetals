@@ -38,6 +38,36 @@ namespace CrazyPetals.Service
             return _unitOfWork.SaveChangesAsync();
         }
 
+        public Task<int> Deletefilter(int id)
+        {
+            var filterToDelete = _filterRepository.FindById(id);
+            _filterRepository.Remove(filterToDelete);
+            return _unitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<AddFilterViewModel> getForEditAsync(int id)
+        {
+            var filterToEdit = await _filterRepository.FindByIdAsync(id);
+            if (filterToEdit == null)
+                return null;
+            AddFilterViewModel model = new AddFilterViewModel()
+            {
+                CategoryId = filterToEdit.CategoryId,
+                FilterName = filterToEdit.Name
+            };
+            return model;
+        }
+
+        public async Task EditFilterAsync(int id, AddFilterViewModel model)
+        {
+            var filterToEdit = await _filterRepository.FindByIdAsync(id);
+            filterToEdit.Name = model.FilterName;
+            filterToEdit.CategoryId = model.CategoryId;
+            await _unitOfWork.SaveChangesAsync();
+        }
+
+       
+
         public async Task<List<IdNameViewModel>> GetCategoryList()
         {
             var list = await _categoryRepository.GetAllAsync();
@@ -45,7 +75,9 @@ namespace CrazyPetals.Service
             return responseList;
         }
 
-        public async Task<FilterWrapperViewModel> GetWrapperForIndexView(FilterFilter filter)
+        
+
+        public async Task<FilterWrapperViewModel> GetWrapperForIndexView(FilterForFilterModule filter)
         {
             FilterWrapperViewModel ResponseModel = new FilterWrapperViewModel
             {

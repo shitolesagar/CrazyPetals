@@ -1,49 +1,54 @@
 ﻿@model CrazyPetals.Entities.WebViewModels.BannerWrapperViewModel
 
-@if (Model.TotalCount <= 0)
-{
-<div class="empty-state-question">
-    @if (ViewBag.ShowEmptyState == true)
-        {
-    <a asp-action="add" asp-controller="advertisementbanner" class="btn-add m-l-20"> Add New Banner </a>
-    <p class="m-t-25 f-22 f-bold">
-        Start adding Advertisement Banner to your table
-    </p>
-    <p class="f-gray m-t-10 f-14">Click on "Add New Banner" button to add adverstisement banner to your table.</p>
-        }
-        else
-        {
-    <img src="~/images/search@2x.png" alt="Sorry" />
-    <p class="m-t-25 f-22 f-bold">
-        No Result Found!
-    </p>
-    <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
-        }
-</div>
-}
-else
-{
-<div id="tblContent" class="table-wrapper">
-    <div class="row m-auto">
-        @foreach (var banner in Model.BannerList)
-        {
-        <div class="col-md-3 p-2">
-            <div class="card"  style="width: 18rem;">
-                <img src="@banner.ImagePath" class="card-img-top" alt="@banner.Caption">
-                <div class="card-body">
-                    <h5 class="card-title">@banner.Caption</h5>
-                    @*<a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>*@
-                </div>
-            </div>
+<div id="indexPartialContent" class="table-wrapper">
+    @if (Model.TotalCount <= 0)
+    {
+        <div class="empty-state-question">
+            @if (ViewBag.ShowEmptyState == true)
+            {
+                <a asp-action="add" asp-controller="advertisementbanner" class="btn btn-primary mr-4 add-icon"> Add New Banner <img src="/images/icons/Plus.png"></a>
+                <p class="mt-4 f-22 f-bold">
+                    Start adding advertisement banner.
+                </p>
+                <p class="f-gray mt-2 f-14">Click on "Add New Banner" button to add advertisement banner.</p>
+            }
+            else
+            {
+                @*<img src="~/images/search@2x.png" alt="Sorry" />*@
+                <p class="m-t-25 f-22 f-bold">
+                    No Result Found!
+                </p>
+                <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
+            }
         </div>
-        }
-    </div>
-    <!--Pagination-->
-    <div class="pagination justify-content-center align-items-center">
-        <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex-1))" @(Model.PagingData.IsFirst ? "disabled" : "")><img src="~/images/icons/left.png" /></button>
-        <span class="mx-4">Viewing <span class="f-semi-bold">@Model.PagingData.FromRecord - @Model.PagingData.UpToRecord</span> of <span class="f-semi-bold">@Model.TotalCount</span></span>
-        <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex+1))" @(Model.PagingData.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
-    </div>
+    }
+    else
+    {
+        <div class="row m-auto">
+            @foreach (var banner in Model.BannerList)
+            {
+                <div class="col-md-3 p-2 d-flex align-items-stretch">
+                    <div class="card" style="width: 18rem;">
+                        <img src="@banner.ImagePath" class="card-img-top" alt="@banner.Caption">
+                        <div class="card-body">
+                            <h5 class="card-title">@banner.Caption</h5>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="d-flex flex-row justify-content-center">
+                                <div class="px-5">
+                                    <span onclick="openModal('@banner.Id')" class="cursor-pointer card-link text-danger">delete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--Pagination-->
+        <div class="pagination justify-content-center align-items-center">
+            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex-1))" @(Model.PagingData.IsFirst ? "disabled" : "")><img src="~/images/icons/left.png" /></button>
+            <span class="mx-4">Viewing <span class="f-semi-bold">@Model.PagingData.FromRecord - @Model.PagingData.UpToRecord</span> of <span class="f-semi-bold">@Model.TotalCount</span></span>
+            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex+1))" @(Model.PagingData.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
+        </div>
+    }
 </div>
-}

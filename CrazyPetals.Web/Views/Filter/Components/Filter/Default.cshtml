@@ -1,70 +1,68 @@
 ﻿@model CrazyPetals.Entities.WebViewModels.FilterWrapperViewModel
 
-@if (Model.TotalCount <= 0)
-{
-<div class="empty-state-question">
-    @if (ViewBag.ShowEmptyState == true)
-        {
-    <a asp-action="add" asp-controller="Filter" class="btn btn-primary m-r-20 add-icon"> <span class="addIcon-txt">Add New Filter</span><img src="/images/icons/Plus.png"> </a>
-    <p class="m-t-25 f-22 f-bold">
-        Start adding Filter to your table
-    </p>
-    <p class="f-gray m-t-10 f-14">Click on "Add New Filter" button to add Filter to your table.</p>
-        }
-        else
-        {
-    <img src="~/images/search@2x.png" alt="Sorry" />
-    <p class="m-t-25 f-22 f-bold">
-        No Result Found!
-    </p>
-    <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
-        }
-</div>
-}
-else
-{
-<div id="tblContent" class="table-wrapper">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th class="text-center">Manage</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var Filter in Model.SubcateogryList)
+<div id="indexPartialContent">
+    @if (Model.TotalCount <= 0)
+    {
+        <div class="empty-state-question">
+            @if (ViewBag.ShowEmptyState == true)
+            {
+                <a asp-action="add" asp-controller="filter" class="btn btn-primary mr-4 add-icon"> Add New Filter <img src="/images/icons/Plus.png"></a>
+                <p class="mt-4 f-22 f-bold">
+                    Start adding filter for categories.
+                </p>
+                <p class="f-gray mt-2 f-14">Click on "Add New Filter" button to add filter for categories.</p>
+            }
+            else
+            {
+                @*<img src="~/images/search@2x.png" alt="Sorry" />*@
+                <p class="m-t-25 f-22 f-bold">
+                    No Result Found!
+                </p>
+                <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
+            }
+        </div>
+    }
+    else
+    {
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th class="text-center">Manage</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Filter in Model.SubcateogryList)
                 {
-            <tr>
-                <td>@Filter.Number</td>
-                <td>
-                    @Filter.Name
-                </td>
-                <td>
-                    @Filter.Category
-                </td>
-                <td class="text-center">
-                    <span class="display-inline position-relative more-action">
-                        <img src="~/images/icons/more-vertical.png" class="img-responsive  cursor-pointer" />
-                        <div class="editRemove-popup">
-                            <ul>
-                                <li><a asp-controller="Filter" asp-action="edit" asp-route-id="@Filter.Id"><img src="~/images/icons/edit.png" class="action-icon img-responsive" /> Edit</a> </li>
-                                <li onclick="openModal('@Filter.Id')"><img src="~/images/icons/trash.png" class="action-icon" />Remove</li>
-                            </ul>
-                        </div>
-                    </span>
-                </td>
-            </tr>
+                    <tr>
+                        <td>@Filter.Number</td>
+                        <td>@Filter.Name</td>
+                        <td>@Filter.Category
+                        </td>
+                        <td class="text-center">
+                            <span class="display-inline position-relative more-action">
+                                <img src="~/images/icons/more-vertical.png" class="img-responsive  cursor-pointer" />
+                                <div class="editRemove-popup">
+                                    <ul>
+                                        <li><a asp-controller="filter" asp-action="edit" asp-route-id="@Filter.Id"><img src="~/images/icons/edit.png" class="action-icon img-responsive" /> Edit</a> </li>
+                                        <li onclick="openModal('@Filter.Id')"><img src="~/images/icons/trash.png" class="action-icon" />Remove</li>
+                                    </ul>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
                 }
 
-        </tbody>
-    </table>
-    <!--Pagination-->
-    <div class="pagination">
-        <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex-1))" @(Model.PagingData.IsFirst ? "disabled" : "")><img src="~/images/icons/left.png" /></button>
-        <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex+1))" @(Model.PagingData.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
-        <span class="m-l-20">Viewing <span class="f-semi-bold">@Model.PagingData.FromRecord - @Model.PagingData.UpToRecord</span> of <span class="f-semi-bold">@Model.TotalCount</span></span>
-    </div>
+            </tbody>
+        </table>
+        <!--Pagination-->
+        <div class="pagination">
+            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex-1))" @(Model.PagingData.IsFirst ? "disabled" : "")><img src="~/images/icons/left.png" /></button>
+            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex+1))" @(Model.PagingData.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
+            <span class="m-l-20">Viewing <span class="f-semi-bold">@Model.PagingData.FromRecord - @Model.PagingData.UpToRecord</span> of <span class="f-semi-bold">@Model.TotalCount</span></span>
+        </div>
+    }
 </div>
-}

@@ -23,7 +23,7 @@
                 <div class="row mt-3">
                     <div class="col-md-9">
                         <div class="form-group">
-                            <label asp-for="Caption" class="control-label float-label">Caption / Title <span class="f-red">*</span></label>
+                            <label asp-for="Caption" class="control-label float-label">Caption / Title</label>
                             <input type="text" asp-for="Caption" class="form-control" maxlength="25" value="" />
                             <span asp-validation-for="Caption" class="text-danger"></span>
                         </div>
@@ -33,7 +33,7 @@
                     <div class="col-md-9">
                         <div class="form-group">
                             <label asp-for="ExpireDate" class="control-label float-label">Expiry Date (Optional)</label>
-                            <input type="text" asp-for="ExpireDate" class="form-control" maxlength="40" value="" />
+                            <input type="text" asp-for="ExpireDate" readonly="readonly" class="form-control" maxlength="40" value="" />
                             <span asp-validation-for="ExpireDate" class="text-danger"></span>
                         </div>
                     </div>

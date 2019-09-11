@@ -10,5 +10,6 @@ namespace CrazyPetals.Abstraction.Service
     {
         Task<int> AddBannerAsync(AddBannerViewModel model, string imageRelativePath);
         Task<BannerWrapperViewModel> GetWrapperForIndexView(BannerFilter filter);
+        Task<int> DeleteBanner(int id);
     }
 }

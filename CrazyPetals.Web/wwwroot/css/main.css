@@ -659,7 +659,7 @@ label {
 
 /*PRIMARY BTN*/
 .primary-btn, .primary-btn:focus, .primary-btn:hover {
-    background: #7a6da2;
+    background: #005389;
     color: #fff;
 }
 
@@ -1234,7 +1234,7 @@ ul {
 
 /*FIXED HEADER AND SIDEBAR*/
 .left_col {
-    background: #dca7c2;
+    background: #C65589;
     border-right: solid 1px #D9DEE4;
     width: 300px;
     min-height: 100%;
@@ -1339,7 +1339,7 @@ input[type=file]{
 
 .scroll-view {
     width: 100%;
-    background: #dca7c2;
+    background: #C65589;
 }
 
 .logo-wrapper {
@@ -1503,7 +1503,7 @@ input[type=file]{
     }
 
         .nav.side-menu > li.active > a {
-            background: #7a6da2;
+            background: #005389;
             /* background: linear-gradient(to right, #3b29b3,#bb68d4); */
             color: #fff;
             font-weight: 400;
@@ -1514,7 +1514,7 @@ input[type=file]{
 
         .nav.side-menu > li > a:hover,
         .nav > li > a:focus {
-            background: #7a6da2;
+            background: #005389;
             /* background: linear-gradient(to right, #371afb78,#bb68d4ab); */
             color: #fff !important;
             font-weight: 400;
@@ -2574,7 +2574,7 @@ ul, ol {
 
 
 .btn.btn-primary {
-    background: #7a6da2;
+    background: #005389;
     color: #fff;
 }
 
@@ -2965,5 +2965,11 @@ img.profile-details {
 }
 
 .card-img-top {
-    max-height:250px;
+    height:250px;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 0px solid #dee2e6;
 }

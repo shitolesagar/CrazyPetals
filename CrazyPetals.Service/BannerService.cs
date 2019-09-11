@@ -39,6 +39,13 @@ namespace CrazyPetals.Service
             return _unitOfWork.SaveChangesAsync();
         }
 
+        public Task<int> DeleteBanner(int id)
+        {
+            var bannerToDelete = _bannerRepository.FindById(id);
+            _bannerRepository.Remove(bannerToDelete);
+            return _unitOfWork.SaveChangesAsync();
+        }
+
         public async Task<BannerWrapperViewModel> GetWrapperForIndexView(BannerFilter filter)
         {
             BannerWrapperViewModel ResponseModel = new BannerWrapperViewModel

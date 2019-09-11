@@ -26,6 +26,22 @@ namespace CrazyPetals.Web.Controllers
             return View();
         }
 
+        public IActionResult IndexPartial(BannerFilter filter)
+        {
+            return ViewComponent("Banner", new { filter });
+        }
+         
+        [HttpPost]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            int deletedRows = await _bannerService.DeleteBanner(id);
+            if (deletedRows > 0)
+                TempData["Message"] = MessageConstants.BannerDeleteSuccessMessage;
+            else
+                TempData["Message"] = MessageConstants.BannerDeleteFailedMessage;
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Add()
         {
             return View();

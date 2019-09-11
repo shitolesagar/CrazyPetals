@@ -49,6 +49,29 @@ namespace CrazyPetals.Service
             }
         }
 
+        public async Task<int> EditCategoryAsync(int id, AddCategoryViewModel model, string imageRelativePath)
+        {
+            Category toUpdate = await _categoryRepository.FindByIdAsync(id);
+            toUpdate.Name = model.CategoryName;
+            if (!string.IsNullOrEmpty(imageRelativePath))
+            {
+                toUpdate.Image = imageRelativePath;
+            }
+            var result = await _unitOfWork.SaveChangesAsync();
+            return result;
+        }
+
+        public async Task<AddCategoryViewModel> getForEditAsync(int id)
+        {
+            var databaseModel = await _categoryRepository.FindByIdAsync(id);
+            AddCategoryViewModel model = new AddCategoryViewModel()
+            {
+                CategoryName = databaseModel.Name,
+                ImageUrl = databaseModel.Image
+            };
+            return model;
+        }
+
         public async Task<CategoryWrapperViewModel> GetWrapperForIndexView(FilterBase filter)
         {
             CategoryWrapperViewModel ResponseModel = new CategoryWrapperViewModel
