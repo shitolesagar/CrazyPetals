@@ -17,5 +17,9 @@ namespace CrazyPetals.Abstraction.Repositories
         Task<Product> GetProductDetailAsync(int id, string AppId);
         int GetIndexViewTotalCount(ProductFilter filter);
         Task<List<Product>> GetIndexViewRecordsAsync(ProductFilter filter, int skip, int pageSize);
+
+        List<Product> GetAllProductForCategory(int CategoryId, string AppId, int skip, int take);
+
+        List<Product> GetAllProductForCategory(int CategoryId, string AppId);
     }
 }

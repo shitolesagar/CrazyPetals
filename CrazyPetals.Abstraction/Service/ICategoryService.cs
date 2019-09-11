@@ -23,5 +23,7 @@ namespace CrazyPetals.Abstraction.Service
         Task<ProductResponse> GetProductListForSearch(int take, string AppId, string Search);
 
         ProductDetailsResponse GetProductDetail(int Id, string AppId);
+
+        ProductListResponse GetAllProductForCategory(int categoryId, string AppId, int skip, int take);
     }
 }

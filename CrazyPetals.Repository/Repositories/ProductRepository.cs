@@ -44,5 +44,14 @@ namespace CrazyPetals.Repository.Repositories
         {
             return Set.Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
         }
+        public List<Product> GetAllProductForCategory(int CategoryId, string AppId, int skip, int take)
+        {
+            return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).OrderByDescending(x => x.Id).Skip(skip).Take(take).ToList();
+        }
+
+        public List<Product> GetAllProductForCategory(int CategoryId, string AppId)
+        {
+            return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
+        }
     }
 }
