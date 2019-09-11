@@ -34,7 +34,7 @@ namespace CrazyPetals.Service
         private IForgotPasswordRepository _forgotPasswordRepository;
 
 
-        public UserService(ICategoryRepository categoryRepository, IFileServices fileServices, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderSummaryRepository orderSummaryRepository,   IUserAddressRepository userAddressRepository,   IProductImagesRepository productImagesRepository,  IUnitOfWork unitOfWork )
+        public UserService(ICategoryRepository categoryRepository, IFileServices fileServices, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderSummaryRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;
@@ -51,10 +51,10 @@ namespace CrazyPetals.Service
         #region RegisterUser
         public async Task<RegisterResponse> RegisterUser(Register request)
         {
-            
+
             RegisterResponse res = new RegisterResponse();
-            
-                 var user = _applicationUserRepository.FindByEmail(request.EmailId);
+
+            var user = _applicationUserRepository.FindByEmail(request.EmailId);
 
 
             try
@@ -133,7 +133,7 @@ namespace CrazyPetals.Service
         #endregion
 
         #region SendOTP
-        public CommonResponse OTPSend (BaseRequest request)
+        public CommonResponse OTPSend(BaseRequest request)
         {
             CommonResponse res = new CommonResponse();
 
@@ -208,13 +208,40 @@ namespace CrazyPetals.Service
 
                 user.PasswordHash = passwordHash;
                 user.PasswordSalt = passwordSalt;
-                 _unitOfWork.SaveChanges();
+                _unitOfWork.SaveChanges();
                 res.Message = StringConstants.PasswordReset;
                 return res;
             }
             res.error = true;
             res.Message = StringConstants.ServerError;
             return res;
+        }
+        #endregion
+
+        #region GetMyProfile
+        public MyProfileResponse GetMyProfile(int Id)
+        {
+            MyProfileResponse res = new MyProfileResponse();
+            try
+            {
+                var profile = _applicationUserRepository.FindById(Id);
+                MyProfile obj = new MyProfile()
+                {
+                    Name = profile.Name,
+                    MobileNumber = profile.MobileNumber,
+                    EmailId = profile.Email,
+                    ProfilePicture = StringConstants.CPImageUrl + profile.ProfilePicture
+                };
+                res.Message = StringConstants.Success;
+                res.data = obj;
+                return res;
+            }
+            catch (Exception e)
+            {
+                res.error = true;
+                res.Message = StringConstants.ServerError;
+                return res;
+            }
         }
         #endregion
 

@@ -20,5 +20,7 @@ namespace CrazyPetals.Abstraction.Service
         Task<UserWrapperViewModel> GetWrapperForIndexView(UserFilter filter);
 
         CommonResponse VerifyOTP(VerifyOtpRequest request);
+
+        MyProfileResponse GetMyProfile(int Id);
     }
 }

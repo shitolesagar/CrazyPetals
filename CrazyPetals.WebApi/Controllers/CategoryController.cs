@@ -238,5 +238,28 @@ namespace CrazyPetals.WebApi.Controllers
             return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message, data = response.data });
         }
         #endregion
+
+        #region GetRecommendedProduct
+        /// <summary>
+        /// This API returns Product List for RecommendedProduct
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="ProductId"></param>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        [Route("api/category/GetRecommendedProduct")]
+        [HttpGet]
+        public IActionResult GetRecommendedProduct(int CategoryId,int ProductId, string AppId, int skip, int take)
+        {
+            var response = _categoryService.GetRecommendedProduct(CategoryId,ProductId, AppId, skip, take);
+
+            if (response.error == true)
+            {
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = response.Message });
+            }
+            return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message, data = response.data });
+        }
+        #endregion
     }
 }
