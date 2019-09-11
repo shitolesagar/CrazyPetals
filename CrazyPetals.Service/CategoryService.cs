@@ -321,5 +321,55 @@ namespace CrazyPetals.Service
             }
         }
         #endregion
+
+        #region GetAllProductForCategory
+        public ProductListResponse GetAllProductForCategory(int CategoryId, string AppId, int skip, int take)
+        {
+            ProductListResponse res = new ProductListResponse();
+            try
+            {
+                ProductDetailsResourceWrapper response = new ProductDetailsResourceWrapper
+                {
+                    ProductList = new List<ProductResource>()
+                };
+                if (CategoryId == 0)
+                {
+                    res.error = true;
+                    res.Message = StringConstants.CatNotFound;
+                    return res;
+                }
+                
+                else
+                {
+
+                    var ProductRecordsList = _productRepository.GetAllProductForCategory(CategoryId, AppId, skip, take);
+
+                    var ProductRecordsForCount = _productRepository.GetAllProductForCategory(CategoryId, AppId);
+
+                    response.ProductList = ProductRecordsList.Select(x => new ProductResource()
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Image = x.ProductImages.Where(y => y.IsMain == true).FirstOrDefault().Image,
+                        OriginalPrice = x.OriginalPrice,
+                        DiscountedPrice = x.DiscountedPrice,
+                        DiscountPercentage = x.DiscountPercentage,
+                        IsExclusive = x.IsExclusive,
+
+                    }).ToList();
+                    response.TotalCount = ProductRecordsForCount.Count;
+                }
+                res.Message = StringConstants.Message;
+                res.data = response;
+                return res;
+            }
+            catch (Exception e)
+            {
+                res.error = true;
+                res.Message = StringConstants.ServerError;
+                return res;
+            }
+        }
+        #endregion
     }
 }

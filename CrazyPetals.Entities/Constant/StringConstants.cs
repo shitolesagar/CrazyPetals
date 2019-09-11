@@ -60,6 +60,7 @@ namespace CrazyPetals.Entities.Constant
         public static readonly string UserNotAuthorised = "You are not Authorize. Please contact Support team";
         public static readonly string OTPSent = "Reset password Code is sent on your registered mail";
         public static readonly string OTPNotMatch = "Could not verify OTP";
+        public static readonly string OTPMatch = "OTP verified successfully";
         public static readonly string Message = "Successfull";
     }
 }
