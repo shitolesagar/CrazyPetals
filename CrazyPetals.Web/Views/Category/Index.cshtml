@@ -13,13 +13,18 @@
 
 @await Component.InvokeAsync("Category", new { isPartial = false, filter = ViewBag.Filters })
 
-
+<partial name="_deletePopup" />
 
 @section Scripts{
     <script>
         var message = "@message";
         if (message) {
             ShowSlackbarSucessMessage(message);
+        }
+
+        function openModal(id) {
+            $('#myModal').modal('show');
+            $("#delete-id").val(id)
         }
     </script>
 }

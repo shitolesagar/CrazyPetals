@@ -12,17 +12,17 @@ using System.Threading.Tasks;
 namespace CrazyPetals.Web.Components
 {
    
-    public class SubcategoryViewComponent : ViewComponent
+    public class FilterViewComponent : ViewComponent
     {
-        private readonly ISubcategoryService _subcategoryService;
+        private readonly IFilterService _FilterService;
 
-        public SubcategoryViewComponent(ISubcategoryService subcategoryService)
+        public FilterViewComponent(IFilterService FilterService)
         {
-            _subcategoryService = subcategoryService;
+            _FilterService = FilterService;
         }
-        public async Task<IViewComponentResult> InvokeAsync(SubcategoryFilter filter, bool IsPartial)
+        public async Task<IViewComponentResult> InvokeAsync(FilterFilter filter, bool IsPartial)
         {
-            SubcategoryWrapperViewModel ResponseModel = await _subcategoryService.GetWrapperForIndexView(filter);
+            FilterWrapperViewModel ResponseModel = await _FilterService.GetWrapperForIndexView(filter);
             ViewBag.ShowEmptyState = !IsPartial;
             return View(ResponseModel);
         }

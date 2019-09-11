@@ -1,20 +1,20 @@
-﻿@model CrazyPetals.Entities.WebViewModels.AddSubcategoryViewModel
+﻿@model CrazyPetals.Entities.WebViewModels.AddFilterViewModel
 @{
-    ViewData["Title"] = "Add Subcategory";
-    string stringHtml = "<span class=\"display-inline\">Add Subcategories</span>";
+    ViewData["Title"] = "Add Filter";
+    string stringHtml = "<span class=\"display-inline\">Add Filter</span>";
     ViewData["TabHeading"] = stringHtml;
-    ViewData["ActiveTab"] = "subcategory";
+    ViewData["ActiveTab"] = "filter";
 }
 <div class="row">
     <div class="col-md-6 detail-container">
-        <form asp-controller="subcategory" asp-action="add" autocomplete="off" spellcheck="false">
+        <form asp-controller="Filter" asp-action="add" autocomplete="off" spellcheck="false">
             <div class="detail-container">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="form-group">
-                            <label asp-for="SubcategoryName" class="control-label float-label">Subcategory Name <span class="f-red">*</span></label>
-                            <input type="text" asp-for="SubcategoryName" class="form-control" maxlength="40" value="" />
-                            <span asp-validation-for="SubcategoryName" class="text-danger mb-3"></span>
+                            <label asp-for="FilterName" class="control-label float-label">Filter Name</label>
+                            <input type="text" asp-for="FilterName" class="form-control" maxlength="40" value="" />
+                            <span asp-validation-for="FilterName" class="text-danger mb-3"></span>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="detailBtn-group">
                     <button type="submit" class="btn btn-primary">Add</button>
-                    <a asp-controller="subcategory" asp-action="index" class="btn btn-secondary">Cancel</a>
+                    <a asp-controller="filter" asp-action="index" class="btn btn-secondary">Cancel</a>
                 </div>
             </div>
         </form>

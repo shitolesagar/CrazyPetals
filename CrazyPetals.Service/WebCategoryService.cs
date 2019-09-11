@@ -36,6 +36,19 @@ namespace CrazyPetals.Service
             return _unitOfWork.SaveChangesAsync();
         }
 
+        public async Task<int> DeleteCategory(int id)
+        {
+            Category category = _categoryRepository.FindCategoryWithoutProducts(id);
+            if (category == null)
+                return 0;
+            else
+            {
+                _categoryRepository.Remove(category);
+                var result = await _unitOfWork.SaveChangesAsync();
+                return result;
+            }
+        }
+
         public async Task<CategoryWrapperViewModel> GetWrapperForIndexView(FilterBase filter)
         {
             CategoryWrapperViewModel ResponseModel = new CategoryWrapperViewModel

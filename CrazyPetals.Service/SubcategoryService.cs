@@ -13,38 +13,47 @@ using CrazyPetals.Entities.WebViewModels;
 
 namespace CrazyPetals.Service
 {
-    public class SubcategoryService : ISubcategoryService
+    public class FilterService : IFilterService
     {
-        private readonly IFilterRepository _subcategoryRepository;
+        private readonly IFilterRepository _filterRepository;
+        private readonly ICategoryRepository _categoryRepository;
         private IUnitOfWork _unitOfWork;
 
-        public SubcategoryService(IFilterRepository subcategoryRepository, IUnitOfWork unitOfWork)
+        public FilterService(IFilterRepository FilterRepository,ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
         {
-            _subcategoryRepository = subcategoryRepository;
+            _filterRepository = FilterRepository;
+            _categoryRepository = categoryRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public Task<int> AddSubcategoryAsync(AddSubcategoryViewModel model)
+        public Task<int> AddFilterAsync(AddFilterViewModel model)
         {
-            Filter subcategory = new Filter()
+            Filter Filter = new Filter()
             {
                 AppId = StringConstants.AppId,
-                Name = model.SubcategoryName,
+                Name = model.FilterName,
                 CategoryId = model.CategoryId
             };
-            _subcategoryRepository.Add(subcategory);
+            _filterRepository.Add(Filter);
             return _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<SubcategoryWrapperViewModel> GetWrapperForIndexView(SubcategoryFilter filter)
+        public async Task<List<IdNameViewModel>> GetCategoryList()
         {
-            SubcategoryWrapperViewModel ResponseModel = new SubcategoryWrapperViewModel
+            var list = await _categoryRepository.GetAllAsync();
+            var responseList = list.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Name }).ToList();
+            return responseList;
+        }
+
+        public async Task<FilterWrapperViewModel> GetWrapperForIndexView(FilterFilter filter)
+        {
+            FilterWrapperViewModel ResponseModel = new FilterWrapperViewModel
             {
-                TotalCount = _subcategoryRepository.GetIndexViewTotalCount(filter)
+                TotalCount = _filterRepository.GetIndexViewTotalCount(filter)
             };
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
-            List<Filter> list = await _subcategoryRepository.GetIndexViewRecordsAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
-            ResponseModel.SubcateogryList = list.Select((x, index) => new SubcategoryListViewModel
+            List<Filter> list = await _filterRepository.GetIndexViewRecordsAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
+            ResponseModel.SubcateogryList = list.Select((x, index) => new FilterListViewModel
             {
                 Id = x.Id,
                 Name = x.Name,

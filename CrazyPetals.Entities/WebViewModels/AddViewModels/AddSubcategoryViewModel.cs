@@ -5,11 +5,11 @@ using System.Text;
 
 namespace CrazyPetals.Entities.WebViewModels
 {
-    public class AddSubcategoryViewModel
+    public class AddFilterViewModel
     {
         [Required(ErrorMessage= "Please select category.")]
         public int CategoryId { get; set; }
-        [Required(ErrorMessage ="Please enter subcategory name.")]
-        public string SubcategoryName { get; set; }
+        [Required(ErrorMessage ="Please enter Filter name.")]
+        public string FilterName { get; set; }
     }
 }

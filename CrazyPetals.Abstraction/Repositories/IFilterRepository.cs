@@ -8,7 +8,7 @@ namespace CrazyPetals.Abstraction.Repositories
     public interface IFilterRepository : IRepository<Filter>
     {
         Task<List<Filter>> GetFilterAsync(int CategoryId, string AppId);
-        int GetIndexViewTotalCount(SubcategoryFilter filter);
-        Task<List<Filter>> GetIndexViewRecordsAsync(SubcategoryFilter filter, int skip, int pageSize);
+        int GetIndexViewTotalCount(FilterFilter filter);
+        Task<List<Filter>> GetIndexViewRecordsAsync(FilterFilter filter, int skip, int pageSize);
     }
 }

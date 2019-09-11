@@ -15,7 +15,7 @@ namespace CrazyPetals.Service
     {
         private readonly IOrderSummaryRepository _orderSummaryRepository;
         private IUnitOfWork _unitOfWork;
-        private object _subcategoryRepository;
+        private object _FilterRepository;
 
         public OrderService(IOrderSummaryRepository orderSummaryRepository , IUnitOfWork unitOfWork)
         {
