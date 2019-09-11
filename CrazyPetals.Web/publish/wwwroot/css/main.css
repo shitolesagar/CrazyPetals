@@ -2963,3 +2963,13 @@ img.profile-details {
         height:50px;
     }
 }
+
+.card-img-top {
+    height:250px;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 0px solid #dee2e6;
+}
