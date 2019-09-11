@@ -154,6 +154,17 @@ namespace CrazyPetals.Entities.Resources
         public ICollection<ProductColorsResource> ColorList { get; set; }
         public ICollection<ProductSizeResource> SizeList { get; set; }
     }
+    public class ProductDetailsResourceWrapper
+    {
+        public List<ProductResource> ProductList { get; set; }
+        public int TotalCount { get; set; }
+    }
+    public class ProductListResponse
+    {
+        public bool error { get; set; }
+        public string Message { get; set; }
+        public ProductDetailsResourceWrapper data { get; set; }
+    }
     public class ProductImagesResource
     {
         public int Id { get; set; }

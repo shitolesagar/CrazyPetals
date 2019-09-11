@@ -115,12 +115,13 @@ namespace CrazyPetals.WebApi.Controllers
         [HttpPost]
         public  IActionResult ForgotPassword([FromBody] VerifyOtpRequest request)
         {
-            var userData =  _forgotPasswordRepository.FindByEmailOtp(request.Email, request.OTP);
-            if (userData != null)
+            var response = _userService.VerifyOTP(request);
+
+            if (response.error == true)
             {
-                return Ok(new { statusCode = StringConstants.StatusCode10, message = StringConstants.Success,data= CreateResponseAfterSuccessfulAuthantication(userData.ApplicationUser) });
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = response.Message });
             }
-             return Ok(new { statusCode = StringConstants.StatusCode20, message = StringConstants.OTPNotVerified });
+            return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message });
         }
 
         #endregion
@@ -142,36 +143,7 @@ namespace CrazyPetals.WebApi.Controllers
 
         #endregion
 
-        private JwtSecurityToken CreateClaimsAndJwtToken(ApplicationUser user)
-        {
-            var claims = new[]
-               {
-                    new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Name, user.Name),
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
-                };
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("This is my secreate key please check"));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            return new JwtSecurityToken(
-                issuer: "yourdomain.com",
-                audience: "yourdomain.com",
-                claims: claims,
-                expires: DateTime.Now.AddDays(1),
-                signingCredentials: creds);
-        }
-
-        private Object CreateResponseAfterSuccessfulAuthantication(ApplicationUser user)
-        {
-            return new
-            {
-                Token = new JwtSecurityTokenHandler().WriteToken(CreateClaimsAndJwtToken(user)),
-                UserId = user.Id,
-                Email = user.Email,
-                ImageUrl = user.ProfilePicture,
-                Name = user.Name
-            };
-        }
+        
 
     }
 }

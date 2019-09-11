@@ -180,7 +180,21 @@ namespace CrazyPetals.Service
 
         #endregion
 
-        
+        #region VerifyOTP
+        public CommonResponse VerifyOTP(VerifyOtpRequest request)
+        {
+            CommonResponse res = new CommonResponse();
+            var userData = _forgotPasswordRepository.FindByEmailOtp(request.Email, request.OTP);
+            if (userData != null)
+            {
+                res.Message = StringConstants.OTPMatch;
+                return res;
+            }
+            res.error = true;
+            res.Message = StringConstants.OTPNotMatch;
+            return res;
+        }
+        #endregion
 
 
         #region ResetPassword
