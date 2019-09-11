@@ -56,6 +56,19 @@ namespace CrazyPetals.Entities.Resources
         public bool error { get; set; } = false;
         public string Message { get; set; }
     }
+    public class MyProfile
+    {
+        public string Name { get; set; }
+        public string EmailId { get; set; }
+        public string MobileNumber { get; set; }
+        public string ProfilePicture { get; set; }
+    }
+    public class MyProfileResponse
+    {
+        public bool error { get; set; } = false;
+        public string Message { get; set; }
+        public MyProfile data { get; set; }
+    }
 
     
 }
