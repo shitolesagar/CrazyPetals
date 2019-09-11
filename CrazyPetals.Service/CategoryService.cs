@@ -132,7 +132,7 @@ namespace CrazyPetals.Service
         #endregion
 
 
-        #region GetAllCategories
+        #region GetAllCategory
         public async Task<CategoryResponse> GetCategory(int take, string AppId)
         {
             CategoryResponse res = new CategoryResponse();
