@@ -53,7 +53,10 @@ namespace CrazyPetals.Service
         {
             
             RegisterResponse res = new RegisterResponse();
-            var user = _applicationUserRepository.FindByEmail(request.EmailId);
+            
+                 var user = _applicationUserRepository.FindByEmail(request.EmailId);
+
+
             try
             {
                 if (user != null)
@@ -84,7 +87,7 @@ namespace CrazyPetals.Service
                         user.CreatedDate = DateTime.Now;
                     }
                     _applicationUserRepository.Add(user);
-                      _unitOfWork.SaveChanges();
+                    _unitOfWork.SaveChanges();
                     var obj = new RegisterApiResponseResource
                     {
                         Id = user.Id,

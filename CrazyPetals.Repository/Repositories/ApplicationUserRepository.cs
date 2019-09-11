@@ -17,7 +17,7 @@ namespace CrazyPetals.Repository.Repositories
         public ApplicationUser FindByEmail(string Email)
         {
 
-            return Set.FirstOrDefault(x => x.Email == Email);
+            return Set.Where(x => x.Email == Email).FirstOrDefault();
         }
 
         public Task<List<ApplicationUser>> GetIndexViewRecordsAsync(UserFilter filter, int skip, int pageSize)

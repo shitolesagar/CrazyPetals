@@ -54,5 +54,6 @@ namespace CrazyPetals.Service.Utility
         public static readonly string OrderBooked = "Order Booked Successfully.";
         public static readonly string LibNotFound = "Library not found.";
         public static readonly string OrderPlaced = "Order Placed Successfully.";
+        public static readonly string OTPNotVerified = "Could not verify OTP";
     }
 }

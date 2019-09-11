@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using CrazyPetals.Abstraction;
 using CrazyPetals.Abstraction.Repositories;
@@ -13,6 +16,7 @@ using CrazyPetals.Service.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CrazyPetals.WebApi.Controllers
 {
@@ -114,11 +118,9 @@ namespace CrazyPetals.WebApi.Controllers
             var userData =  _forgotPasswordRepository.FindByEmailOtp(request.Email, request.OTP);
             if (userData != null)
             {
-                //return Ok(CreateResponseAfterSuccessfulAuthantication(userData.ApplicationUser));
+                return Ok(new { statusCode = StringConstants.StatusCode10, message = StringConstants.Success,data= CreateResponseAfterSuccessfulAuthantication(userData.ApplicationUser) });
             }
-            return BadRequest(
-               new { Message = "Could not verify OTP" }
-               );
+             return Ok(new { statusCode = StringConstants.StatusCode20, message = StringConstants.OTPNotVerified });
         }
 
         #endregion
@@ -139,6 +141,37 @@ namespace CrazyPetals.WebApi.Controllers
         }
 
         #endregion
+
+        private JwtSecurityToken CreateClaimsAndJwtToken(ApplicationUser user)
+        {
+            var claims = new[]
+               {
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                };
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("This is my secreate key please check"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            return new JwtSecurityToken(
+                issuer: "yourdomain.com",
+                audience: "yourdomain.com",
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: creds);
+        }
+
+        private Object CreateResponseAfterSuccessfulAuthantication(ApplicationUser user)
+        {
+            return new
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(CreateClaimsAndJwtToken(user)),
+                UserId = user.Id,
+                Email = user.Email,
+                ImageUrl = user.ProfilePicture,
+                Name = user.Name
+            };
+        }
 
     }
 }
