@@ -143,7 +143,24 @@ namespace CrazyPetals.WebApi.Controllers
 
         #endregion
 
-        
+
+        #region Get My Profile
+        [Route("api/Account/GetMyProfile")]
+        [HttpGet]
+        public IActionResult GetMyProfile(int ApplicationUserId)
+        {
+            var response = _userService.GetMyProfile(ApplicationUserId);
+
+            if (response.error == true)
+            {
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = response.Message });
+            }
+            return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message,data=response.data });
+        }
+
+        #endregion
+
+
 
     }
 }

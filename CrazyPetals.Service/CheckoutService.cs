@@ -153,7 +153,7 @@ namespace CrazyPetals.Service
                 {
                     var pro =await  _productRepository.GetProductDetailAsync(rec.ProductId, AppId);
                     rec.ProductName = pro.Name;
-                    rec.ProductImageURL = pro.ProductImages.Where(y => y.IsMain == true).FirstOrDefault().Image;
+                    rec.ProductImageURL = StringConstants.CPImageUrl + pro.ProductImages.Where(y => y.IsMain == true).FirstOrDefault().Image;
                     rec.OriginalPrice = pro.OriginalPrice;
                     rec.DiscountedPrice = pro.DiscountedPrice;
                     rec.ShortDescription = pro.Description;
