@@ -19,13 +19,13 @@
                     <li class="nav-item @(activetab == "dashboard" ? "active" :"" )">
                         <a title="Categories" asp-controller="category" asp-action="index" data-toggle="tooltip" data-placement="right">
                             <img src="~/images/icons/grid.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
-                            <span class="vertical-middle display-inline">Categories</span>
+                            <span class="vertical-middle display-inline">Main Categories</span>
                         </a>
                     </li>
-                    <li class="nav-item @(activetab == "subcategory" ? "active" :"" )">
-                        <a title="Subcategories" asp-controller="subcategory" asp-action="index" data-toggle="tooltip" data-placement="right">
+                    <li class="nav-item @(activetab == "filter" ? "active" :"" )">
+                        <a title="Filter" asp-controller="filter" asp-action="index" data-toggle="tooltip" data-placement="right">
                             <img src="~/images/icons/view-list-large.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
-                            <span class="vertical-middle display-inline">Subcategories</span>
+                            <span class="vertical-middle display-inline">Filters</span>
                         </a>
                     </li>
                     <li class="nav-item @(activetab == "banner" ? "active" :"" )">

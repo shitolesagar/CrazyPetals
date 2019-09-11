@@ -42,5 +42,16 @@ namespace CrazyPetals.Web.Controllers
             TempData["Message"] = MessageConstants.CategoryAddSuccessMessage;
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            int deletedRows = await _categoryService.DeleteCategory(id);
+            if(deletedRows >0 )
+                TempData["Message"] = MessageConstants.CategoryDeleteSuccessMessage;
+            else
+                TempData["Message"] = MessageConstants.CategoryDeleteFailedMessage;
+            return RedirectToAction("Index", new {id = id});
+        }
     }
 }

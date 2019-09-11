@@ -1,12 +1,14 @@
 ﻿using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.WebViewModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CrazyPetals.Abstraction.Service
 {
-    public interface ISubcategoryService
+    public interface IFilterService
     {
-        Task<int> AddSubcategoryAsync(AddSubcategoryViewModel model);
-        Task<SubcategoryWrapperViewModel> GetWrapperForIndexView(SubcategoryFilter filter);
+        Task<int> AddFilterAsync(AddFilterViewModel model);
+        Task<FilterWrapperViewModel> GetWrapperForIndexView(FilterFilter filter);
+        Task<List<IdNameViewModel>> GetCategoryList();
     }
 }

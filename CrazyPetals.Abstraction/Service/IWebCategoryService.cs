@@ -8,5 +8,6 @@ namespace CrazyPetals.Abstraction.Service
     {
         Task<int> AddCategoryAsync(AddCategoryViewModel model, string imageRelativePath);
         Task<CategoryWrapperViewModel> GetWrapperForIndexView(FilterBase filter);
+        Task<int> DeleteCategory(int id);
     }
 }

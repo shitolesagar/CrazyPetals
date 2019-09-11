@@ -11,11 +11,9 @@ namespace CrazyPetals.Entities.WebViewModels
         public int TotalCount { get; set; }
     }
 
-    public class CategoryListViewModel
+    public class CategoryListViewModel: IdNameViewModel
     {
         public int Number { get; set; }
-        public int Id { get; set; }
-        public string Name { get; set; }
         public string ImagePath { get; set; }
     }
 }

@@ -2963,3 +2963,7 @@ img.profile-details {
         height:50px;
     }
 }
+
+.card-img-top {
+    max-height:250px;
+}

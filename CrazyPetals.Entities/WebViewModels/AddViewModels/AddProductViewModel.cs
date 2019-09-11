@@ -9,8 +9,8 @@ namespace CrazyPetals.Entities.WebViewModels
     {
         [Required(ErrorMessage= "Please select category.")]
         public int CategoryId { get; set; }
-        [Required(ErrorMessage ="Please enter subcategory name.")]
-        public string SubcategoryName { get; set; }
+        [Required(ErrorMessage ="Please enter Filter name.")]
+        public string FilterName { get; set; }
         public string ProductName { get; set; }
     }
 }

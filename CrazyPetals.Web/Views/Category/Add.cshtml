@@ -19,8 +19,8 @@
                 <div class="row my-4">
                     <div class="col-md-9">
                         <div class="form-group">
-                            <label asp-for="CategoryName" class="control-label float-label">Category Name <span class="f-red">*</span></label>
-                            <input type="text" asp-for="CategoryName" class="form-control" maxlength="40" value="" />
+                            <label asp-for="CategoryName" class="control-label float-label">Category Name</label>
+                            <input type="text" asp-for="CategoryName" class="form-control" maxlength="25" value="" />
                             <span asp-validation-for="CategoryName" class="text-danger mb-3"></span>
                         </div>
                     </div>
@@ -55,6 +55,9 @@
                     $("#ImageName-error").text('File is not a valid image.');
                 }
             }
+        });
+        $.validator.setDefaults({
+            ignore: [],
         });
     </script>
 }
