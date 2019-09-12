@@ -59,10 +59,6 @@
             </tbody>
         </table>
         <!--Pagination-->
-        <div class="pagination">
-            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex-1))" @(Model.PagingData.IsFirst ? "disabled" : "")><img src="~/images/icons/left.png" /></button>
-            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex+1))" @(Model.PagingData.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
-            <span class="m-l-20">Viewing <span class="f-semi-bold">@Model.PagingData.FromRecord - @Model.PagingData.UpToRecord</span> of <span class="f-semi-bold">@Model.TotalCount</span></span>
-        </div>
+        <partial name="_pagination" model="Model.PagingData"  />
     }
 </div>

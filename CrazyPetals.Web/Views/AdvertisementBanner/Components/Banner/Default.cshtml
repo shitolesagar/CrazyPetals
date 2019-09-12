@@ -32,6 +32,10 @@
                         <img src="@banner.ImagePath" class="card-img-top" alt="@banner.Caption">
                         <div class="card-body">
                             <h5 class="card-title">@banner.Caption</h5>
+                            @if (banner.IsExpired)
+                            {
+                                <p class="text-muted text-center">Expired on: @banner.ExpireDate</p>
+                            }
                         </div>
                         <div class="card-footer bg-white">
                             <div class="d-flex flex-row justify-content-center">
@@ -45,10 +49,7 @@
             }
         </div>
         <!--Pagination-->
-        <div class="pagination justify-content-center align-items-center">
-            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex-1))" @(Model.PagingData.IsFirst ? "disabled" : "")><img src="~/images/icons/left.png" /></button>
-            <span class="mx-4">Viewing <span class="f-semi-bold">@Model.PagingData.FromRecord - @Model.PagingData.UpToRecord</span> of <span class="f-semi-bold">@Model.TotalCount</span></span>
-            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex+1))" @(Model.PagingData.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
-        </div>
+        <partial name="_pagination" model="Model.PagingData" />
+
     }
 </div>

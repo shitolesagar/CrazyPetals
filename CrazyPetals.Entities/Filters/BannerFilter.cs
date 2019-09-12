@@ -6,6 +6,6 @@ namespace CrazyPetals.Entities.Filters
 {
     public class BannerFilter: FilterBase
     {
-        public bool shouldHideExpired { get; set; }
+        public bool showExpired { get; set; }
     }
 }

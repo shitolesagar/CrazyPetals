@@ -8,5 +8,6 @@ namespace CrazyPetals.Abstraction.Service
     {
         Task<int> AddNotificationAsync(AddNotificationViewModel model);
         Task<NotificationWrapperViewModel> GetWrapperForIndexView(FilterBase filter);
+        Task<int> DeleteNotification(int id);
     }
 }

@@ -59,8 +59,10 @@
             if (($("#indexPartialContent").text()).length > 0) {
                 $(obj).addClass("active-state");
                 $(".loader-wrapper").show();
-                $("#indexPartialContent").load(CreateUrlString(), function () {
+
+                $.get(CreateUrlString(), function (data) {
                     $(".loader-wrapper").hide();
+                    $("#indexPartialContent").replaceWith(data);
                 });
             }
         }

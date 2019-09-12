@@ -62,6 +62,7 @@ namespace CrazyPetals.Service
                 ExpireDate = x.ExpiryDate?.ToCrazyPattelsPattern(),
                 ImagePath = x.Image,
                 Number = ResponseModel.PagingData.FromRecord + index,
+                IsExpired = filter.showExpired
             }).ToList();
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
             return ResponseModel;

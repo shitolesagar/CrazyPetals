@@ -10,11 +10,13 @@ namespace CrazyPetals.Entities.Constant
         public static string CategoryAddSuccessMessage { get; } = "Category Added Sucessfully.";
         public static string FilterAddSuccessMessage { get; } = "Filter Added Sucessfully.";
         public static string NotificationAddSuccessMessage { get; } = "Notification Added Sucessfully.";
-        public static object CategoryDeleteSuccessMessage { get; } = "Category Deleted Sucessfully.";
-        public static object CategoryDeleteFailedMessage { get; } = "Category Deletion Failed. Make sure, there are no products with this category";
-        public static object FilterDeleteSuccessMessage { get; } = "Filter Deleted Sucessfully.";
-        public static object FilterDeleteFailedMessage { get; } = "Something went wrong.";
-        public static object BannerDeleteSuccessMessage { get; } = "Banner Ad Deleted Sucessfully";
-        public static object BannerDeleteFailedMessage { get; } = "Something went wrong.";
+        public static string CategoryDeleteSuccessMessage { get; } = "Category Deleted Sucessfully.";
+        public static string CategoryDeleteFailedMessage { get; } = "Category Deletion Failed. Make sure, there are no products with this category";
+        public static string FilterDeleteSuccessMessage { get; } = "Filter Deleted Sucessfully.";
+        public static string FilterDeleteFailedMessage { get; } = "Something went wrong.";
+        public static string BannerDeleteSuccessMessage { get; } = "Banner Ad Deleted Sucessfully";
+        public static string BannerDeleteFailedMessage { get; } = "Something went wrong.";
+        public static string NotificationDeleteSuccessMessage { get; } = "Notification Deleted Sucessfully";
+        public static string NotificationDeleteFailedMessage { get; } = "Something went wrong.";
     }
 }

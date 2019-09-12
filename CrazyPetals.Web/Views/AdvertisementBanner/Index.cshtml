@@ -9,7 +9,18 @@
     var message = TempData["Message"] ?? string.Empty;
 }
 
-
+<div class="row" id="filterRow">
+    <div class="col-lg-4 col-sm-4">
+        <div class="form-group  position-relative">
+            <div class="my-custom-select">
+                <select onchange="filter(this)" class="form-control select-dropDown" id="ddlStatus">
+                    <option value="Active">Active</option>
+                    <option value="Expired">Expired</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
 
 @await Component.InvokeAsync("Banner", new { isPartial = false, filter = ViewBag.Filters })
 
@@ -38,7 +49,21 @@
 
         function CreateUrlString() {
             var url = "/advertisementbanner/indexpartial?";
+            var selectedValue = $("#ddlStatus").val();
+            if (selectedValue == "Expired")
+                url = url + "showExpired=" + encodeURIComponent("true") + "&";
             return url;
+        }
+
+        function filter(obj) {
+            if (($("#indexPartialContent").text()).length > 0) {
+                $(obj).addClass("active-state");
+                $(".loader-wrapper").show();
+                $.get(CreateUrlString(), function (data) {
+                    $(".loader-wrapper").hide();
+                    $("#indexPartialContent").replaceWith(data);
+                });
+            }
         }
     </script>
 }

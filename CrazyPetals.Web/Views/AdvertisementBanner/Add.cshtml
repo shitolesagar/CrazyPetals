@@ -58,16 +58,20 @@
             $("#ImageName-error").text('');
             if ((file = this.files[0])) {
                 if (file.type === "image/png" || file.type === "image/jpeg" || file.type === "image/jpg") {
-                    img = new Image();
-                    img.onload = function () {
-                        $("#tempImg").attr("src", img.src);
-                    };
-                    img.src = _URL.createObjectURL(file);
-                    $("#ImageUrl").val("Dummy Image URL")
-                }
-                else {
-                    $("#ImageUrl").val("")
-                    $("#ImageName-error").text('File is not a valid image.');
+                    if (file.size <= 1000000) {
+                        // only valid block
+                        img = new Image();
+                        img.onload = function () {
+                            $("#tempImg").attr("src", img.src);
+                        };
+                        img.src = _URL.createObjectURL(file);
+                        $("#ImageUrl").val("Dummy Image URL")
+                    }
+                    else {
+                        // size error block
+                        $("#ImageUrl").val("")
+                        $("#ImageName-error").text("Image size should be less than 1 MB.");
+                    }
                 }
             }
         });

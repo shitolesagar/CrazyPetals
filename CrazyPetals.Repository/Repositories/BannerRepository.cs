@@ -2,6 +2,7 @@
 using CrazyPetals.Entities.Database;
 using CrazyPetals.Entities.Filters;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,12 +22,22 @@ namespace CrazyPetals.Repository.Repositories
 
         public Task<List<Banner>> GetIndexViewRecordsAsync(BannerFilter filter, int skip, int pageSize)
         {
-            return Set.Skip(skip).Take(pageSize).ToListAsync();
+            var query = Set.AsQueryable();
+            if (filter.showExpired == true)
+                query = query.Where(x => x.ExpiryDate != null && x.ExpiryDate.Value.Date <= DateTime.Now.Date);
+            else
+                query = query.Where(x => (x.ExpiryDate != null && x.ExpiryDate.Value.Date > DateTime.Now.Date) || x.ExpiryDate == null);
+            return query.Skip(skip).Take(pageSize).ToListAsync();
         }
 
         public int GetIndexViewTotalCount(BannerFilter filter)
         {
-            return Set.Count();
+            var query = Set.AsQueryable();
+            if (filter.showExpired == true)
+                query = query.Where(x => x.ExpiryDate != null && x.ExpiryDate.Value.Date <= DateTime.Now.Date);
+            else
+                query = query.Where(x => (x.ExpiryDate != null && x.ExpiryDate.Value.Date > DateTime.Now.Date) || x.ExpiryDate == null);
+            return query.Count();
         }
     }
 }

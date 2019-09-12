@@ -28,7 +28,7 @@ namespace CrazyPetals.Web.Controllers
 
         public IActionResult IndexPartial(BannerFilter filter)
         {
-            return ViewComponent("Banner", new { filter });
+            return ViewComponent("Banner", new { filter, IsPartial = true });
         }
          
         [HttpPost]
