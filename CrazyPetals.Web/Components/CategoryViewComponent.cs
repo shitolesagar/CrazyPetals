@@ -20,10 +20,9 @@ namespace CrazyPetals.Web.Components
         {
             _webCategoryService = webCategoryService;
         }
-        public async Task<IViewComponentResult> InvokeAsync(FilterBase filter, bool IsPartial)
+        public async Task<IViewComponentResult> InvokeAsync(FilterBase filter)
         {
             CategoryWrapperViewModel ResponseModel = await _webCategoryService.GetWrapperForIndexView(filter);
-            ViewBag.ShowEmptyState = !IsPartial;
             return View(ResponseModel);
         }
     }

@@ -20,7 +20,7 @@ namespace CrazyPetals.Web.Components
         {
             _FilterService = FilterService;
         }
-        public async Task<IViewComponentResult> InvokeAsync(FilterFilter filter, bool IsPartial)
+        public async Task<IViewComponentResult> InvokeAsync(FilterForFilterModule filter, bool IsPartial)
         {
             FilterWrapperViewModel ResponseModel = await _FilterService.GetWrapperForIndexView(filter);
             ViewBag.ShowEmptyState = !IsPartial;

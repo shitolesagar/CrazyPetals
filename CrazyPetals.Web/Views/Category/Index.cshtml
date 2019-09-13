@@ -26,5 +26,19 @@
             $('#myModal').modal('show');
             $("#delete-id").val(id)
         }
+
+        function getRecordsByPageIndex(pageIndex) {
+            var url = CreateUrlString() + "pageIndex=" + pageIndex + "&";
+            $(".loader-wrapper").show();
+            $.get(url, function (data) {
+                $("#indexPartialContent").replaceWith(data);
+                $(".loader-wrapper").hide();
+            });
+        }
+
+        function CreateUrlString() {
+            var url = "/category/indexpartial?";
+            return url;
+        }
     </script>
 }

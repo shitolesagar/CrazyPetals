@@ -39,6 +39,13 @@ namespace CrazyPetals.Service
             return _unitOfWork.SaveChangesAsync();
         }
 
+        public Task<int> DeleteBanner(int id)
+        {
+            var bannerToDelete = _bannerRepository.FindById(id);
+            _bannerRepository.Remove(bannerToDelete);
+            return _unitOfWork.SaveChangesAsync();
+        }
+
         public async Task<BannerWrapperViewModel> GetWrapperForIndexView(BannerFilter filter)
         {
             BannerWrapperViewModel ResponseModel = new BannerWrapperViewModel
@@ -55,6 +62,7 @@ namespace CrazyPetals.Service
                 ExpireDate = x.ExpiryDate?.ToCrazyPattelsPattern(),
                 ImagePath = x.Image,
                 Number = ResponseModel.PagingData.FromRecord + index,
+                IsExpired = filter.showExpired
             }).ToList();
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
             return ResponseModel;

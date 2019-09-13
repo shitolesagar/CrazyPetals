@@ -1,6 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "Advertisment Banner";
-    string stringHtml = "<span class=\"display-inline\">Advertisment Banner</span>";
+    ViewData["Title"] = "Banner Ads";
+    string stringHtml = "<span class=\"display-inline\">Banner Ads</span>";
     string AddButton = string.Format("<span class=\"nav-item\"><a class=\"btn nav-link btn-primary m-r-20 add-icon\" href=\"/advertisementbanner/add\"  ><span class=\"addIcon-txt\">Add New Banner</span><img src=\"/images/icons/Plus.png\" /> </a></span>");
 
     ViewData["TabButton"] = AddButton;
@@ -9,17 +9,61 @@
     var message = TempData["Message"] ?? string.Empty;
 }
 
-
+<div class="row" id="filterRow">
+    <div class="col-lg-4 col-sm-4">
+        <div class="form-group  position-relative">
+            <div class="my-custom-select">
+                <select onchange="filter(this)" class="form-control select-dropDown" id="ddlStatus">
+                    <option value="Active">Active</option>
+                    <option value="Expired">Expired</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
 
 @await Component.InvokeAsync("Banner", new { isPartial = false, filter = ViewBag.Filters })
 
-
+<partial name="_deletePopup" />
 
 @section Scripts{
     <script>
         var message = "@message";
         if (message) {
             ShowSlackbarSucessMessage(message);
+        }
+
+        function openModal(id) {
+            $('#myModal').modal('show');
+            $("#delete-id").val(id)
+        }
+
+        function getRecordsByPageIndex(pageIndex) {
+            var url = CreateUrlString() + "pageIndex=" + pageIndex + "&";
+            $(".loader-wrapper").show();
+            $.get(url, function (data) {
+                $("#indexPartialContent").replaceWith(data);
+                $(".loader-wrapper").hide();
+            });
+        }
+
+        function CreateUrlString() {
+            var url = "/advertisementbanner/indexpartial?";
+            var selectedValue = $("#ddlStatus").val();
+            if (selectedValue == "Expired")
+                url = url + "showExpired=" + encodeURIComponent("true") + "&";
+            return url;
+        }
+
+        function filter(obj) {
+            if (($("#indexPartialContent").text()).length > 0) {
+                $(obj).addClass("active-state");
+                $(".loader-wrapper").show();
+                $.get(CreateUrlString(), function (data) {
+                    $(".loader-wrapper").hide();
+                    $("#indexPartialContent").replaceWith(data);
+                });
+            }
         }
     </script>
 }

@@ -7,12 +7,12 @@
 }
 <div class="row">
     <div class="col-md-6 detail-container">
-        <form asp-controller="Filter" asp-action="add" autocomplete="off" spellcheck="false">
+        <form asp-controller="notification" asp-action="add" autocomplete="off" spellcheck="false">
             <div class="detail-container">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="form-group">
-                            <label asp-for="Title" class="control-label float-label">Title <span class="f-red">*</span></label>
+                            <label asp-for="Title" class="control-label float-label">Title</label>
                             <input type="text" asp-for="Title" class="form-control" maxlength="40" value="" />
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="form-group">
-                            <label asp-for="Message" class="control-label float-label">Message<span class="f-red">*</span></label>
+                            <label asp-for="Message" class="control-label float-label">Message</label>
                             <textarea asp-for="Message" rows="2" spellcheck="false" class="form-control" maxlength="100"></textarea>
                             <span asp-validation-for="Message" class="text-danger"></span>
                         </div>

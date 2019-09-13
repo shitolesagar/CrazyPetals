@@ -19,14 +19,20 @@ namespace CrazyPetals.Repository.Repositories
             return Set.Where(x => x.AppId == AppId && x.CategoryId == CategoryId).ToListAsync();
         }
 
-        public Task<List<Filter>> GetIndexViewRecordsAsync(FilterFilter filter, int skip, int pageSize)
+        public Task<List<Filter>> GetIndexViewRecordsAsync(FilterForFilterModule filter, int skip, int pageSize)
         {
-            return Set.Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
+            var query = Set.AsQueryable();
+            if (filter.CategoryId != 0)
+                query = query.Where(x => x.CategoryId == filter.CategoryId);
+            return query.Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
         }
 
-        public int GetIndexViewTotalCount(FilterFilter filter)
+        public int GetIndexViewTotalCount(FilterForFilterModule filter)
         {
-            return Set.Count();
+            var query = Set.AsQueryable();
+            if (filter.CategoryId != 0)
+                query = query.Where(x => x.CategoryId == filter.CategoryId);
+            return query.Count();
         }
     }
 }

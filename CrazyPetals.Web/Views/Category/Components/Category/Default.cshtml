@@ -1,29 +1,19 @@
 ﻿@model CrazyPetals.Entities.WebViewModels.CategoryWrapperViewModel
+<div id="indexPartialContent">
+    @if (Model.TotalCount <= 0)
+    {
+        <div class="list-empty-state">
+            <a asp-action="add" asp-controller="category" class="btn btn-primary mr-4 add-icon"> Add New Category <img src="/images/icons/Plus.png"></a>
+            <p class="mt-4 f-22 f-bold">
+                Start adding category.
+            </p>
+            <p class="f-gray mt-2 f-14">Click on "Add New Category" button to add category.</p>
 
-@if (Model.TotalCount <= 0)
-{
-    <div class="empty-state-question">
-        @if (ViewBag.ShowEmptyState == true)
-        {
-            <a asp-action="add" asp-controller="category" class="btn btn-primary m-r-20 add-icon"> Add New Category <img src="/images/icons/Plus.png"></a>
-            <p class="m-t-25 f-22 f-bold">
-                Start adding Category to your table
-            </p>
-            <p class="f-gray m-t-10 f-14">Click on "Add New Category" button to add category to your table.</p>
-        }
-        else
-        {
-            <img src="~/images/search@2x.png" alt="Sorry" />
-            <p class="m-t-25 f-22 f-bold">
-                No Result Found!
-            </p>
-            <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
-        }
-    </div>
-}
-else
-{
-    <div id="tblContent" class="table-wrapper">
+        </div>
+    }
+    else
+    {
+
         <div class="row m-auto">
             @foreach (var category in Model.CategoryList)
             {
@@ -36,10 +26,10 @@ else
                         <div class="card-footer bg-white">
                             <div class="d-flex flex-row justify-content-center">
                                 <div class="px-5">
-                                    <span onclick="openModal('@category.Id')" class="card-link text-danger">edit</span>
+                                    <a asp-controller="category" asp-action="edit" asp-route-id="@category.Id" class="card-link text-danger">edit</a>
                                 </div>
                                 <div class="px-5">
-                                    <span onclick="openModal('@category.Id')" class="card-link text-danger">delete</span>
+                                    <span onclick="openModal('@category.Id')" class="cursor-pointer card-link text-danger">delete</span>
                                 </div>
                             </div>
                         </div>
@@ -48,10 +38,6 @@ else
             }
         </div>
         <!--Pagination-->
-        <div class="pagination justify-content-center align-items-center">
-            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex-1))" @(Model.PagingData.IsFirst ? "disabled" : "")><img src="~/images/icons/left.png" /></button>
-            <span class="mx-4">Viewing <span class="f-semi-bold">@Model.PagingData.FromRecord - @Model.PagingData.UpToRecord</span> of <span class="f-semi-bold">@Model.TotalCount</span></span>
-            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex+1))" @(Model.PagingData.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
-        </div>
-    </div>
-}
+        <partial name="_pagination" model="Model.PagingData" />
+    }
+</div>

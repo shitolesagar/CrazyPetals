@@ -38,6 +38,19 @@ namespace CrazyPetals.Service
             return _unitOfWork.SaveChangesAsync();
         }
 
+        public async Task<int> DeleteNotification(int id)
+        {
+            Notification notification = await _notificationRepository.FindByIdAsync(id);
+            if (notification == null)
+                return 0;
+            else
+            {
+                _notificationRepository.Remove(notification);
+                var result = await _unitOfWork.SaveChangesAsync();
+                return result;
+            }
+        }
+
         public async Task<NotificationWrapperViewModel> GetWrapperForIndexView(FilterBase filter)
         {
             NotificationWrapperViewModel ResponseModel = new NotificationWrapperViewModel

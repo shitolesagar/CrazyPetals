@@ -19,5 +19,6 @@ namespace CrazyPetals.Entities.WebViewModels
         public string CreatedDate { get; set; }
         public string ExpireDate { get; set; }
         public int Number { get; set; }
+        public bool IsExpired { get; set; }
     }
 }

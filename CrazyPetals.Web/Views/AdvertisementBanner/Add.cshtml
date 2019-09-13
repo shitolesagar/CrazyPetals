@@ -23,7 +23,7 @@
                 <div class="row mt-3">
                     <div class="col-md-9">
                         <div class="form-group">
-                            <label asp-for="Caption" class="control-label float-label">Caption / Title <span class="f-red">*</span></label>
+                            <label asp-for="Caption" class="control-label float-label">Caption / Title</label>
                             <input type="text" asp-for="Caption" class="form-control" maxlength="25" value="" />
                             <span asp-validation-for="Caption" class="text-danger"></span>
                         </div>
@@ -33,7 +33,7 @@
                     <div class="col-md-9">
                         <div class="form-group">
                             <label asp-for="ExpireDate" class="control-label float-label">Expiry Date (Optional)</label>
-                            <input type="text" asp-for="ExpireDate" class="form-control" maxlength="40" value="" />
+                            <input type="text" asp-for="ExpireDate" readonly="readonly" class="form-control" maxlength="40" value="" />
                             <span asp-validation-for="ExpireDate" class="text-danger"></span>
                         </div>
                     </div>
@@ -58,16 +58,20 @@
             $("#ImageName-error").text('');
             if ((file = this.files[0])) {
                 if (file.type === "image/png" || file.type === "image/jpeg" || file.type === "image/jpg") {
-                    img = new Image();
-                    img.onload = function () {
-                        $("#tempImg").attr("src", img.src);
-                    };
-                    img.src = _URL.createObjectURL(file);
-                    $("#ImageUrl").val("Dummy Image URL")
-                }
-                else {
-                    $("#ImageUrl").val("")
-                    $("#ImageName-error").text('File is not a valid image.');
+                    if (file.size <= 1000000) {
+                        // only valid block
+                        img = new Image();
+                        img.onload = function () {
+                            $("#tempImg").attr("src", img.src);
+                        };
+                        img.src = _URL.createObjectURL(file);
+                        $("#ImageUrl").val("Dummy Image URL")
+                    }
+                    else {
+                        // size error block
+                        $("#ImageUrl").val("")
+                        $("#ImageName-error").text("Image size should be less than 1 MB.");
+                    }
                 }
             }
         });

@@ -8,7 +8,10 @@ namespace CrazyPetals.Abstraction.Service
     public interface IFilterService
     {
         Task<int> AddFilterAsync(AddFilterViewModel model);
-        Task<FilterWrapperViewModel> GetWrapperForIndexView(FilterFilter filter);
+        Task<FilterWrapperViewModel> GetWrapperForIndexView(FilterForFilterModule filter);
         Task<List<IdNameViewModel>> GetCategoryList();
+        Task<int> Deletefilter(int id);
+        Task<AddFilterViewModel> getForEditAsync(int id);
+        Task EditFilterAsync(int id, AddFilterViewModel model);
     }
 }

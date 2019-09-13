@@ -14,6 +14,7 @@ namespace CrazyPetals.Entities.WebViewModels
             IsFirst = pageIndex == 1;
             IsLast = pageIndex == (int)Math.Ceiling(totalRecordCount / (decimal)pageSize);
             CurrentIndex = pageIndex;
+            TotalCount = totalRecordCount;
         }
 
         public int UpToRecord { get; set; }
@@ -21,6 +22,7 @@ namespace CrazyPetals.Entities.WebViewModels
         public bool IsFirst { get; set; }
         public bool IsLast { get; set; }
         public int CurrentIndex { get; set; }
+        public int TotalCount { get; set; }
     }
 }
 
