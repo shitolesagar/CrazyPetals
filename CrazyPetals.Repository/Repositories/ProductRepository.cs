@@ -56,7 +56,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public List<Product> GetAllProductForCategory(int CategoryId, string AppId)
         {
-            return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
+            return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Include(x => x.FilterProducts).ThenInclude(y=>y.Filter).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
         }
 
         public List<Product> GetAllProductForRecommended(int CategoryId,int ProductId, string AppId)

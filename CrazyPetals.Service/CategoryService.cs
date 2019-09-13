@@ -59,7 +59,7 @@ namespace CrazyPetals.Service
         public async Task<ApplicationThemeResponse> GetAppTheme()
         {
             ApplicationThemeResponse res = new ApplicationThemeResponse();
-            var appConfigs =await  _appThemeRepository.GetAllAsync();
+            var appConfigs = await _appThemeRepository.GetAllAsync();
             var appConfig = appConfigs.LastOrDefault<AppTheme>();
             var appTheme = new AppThemeResponse()
             {
@@ -147,7 +147,7 @@ namespace CrazyPetals.Service
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Image =StringConstants.CPImageUrl+ x.Image
+                    Image = StringConstants.CPImageUrl + x.Image
 
                 }).ToList();
                 res.Message = StringConstants.Message;
@@ -232,7 +232,7 @@ namespace CrazyPetals.Service
             ProductResponse res = new ProductResponse();
             try
             {
-                var data = await _productRepository.GetProductListForSearch(take, AppId,Search);
+                var data = await _productRepository.GetProductListForSearch(take, AppId, Search);
                 ProductResourceWrapper response = new ProductResourceWrapper
                 {
                     ProductList = new List<ProductResource>()
@@ -241,12 +241,12 @@ namespace CrazyPetals.Service
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Image = StringConstants.CPImageUrl + x.ProductImages.Where(y=>y.IsMain==true).FirstOrDefault().Image,
+                    Image = StringConstants.CPImageUrl + x.ProductImages.Where(y => y.IsMain == true).FirstOrDefault().Image,
                     OriginalPrice = x.OriginalPrice,
                     DiscountedPrice = x.DiscountedPrice,
                     DiscountPercentage = x.DiscountPercentage,
                     CategoryName = x.Category.Name,
-                    Filters = x.FilterProducts.Select(y=>y.Filter.Name).ToList(),
+                    Filters = x.FilterProducts.Select(y => y.Filter.Name).ToList(),
 
                 }).ToList();
                 res.Message = StringConstants.Message;
@@ -264,12 +264,12 @@ namespace CrazyPetals.Service
 
 
         #region GetProductDetail
-        public ProductDetailsResponse GetProductDetail(int Id,string AppId)
+        public ProductDetailsResponse GetProductDetail(int Id, string AppId)
         {
             ProductDetailsResponse res = new ProductDetailsResponse();
             try
             {
-                var product =  _productRepository.FindById(Id,AppId);
+                var product = _productRepository.FindById(Id, AppId);
                 if (product == null)
                 {
                     res.error = true;
@@ -291,7 +291,7 @@ namespace CrazyPetals.Service
                     IncludedAccesories = product.IncludedAccessories,
                     Precautions = product.Precautions,
 
-                    Images = product.ProductImages.Where(y => y.ProductId==product.Id).Select(y => new ProductImagesResource()
+                    Images = product.ProductImages.Where(y => y.ProductId == product.Id).Select(y => new ProductImagesResource()
                     {
                         Id = y.Id,
                         Image = StringConstants.CPImageUrl + y.Image,
@@ -323,7 +323,7 @@ namespace CrazyPetals.Service
         #endregion
 
         #region GetAllProductForCategory
-        public ProductListResponse GetAllProductForCategory(int CategoryId, string AppId, int skip, int take)
+        public ProductListResponse GetAllProductForCategory(int CategoryId,  string AppId, int skip, int take)
         {
             ProductListResponse res = new ProductListResponse();
             try
@@ -338,12 +338,12 @@ namespace CrazyPetals.Service
                     res.Message = StringConstants.CatNotFound;
                     return res;
                 }
-                
+
                 else
                 {
 
-                    var ProductRecordsList = _productRepository.GetAllProductForCategory(CategoryId, AppId, skip, take);
-
+                    List<Product> ProductRecordsList = _productRepository.GetAllProductForCategory(CategoryId, AppId, skip, take);
+                    
                     var ProductRecordsForCount = _productRepository.GetAllProductForCategory(CategoryId, AppId);
 
                     response.ProductList = ProductRecordsList.Select(x => new ProductResource()
@@ -373,7 +373,7 @@ namespace CrazyPetals.Service
         #endregion
 
         #region GetRecommendedProduct
-        public ProductListResponse GetRecommendedProduct(int CategoryId,int ProductId, string AppId, int skip, int take)
+        public ProductListResponse GetRecommendedProduct(int CategoryId, int ProductId, string AppId, int skip, int take)
         {
             ProductListResponse res = new ProductListResponse();
             try
@@ -392,9 +392,9 @@ namespace CrazyPetals.Service
                 else
                 {
 
-                    var ProductRecordsList = _productRepository.GetAllProductForRecommended(CategoryId,ProductId, AppId, skip, take);
+                    var ProductRecordsList = _productRepository.GetAllProductForRecommended(CategoryId, ProductId, AppId, skip, take);
 
-                    var ProductRecordsForCount = _productRepository.GetAllProductForRecommended(CategoryId,ProductId, AppId);
+                    var ProductRecordsForCount = _productRepository.GetAllProductForRecommended(CategoryId, ProductId, AppId);
 
                     response.ProductList = ProductRecordsList.Select(x => new ProductResource()
                     {
