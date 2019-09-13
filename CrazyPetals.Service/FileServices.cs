@@ -37,13 +37,13 @@ namespace CrazyPetals.Service
 
         private string CreateRelativePath(string[] folders,string imageName)
         {
-            string path = Path.Combine( "\\", FolderConstants.ImagesFolder);
+            string path = "/" + FolderConstants.ImagesFolder;
             foreach (var folder in folders)
             {
-                path = Path.Combine(path, folder);
+                path = path + "/" + folder;
             }
-            path = Path.Combine(path, imageName);
-            return path.Replace('\\', '/');
+            path = path + "/" + imageName;
+            return path;
         }
     }
 }
