@@ -2,19 +2,19 @@
 
 @if (Model.TotalCount <= 0)
 {
-    <div class="empty-state-question">
+    <div class="list-empty-state">
         @if (ViewBag.ShowEmptyState == true)
         {
-            <a asp-action="add" asp-controller="product" class="btn-add m-l-20"> Add New Product </a>
-            <p class="m-t-25 f-22 f-bold">
-                Start adding product to your table
+            <a asp-action="add" asp-controller="product" class="btn btn-primary mr-4 add-icon"> Add New Product <img src="/images/icons/Plus.png"></a>
+            <p class="mt-4 f-22 f-bold">
+                Start adding products.
             </p>
-            <p class="f-gray m-t-10 f-14">Click on "Add New Product" button to add product to your table.</p>
+            <p class="f-gray mt-2 f-14">Click on "Add New Product" button to add product.</p>
         }
         else
         {
-            <img src="~/images/search@2x.png" alt="Sorry" />
-            <p class="m-t-25 f-22 f-bold">
+            @*<img src="~/images/search@2x.png" alt="Sorry" />*@
+            <p class="mt-4 f-22 f-bold">
                 No Result Found!
             </p>
             <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>

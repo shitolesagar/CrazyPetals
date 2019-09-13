@@ -3,7 +3,7 @@
 <div id="indexPartialContent" class="table-wrapper">
     @if (Model.TotalCount <= 0)
     {
-        <div class="empty-state-question">
+        <div class="list-empty-state">
             @if (ViewBag.ShowEmptyState == true)
             {
                 <a asp-action="add" asp-controller="advertisementbanner" class="btn btn-primary mr-4 add-icon"> Add New Banner <img src="/images/icons/Plus.png"></a>

@@ -3,7 +3,7 @@
 <div id="indexPartialContent">
     @if (Model.TotalCount <= 0)
     {
-        <div class="empty-state-question">
+        <div class="list-empty-state">
             @if (ViewBag.ShowEmptyState == true)
             {
                 <a asp-action="add" asp-controller="filter" class="btn btn-primary mr-4 add-icon"> Add New Filter <img src="/images/icons/Plus.png"></a>

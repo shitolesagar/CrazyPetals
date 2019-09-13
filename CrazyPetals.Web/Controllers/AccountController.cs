@@ -27,7 +27,7 @@ namespace CrazyPetals.Web.Controllers
 
         #region Login
         [ResponseCache(NoStore = true, Duration = 0)]
-        public IActionResult Login()
+        public IActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -57,7 +57,7 @@ namespace CrazyPetals.Web.Controllers
                     //    return View(model);
                     //}
                     await SignInAsync(user);
-                    return RedirectToAction("Index", "Category");
+                    return RedirectToAction("Index", "Product");
                 }
                 ModelState.AddModelError("Password", StringConstants.LoginError);
             }
@@ -74,7 +74,7 @@ namespace CrazyPetals.Web.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login");
+            return RedirectToAction("Index");
         }
         #endregion
 
@@ -116,7 +116,7 @@ namespace CrazyPetals.Web.Controllers
                     claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var authProperties = new AuthenticationProperties
             {
-                ExpiresUtc = DateTimeOffset.UtcNow.AddHours(10)
+                ExpiresUtc = DateTimeOffset.UtcNow.AddHours(10),
             };
 
             await HttpContext.SignInAsync(

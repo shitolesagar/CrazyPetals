@@ -2,14 +2,12 @@
 
 @if (Model.TotalCount <= 0)
 {
-    <div class="empty-state-question">
+    <div class="list-empty-state">
         @if (ViewBag.ShowEmptyState == true)
         {
-            <a asp-action="add" asp-controller="order" class="btn-add m-l-20"> Add New Order </a>
             <p class="m-t-25 f-22 f-bold">
-                Start adding order to your table
+                No orders has been placed yet.
             </p>
-            <p class="f-gray m-t-10 f-14">Click on "Add New Order" button to add order to your table.</p>
         }
         else
         {

@@ -81,7 +81,7 @@ namespace CrazyPetals.Web
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {
-                        options.LoginPath = "/account/login";
+                        options.LoginPath = "/account/index";
                         options.Cookie.Name = StringConstants.AppId;
                     });
             
@@ -114,7 +114,7 @@ namespace CrazyPetals.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=account}/{action=login}/{id?}");
+                    template: "{controller=account}/{action=index}/{id?}");
             });
         }
     }

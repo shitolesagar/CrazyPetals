@@ -2222,7 +2222,7 @@ input[type=file]{
         text-decoration: none;
     }
 
-.empty-state-question {
+.list-empty-state {
     text-align: center;
     height: 295px;
     margin-top: 120px;
@@ -2972,4 +2972,45 @@ img.profile-details {
     padding: 0.75rem;
     vertical-align: top;
     border-top: 0px solid #dee2e6;
+}
+
+/* following css is for making bootstrap-select same as other dropdowns*/
+
+.dropdown-toggle::after {
+    display:none;
+}
+
+.dropup .dropdown-toggle::after {
+    display:none;
+}
+
+.dropdown-toggle {
+    background-color: white;
+}
+
+.btn-light:not(:disabled):not(.disabled):active,
+.btn-light:not(:disabled):not(.disabled).active,
+.show > .btn-light.dropdown-toggle {
+    background-color: #fff;
+    border-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-group:not(:last-child) > .btn{
+    background-color: #fff;
+}
+.btn-group > .btn:not(:first-child), .btn-group > .btn-group:not(:first-child) > .btn {
+    background-color: #fff;
+}
+.bootstrap-select > .dropdown-toggle.bs-placeholder, 
+.bootstrap-select > .dropdown-toggle.bs-placeholder:active, 
+.bootstrap-select > .dropdown-toggle.bs-placeholder:focus, 
+.bootstrap-select > .dropdown-toggle.bs-placeholder:hover {
+    color: #000;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    color: #fff;
+    background-color: #007bff;
 }
