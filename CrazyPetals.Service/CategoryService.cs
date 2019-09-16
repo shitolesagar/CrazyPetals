@@ -19,7 +19,7 @@ namespace CrazyPetals.Service
         private IEmailService _emailService;
         private IProductImagesRepository _productImagesRepository;
         private IUserAddressRepository _userAddressRepository;
-        private IOrderSummaryRepository _orderSummaryRepository;
+        private IOrderRepository _orderSummaryRepository;
         private IOrderDetailsRepository _orderDetailsRepository;
         private IApplicationUserRepository _applicationUserRepository;
         private IForgotPasswordRepository _forgotPasswordRepository;
@@ -31,7 +31,7 @@ namespace CrazyPetals.Service
         private IProductRepository _productRepository;
 
 
-        public CategoryService(ICategoryRepository categoryRepository, IProductRepository productRepository, IFilterRepository filterRepository, INotificationRepository notificationRepository, IBannerRepository bannerRepository, IVersionControlRepository versionControlRepository, IAppThemeRepository appThemeRepository, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderSummaryRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
+        public CategoryService(ICategoryRepository categoryRepository, IProductRepository productRepository, IFilterRepository filterRepository, INotificationRepository notificationRepository, IBannerRepository bannerRepository, IVersionControlRepository versionControlRepository, IAppThemeRepository appThemeRepository, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;
@@ -246,7 +246,7 @@ namespace CrazyPetals.Service
                     DiscountedPrice = x.DiscountedPrice,
                     DiscountPercentage = x.DiscountPercentage,
                     CategoryName = x.Category.Name,
-                    Filters = x.FilterProducts.Select(y => y.Filter.Name).ToList(),
+                    Filters = x.Category.Filters.Select(y => y.Name).ToList(),
 
                 }).ToList();
                 res.Message = StringConstants.Message;

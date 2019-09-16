@@ -12,7 +12,8 @@ namespace CrazyPetals.Repository.Configurations
             builder.Property(x => x.Id).UseMySqlIdentityColumn();
             builder.Property(x => x.AppId).HasMaxLength(30);
 
-            builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId);
+            builder.HasOne(x => x.Category).WithMany(x => x.Products).HasForeignKey(x => x.CategoryId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Filter).WithMany(x => x.Products).HasForeignKey(x => x.FilterId).OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

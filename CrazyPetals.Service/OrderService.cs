@@ -13,13 +13,12 @@ namespace CrazyPetals.Service
 {
     public class OrderService : IOrderService
     {
-        private readonly IOrderSummaryRepository _orderSummaryRepository;
+        private readonly IOrderRepository _orderRepository;
         private IUnitOfWork _unitOfWork;
-        private object _FilterRepository;
 
-        public OrderService(IOrderSummaryRepository orderSummaryRepository , IUnitOfWork unitOfWork)
+        public OrderService(IOrderRepository orderRepository , IUnitOfWork unitOfWork)
         {
-            _orderSummaryRepository = orderSummaryRepository;
+            _orderRepository = orderRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -27,10 +26,10 @@ namespace CrazyPetals.Service
         {
             OrderWrapperViewModel ResponseModel = new OrderWrapperViewModel
             {
-                TotalCount = _orderSummaryRepository.GetIndexViewTotalCount(filter)
+                TotalCount = _orderRepository.GetIndexViewTotalCount(filter)
             };
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
-            List<OrderSummary> list = await _orderSummaryRepository.GetIndexViewRecordsAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
+            List<Order> list = await _orderRepository.GetIndexViewRecordsAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
             ResponseModel.OrderList = list.Select((x, index) => new OrderListViewModel
             {
                 Id = x.Id,

@@ -18,6 +18,6 @@ namespace CrazyPetals.Entities.Database
         public int ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
-        public ICollection<OrderSummary> OrderSummaries { get; set; }
+        public ICollection<Order> Orders { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace CrazyPetals.Repository.Configurations
             builder.Property(x => x.AppId).HasMaxLength(30);
 
             builder.HasOne(x => x.Category).WithMany(x => x.Filters).HasForeignKey(x => x.CategoryId);
+            
         }
     }
 }

@@ -11,8 +11,9 @@ namespace CrazyPetals.Repository.Configurations
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseMySqlIdentityColumn();
 
-            builder.HasOne(x => x.Filter).WithMany(x => x.FilterProducts).HasForeignKey(x => x.FilterId);
-            builder.HasOne(x => x.Product).WithMany(x => x.FilterProducts).HasForeignKey(x => x.ProductId);
+
+         //   builder.HasOne(x => x.Filter).WithMany(x => x.FilterProducts).HasForeignKey(x => x.FilterId);
+         //   builder.HasOne(x => x.Product).WithMany(x => x.FilterProducts).HasForeignKey(x => x.ProductId);
         }
     }
 }

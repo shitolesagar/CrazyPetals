@@ -28,13 +28,13 @@ namespace CrazyPetals.WebApi.Controllers
         private IUnitOfWork _unitOfWork;
         private IProductImagesRepository _productImagesRepository;
         private IUserAddressRepository _userAddressRepository;
-        private IOrderSummaryRepository _orderSummaryRepository;
+        private IOrderRepository _orderSummaryRepository;
         private IOrderDetailsRepository _orderDetailsRepository;
         private IApplicationUserRepository _applicationUserRepository;
         private IForgotPasswordRepository _forgotPasswordRepository;
         private IEmailService _emailService;
 
-        public AccountController(IUserService userService, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, ICategoryRepository categoryRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderSummaryRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
+        public AccountController(IUserService userService, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, ICategoryRepository categoryRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
         {
              _userService = userService;
             _unitOfWork = unitOfWork;

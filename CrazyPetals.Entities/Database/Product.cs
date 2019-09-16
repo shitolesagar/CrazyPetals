@@ -31,10 +31,13 @@ namespace CrazyPetals.Entities.Database
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
+        public int? FilterId { get; set; }
+        public Filter Filter { get; set; }
+
         public ICollection<ProductImages> ProductImages { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }
         public ICollection<CartDetails> CartDetails { get; set; }
-        public ICollection<FilterProduct> FilterProducts { get; set; }
+        //public ICollection<FilterProduct> FilterProducts { get; set; }
         public ICollection<ProductColor> ProductColors { get; set; }
         public ICollection<ProductSize> ProductSizes { get; set; }
     }

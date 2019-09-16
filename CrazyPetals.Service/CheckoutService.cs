@@ -19,7 +19,7 @@ namespace CrazyPetals.Service
         private IEmailService _emailService;
         private IProductImagesRepository _productImagesRepository;
         private IUserAddressRepository _userAddressRepository;
-        private IOrderSummaryRepository _orderSummaryRepository;
+        private IOrderRepository _orderRepository;
         private IOrderDetailsRepository _orderDetailsRepository;
         private IApplicationUserRepository _applicationUserRepository;
         private IForgotPasswordRepository _forgotPasswordRepository;
@@ -33,13 +33,13 @@ namespace CrazyPetals.Service
         private IDelivery_chargeRepository _delivery_chargeRepository;
 
 
-        public CheckoutService(ICategoryRepository categoryRepository, IDelivery_chargeRepository delivery_chargeRepository, ICartDetailsRepository cartDetailsRepository, IProductRepository productRepository, IFilterRepository filterRepository, INotificationRepository notificationRepository, IBannerRepository bannerRepository, IVersionControlRepository versionControlRepository, IAppThemeRepository appThemeRepository, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderSummaryRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
+        public CheckoutService(ICategoryRepository categoryRepository, IDelivery_chargeRepository delivery_chargeRepository, ICartDetailsRepository cartDetailsRepository, IProductRepository productRepository, IFilterRepository filterRepository, INotificationRepository notificationRepository, IBannerRepository bannerRepository, IVersionControlRepository versionControlRepository, IAppThemeRepository appThemeRepository, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;
             _productImagesRepository = productImagesRepository;
             _userAddressRepository = userAddressRepository;
-            _orderSummaryRepository = orderSummaryRepository;
+            _orderRepository = orderSummaryRepository;
             _orderDetailsRepository = orderDetailsRepository;
             _applicationUserRepository = applicationUserRepository;
             _forgotPasswordRepository = forgotPasswordRepository;
@@ -398,20 +398,19 @@ namespace CrazyPetals.Service
             CommonResponse res = new CommonResponse();
             try
             {
-                OrderSummary obj = new OrderSummary()
+                Order obj = new Order()
                 {
                     MRP = request.MRP,
-                    Discount = request.ProductsDiscount,
+                    DiscountPrice = request.ProductsDiscount,
                     DeliveryCharges = request.DeliveryCharges,
-                    SubTotal = request.SubTotal,
+                    SubTotalPrice = request.SubTotal,
                     UserAddressId = request.AddressId,
-                    AppId = request.AppId,
                     ApplicationUserId = request.ApplicationUserId,
                     CreatedDate = DateTime.Now,
                 };
                 
 
-                _orderSummaryRepository.Add(obj);
+                _orderRepository.Add(obj);
                 _unitOfWork.SaveChanges();
 
                 foreach (var order in request.OrderDetails)
@@ -424,10 +423,9 @@ namespace CrazyPetals.Service
                     }
                     OrderDetails ob = new OrderDetails()
                     {
-                        OrderSummaryId = obj.Id,
+                        OrderId = obj.Id,
                         ProductId = order.ProductDetailId,
                         Quantity = order.Quantity,
-                        AppId = request.AppId,
                         OriginalPrice = pro.OriginalPrice * order.Quantity,
                         DiscountedPrice =pro.DiscountedPrice*order.Quantity
                     

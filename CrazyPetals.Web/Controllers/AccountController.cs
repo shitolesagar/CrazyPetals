@@ -31,7 +31,7 @@ namespace CrazyPetals.Web.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Category");
+                return RedirectToAction("Index", "product");
             }
             return View();
         }

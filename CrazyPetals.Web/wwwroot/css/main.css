@@ -3014,3 +3014,13 @@ img.profile-details {
     color: #fff;
     background-color: #007bff;
 }
+
+.table-hover tbody tr:hover {
+    background-color: #005389;
+    cursor: pointer;
+    color: #fff;
+}
+
+.table-hover tbody tr:hover > td {
+    color: #fff;
+}

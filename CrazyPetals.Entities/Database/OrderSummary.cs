@@ -5,16 +5,20 @@ using System.Threading.Tasks;
 
 namespace CrazyPetals.Entities.Database
 {
-    public class OrderSummary
+    public class Order
     {
         public int Id { get; set; }
-        public int MRP { get; set; }
-        public int Discount { get; set; }
-        public int GST { get; set; }
-        public int DeliveryCharges { get; set; }
-        public int SubTotal { get; set; }
+
+        public decimal SubTotalPrice { get; set; }
+        public decimal DiscountPrice { get; set; }
+        public decimal TotalPrice { get; set; }
+
+        public decimal GSTPrice { get; set; }
+        public decimal DeliveryCharges { get; set; }
+
+        public string OrderNumber { get; set; }
+
         public DateTime CreatedDate { get; set; }
-        public string AppId { get; set; }
 
         public int ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
@@ -23,5 +27,6 @@ namespace CrazyPetals.Entities.Database
         public UserAddress UserAddress { get; set; }
 
         public ICollection<OrderDetails> OrderDetails { get; set; }
+        public int MRP { get; set; }
     }
 }

@@ -23,11 +23,10 @@ namespace CrazyPetals.Repository
         public DbSet<Colors> Colors { get; set; }
         public DbSet<ExternalLogin> ExternalLogin { get; set; }
         public DbSet<Filter> Filter { get; set; }
-        public DbSet<FilterProduct> FilterProduct { get; set; }
         public DbSet<ForgotPassword> ForgotPassword { get; set; }
         public DbSet<Notification> Notification { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
-        public DbSet<OrderSummary> OrderSummary { get; set; }
+        public DbSet<Order> Order { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductColor> ProductColor { get; set; }
         public DbSet<ProductImages> ProductImage { get; set; }
@@ -50,7 +49,6 @@ namespace CrazyPetals.Repository
             modelBuilder.ApplyConfiguration(new ColorsConfiguration());
             modelBuilder.ApplyConfiguration(new ExternalLoginConfiguration());
             modelBuilder.ApplyConfiguration(new FilterConfiguration());
-            modelBuilder.ApplyConfiguration(new FilterProductConfiguration());
             modelBuilder.ApplyConfiguration(new ForgotPasswordConfiguration());
             modelBuilder.ApplyConfiguration(new NotificationConfiguration());
             modelBuilder.ApplyConfiguration(new OrderDetailsConfiguration());

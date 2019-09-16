@@ -4,14 +4,16 @@ using CrazyPetals.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CrazyPetals.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190913121554_delete behaviour changes")]
+    partial class deletebehaviourchanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -291,50 +293,18 @@ namespace CrazyPetals.Repository.Migrations
                     b.ToTable("Notification");
                 });
 
-            modelBuilder.Entity("CrazyPetals.Entities.Database.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ApplicationUserId");
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<decimal>("DeliveryCharges");
-
-                    b.Property<decimal>("DiscountPrice");
-
-                    b.Property<decimal>("GSTPrice");
-
-                    b.Property<int>("MRP");
-
-                    b.Property<string>("OrderNumber");
-
-                    b.Property<decimal>("SubTotalPrice");
-
-                    b.Property<decimal>("TotalPrice");
-
-                    b.Property<int>("UserAddressId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.HasIndex("UserAddressId");
-
-                    b.ToTable("Order");
-                });
-
             modelBuilder.Entity("CrazyPetals.Entities.Database.OrderDetails", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AppId")
+                        .HasMaxLength(30);
+
                     b.Property<int>("DiscountedPrice");
 
-                    b.Property<int>("OrderId");
+                    b.Property<int>("OrderSummaryId");
 
                     b.Property<int>("OriginalPrice");
 
@@ -344,11 +314,45 @@ namespace CrazyPetals.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrderSummaryId");
 
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("CrazyPetals.Entities.Database.OrderSummary", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppId")
+                        .HasMaxLength(30);
+
+                    b.Property<int>("ApplicationUserId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("DeliveryCharges");
+
+                    b.Property<int>("Discount");
+
+                    b.Property<int>("GST");
+
+                    b.Property<int>("MRP");
+
+                    b.Property<int>("SubTotal");
+
+                    b.Property<int>("UserAddressId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("UserAddressId");
+
+                    b.ToTable("OrderSummary");
                 });
 
             modelBuilder.Entity("CrazyPetals.Entities.Database.Product", b =>
@@ -624,29 +628,29 @@ namespace CrazyPetals.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("CrazyPetals.Entities.Database.Order", b =>
-                {
-                    b.HasOne("CrazyPetals.Entities.Database.ApplicationUser", "ApplicationUser")
-                        .WithMany("Orders")
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CrazyPetals.Entities.Database.UserAddress", "UserAddress")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserAddressId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("CrazyPetals.Entities.Database.OrderDetails", b =>
                 {
-                    b.HasOne("CrazyPetals.Entities.Database.Order", "Order")
+                    b.HasOne("CrazyPetals.Entities.Database.OrderSummary", "OrderSummary")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
+                        .HasForeignKey("OrderSummaryId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CrazyPetals.Entities.Database.Product", "Product")
                         .WithMany("OrderDetails")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CrazyPetals.Entities.Database.OrderSummary", b =>
+                {
+                    b.HasOne("CrazyPetals.Entities.Database.ApplicationUser", "ApplicationUser")
+                        .WithMany("OrderSummaries")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CrazyPetals.Entities.Database.UserAddress", "UserAddress")
+                        .WithMany("OrderSummaries")
+                        .HasForeignKey("UserAddressId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

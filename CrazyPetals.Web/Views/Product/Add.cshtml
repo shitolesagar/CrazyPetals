@@ -43,7 +43,7 @@
 
                         <div class="form-group  position-relative">
 
-                            <label class="float-label">Product has a subcategory?</label>
+                            <label class="float-label">Product has a filter?</label>
                             <div class="my-custom-select width-100">
                                 <select class="form-control select-dropDown" asp-for="SubcategoryId" value="" asp-items="ViewBag.SubCategoriesList">
                                     <option value="">select</option>
@@ -77,13 +77,13 @@
                         </div>
                         <span asp-validation-for="Status" class="text-danger"></span>
                     </div>
-                    <div class="col-md-4">
+                    @*<div class="col-md-4">
                         <div class="form-group m-b-30  float-container position-relative">
                             <label class="control-label float-label">Brand</label>
                             <input type="text" asp-for="Brand" class="form-control" />
                             <span asp-validation-for="Brand" class="text-danger"></span>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="block-container m-t-20">

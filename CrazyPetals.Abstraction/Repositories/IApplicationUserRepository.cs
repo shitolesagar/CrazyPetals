@@ -10,7 +10,7 @@ namespace CrazyPetals.Abstraction.Repositories
     public interface IApplicationUserRepository : IRepository<ApplicationUser>
     {
         ApplicationUser FindByEmail(string Email);
-        int GetIndexViewTotalCount(UserFilter filter);
-        Task<List<ApplicationUser>> GetIndexViewRecordsAsync(UserFilter filter, int skip, int pageSize);
+        int GetCustomerIndexViewTotalCount(FilterBase filter);
+        Task<List<ApplicationUser>> GetCusotmerIndexViewRecordsAsync(FilterBase filter, int skip, int pageSize);
     }
 }

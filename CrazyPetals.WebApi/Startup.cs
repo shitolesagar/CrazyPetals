@@ -45,7 +45,7 @@ namespace CrazyPetals.WebApi
             services.AddScoped<IForgotPasswordRepository, ForgotPasswordRepository>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IOrderDetailsRepository, OrderDetailsRepository>();
-            services.AddScoped<IOrderSummaryRepository, OrderSummaryRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductColorRepository, ProductColorRepository>();
             services.AddScoped<IProductImagesRepository, ProductImagesRepository>();
