@@ -20,7 +20,7 @@ namespace CrazyPetals.Entities.Database
         public int RoleId { get; set; }
         public Role Role { get; set; }
 
-        public ICollection<OrderSummary> OrderSummaries { get; set; }
+        public ICollection<Order> Orders { get; set; }
         public ICollection<ActivityLog> ActivityLogs { get; set; }
         public ICollection<CartDetails> CartDetails { get; set; }
         public ICollection<UserAddress> UserAddresses { get; set; }

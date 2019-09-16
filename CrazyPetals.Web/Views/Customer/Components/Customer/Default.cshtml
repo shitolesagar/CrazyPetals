@@ -1,4 +1,4 @@
-﻿@model CrazyPetals.Entities.WebViewModels.UserWrapperViewModel
+﻿@model CrazyPetals.Entities.WebViewModels.CustomerWrapperViewModel
 
 <div id="indexPartialContent" class="table-wrapper">
     @if (Model.TotalCount <= 0)
@@ -12,7 +12,6 @@
             }
             else
             {
-                <img src="~/images/search@2x.png" alt="Sorry" />
                 <p class="m-t-25 f-22 f-bold">
                     No Result Found!
                 </p>
@@ -22,35 +21,25 @@
     }
     else
     {
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>No.</th>
                     <th>Name</th>
                     <th>Email </th>
                     <th>Created Date</th>
-                    <th class="text-center">Manage</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var user in Model.UserList)
                 {
-                    <tr>
+                    <tr onclick="gotoDetailsPage('@user.Id')">
                         <td>@user.Number</td>
                         <td>@user.Name</td>
-                        <td>@user.Role</td>
+                        <td>@user.Email</td>
                         <td>@user.CreatedDate</td>
-                        <td class="text-center">
-                            <span class="display-inline position-relative more-action">
-                                <img src="~/images/icons/more-vertical.png" class="img-responsive  cursor-pointer" />
-                                <div class="editRemove-popup">
-                                    <ul>
-                                        <li onclick="openModal('@user.Id')"><img src="~/images/icons/trash.png" class="action-icon" />Remove</li>
-                                    </ul>
-                                </div>
-                            </span>
-                        </td>
                     </tr>
+
                 }
 
             </tbody>

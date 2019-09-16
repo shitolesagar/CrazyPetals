@@ -57,7 +57,7 @@ namespace CrazyPetals.Web
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IOrderSummaryRepository, OrderSummaryRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IForgotPasswordRepository, ForgotPasswordRepository>();
             services.AddScoped<IOrderDetailsRepository, OrderDetailsRepository>();
             services.AddScoped<IUserAddressRepository, UserAddressRepository>();

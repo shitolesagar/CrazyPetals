@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CrazyPetals.Repository.Repositories
 {
-    public class OrderSummaryRepository : Repository<OrderSummary>, IOrderSummaryRepository
+    public class OrderRepository : Repository<Order>, IOrderRepository
     {
-        public OrderSummaryRepository(ApplicationDbContext context) : base(context)
+        public OrderRepository(ApplicationDbContext context) : base(context)
         {
         }
 
-        public Task<List<OrderSummary>> GetIndexViewRecordsAsync(OrderFilter filter, int skip, int pageSize)
+        public Task<List<Order>> GetIndexViewRecordsAsync(OrderFilter filter, int skip, int pageSize)
         {
             return Set.Skip(skip).Take(pageSize).ToListAsync();
         }

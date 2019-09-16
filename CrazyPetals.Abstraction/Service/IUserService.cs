@@ -17,7 +17,7 @@ namespace CrazyPetals.Abstraction.Service
 
         CommonResponse ResetPassword(ResetPasswordRequest request);
 
-        Task<UserWrapperViewModel> GetWrapperForIndexView(UserFilter filter);
+        Task<CustomerWrapperViewModel> GetWrapperForIndexView(FilterBase filter);
 
         CommonResponse VerifyOTP(VerifyOtpRequest request);
 

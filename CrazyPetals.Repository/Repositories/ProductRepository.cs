@@ -22,7 +22,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public Task<List<Product>> GetProductListForSearch(int take, string AppId, string Search)
         {
-            return Set.Include(x=>x.Category).Include(x=>x.ProductImages).Include(x=>x.FilterProducts).ThenInclude(y=>y.Filter). Where(x => x.AppId == AppId && x.Name.Contains(Search)).Skip(0).Take(take).ToListAsync();
+            return Set.Include(x=>x.Category).ThenInclude(x=> x.Filters).Include(x=>x.ProductImages).Include(y=>y.Filter). Where(x => x.AppId == AppId && x.Name.Contains(Search)).Skip(0).Take(take).ToListAsync();
         }
 
         public Product FindById(int Id, string AppId)
@@ -56,7 +56,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public List<Product> GetAllProductForCategory(int CategoryId, string AppId)
         {
-            return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Include(x => x.FilterProducts).ThenInclude(y=>y.Filter).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
+            return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Include(y=>y.Filter).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
         }
 
         public List<Product> GetAllProductForRecommended(int CategoryId,int ProductId, string AppId)

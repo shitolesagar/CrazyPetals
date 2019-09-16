@@ -20,14 +20,24 @@ namespace CrazyPetals.Repository.Repositories
             return Set.Where(x => x.Email == Email).FirstOrDefault();
         }
 
-        public Task<List<ApplicationUser>> GetIndexViewRecordsAsync(UserFilter filter, int skip, int pageSize)
+        public Task<List<ApplicationUser>> GetCusotmerIndexViewRecordsAsync(FilterBase filter, int skip, int pageSize)
         {
-            return Set.Include(x => x.Role).Skip(skip).Take(pageSize).ToListAsync();
+            var query = Set.Where(x=> x.Role.Name == "Customer").AsQueryable();
+            if(!string.IsNullOrEmpty(filter.search))
+            {
+                query = query.Where(x => x.Email.ToLower().Contains(filter.search.ToLower()) || x.Name.ToLower().Contains(filter.search.ToLower()));
+            }
+            return query.OrderByDescending(x => x.CreatedDate).Skip(skip).Take(pageSize).ToListAsync();
         }
 
-        public int GetIndexViewTotalCount(UserFilter filter)
+        public int GetCustomerIndexViewTotalCount(FilterBase filter)
         {
-            return Set.Count();
+            var query = Set.Where(x => x.Role.Name == "Customer").AsQueryable();
+            if (!string.IsNullOrEmpty(filter.search))
+            {
+                query = query.Where(x => x.Email.ToLower().Contains(filter.search.ToLower()) || x.Name.ToLower().Contains(filter.search.ToLower()));
+            }
+            return query.Count();
         }
     }
 }

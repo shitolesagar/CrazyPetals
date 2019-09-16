@@ -4,16 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CrazyPetals.Repository.Configurations
 {
-    internal class OrderSummaryConfiguration : IEntityTypeConfiguration<OrderSummary>
+    internal class OrderSummaryConfiguration : IEntityTypeConfiguration<Order>
     {
-        public void Configure(EntityTypeBuilder<OrderSummary> builder)
+        public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseMySqlIdentityColumn();
-            builder.Property(x => x.AppId).HasMaxLength(30);
 
-            builder.HasOne(x => x.ApplicationUser).WithMany(x => x.OrderSummaries).HasForeignKey(x => x.ApplicationUserId);
-            builder.HasOne(x => x.UserAddress).WithMany(x => x.OrderSummaries).HasForeignKey(x => x.UserAddressId);
+            builder.HasOne(x => x.ApplicationUser).WithMany(x => x.Orders).HasForeignKey(x => x.ApplicationUserId);
+            builder.HasOne(x => x.UserAddress).WithMany(x => x.Orders).HasForeignKey(x => x.UserAddressId);
         }
     }
 }

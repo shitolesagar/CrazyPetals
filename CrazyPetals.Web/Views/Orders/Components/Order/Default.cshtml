@@ -1,27 +1,26 @@
 ﻿@model CrazyPetals.Entities.WebViewModels.OrderWrapperViewModel
-
-@if (Model.TotalCount <= 0)
-{
-    <div class="list-empty-state">
-        @if (ViewBag.ShowEmptyState == true)
-        {
-            <p class="m-t-25 f-22 f-bold">
-                No orders has been placed yet.
-            </p>
-        }
-        else
-        {
-            <img src="~/images/search@2x.png" alt="Sorry" />
-            <p class="m-t-25 f-22 f-bold">
-                No Result Found!
-            </p>
-            <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
-        }
-    </div>
-}
-else
-{
-    <div id="tblContent" class="table-wrapper">
+<div id="indexPartialContent" class="table-wrapper">
+    @if (Model.TotalCount <= 0)
+    {
+        <div class="list-empty-state">
+            @if (ViewBag.ShowEmptyState == true)
+            {
+                <p class="m-t-25 f-22 f-bold">
+                    No orders has been placed yet.
+                </p>
+            }
+            else
+            {
+                <img src="~/images/search@2x.png" alt="Sorry" />
+                <p class="m-t-25 f-22 f-bold">
+                    No Result Found!
+                </p>
+                <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
+            }
+        </div>
+    }
+    else
+    {
         <table class="table">
             <thead>
                 <tr>
@@ -55,14 +54,9 @@ else
                         </td>
                     </tr>
                 }
-
             </tbody>
         </table>
         <!--Pagination-->
-        <div class="pagination">
-            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex-1))" @(Model.PagingData.IsFirst ? "disabled" : "")><img src="~/images/icons/left.png" /></button>
-            <button onclick="getRecordsByPageIndex(@(Model.PagingData.CurrentIndex+1))" @(Model.PagingData.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
-            <span class="m-l-20">Viewing <span class="f-semi-bold">@Model.PagingData.FromRecord - @Model.PagingData.UpToRecord</span> of <span class="f-semi-bold">@Model.TotalCount</span></span>
-        </div>
-    </div>
-}
+        <partial name="_pagination" model="Model.PagingData" />
+    }
+</div>

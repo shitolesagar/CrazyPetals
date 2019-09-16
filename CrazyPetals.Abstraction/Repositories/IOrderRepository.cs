@@ -5,9 +5,9 @@ using CrazyPetals.Entities.Filters;
 
 namespace CrazyPetals.Abstraction.Repositories
 {
-    public interface IOrderSummaryRepository : IRepository<OrderSummary>
+    public interface IOrderRepository : IRepository<Order>
     {
         int GetIndexViewTotalCount(OrderFilter filter);
-        Task<List<OrderSummary>> GetIndexViewRecordsAsync(OrderFilter filter, int skip, int pageSize);
+        Task<List<Order>> GetIndexViewRecordsAsync(OrderFilter filter, int skip, int pageSize);
     }
 }

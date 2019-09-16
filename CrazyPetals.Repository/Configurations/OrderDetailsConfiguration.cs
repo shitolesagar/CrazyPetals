@@ -10,9 +10,8 @@ namespace CrazyPetals.Repository.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseMySqlIdentityColumn();
-            builder.Property(x => x.AppId).HasMaxLength(30);
 
-            builder.HasOne(x => x.OrderSummary).WithMany(x => x.OrderDetails).HasForeignKey(x => x.OrderSummaryId);
+            builder.HasOne(x => x.Order).WithMany(x => x.OrderDetails).HasForeignKey(x => x.OrderId);
             builder.HasOne(x => x.Product).WithMany(x => x.OrderDetails).HasForeignKey(x => x.ProductId);
         }
     }

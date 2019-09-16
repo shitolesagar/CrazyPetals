@@ -28,13 +28,13 @@ namespace CrazyPetals.Service
         private IFileServices _fileServices;
         private IProductImagesRepository _productImagesRepository;
         private IUserAddressRepository _userAddressRepository;
-        private IOrderSummaryRepository _orderSummaryRepository;
+        private IOrderRepository _orderSummaryRepository;
         private IOrderDetailsRepository _orderDetailsRepository;
         private IApplicationUserRepository _applicationUserRepository;
         private IForgotPasswordRepository _forgotPasswordRepository;
 
 
-        public UserService(ICategoryRepository categoryRepository, IFileServices fileServices, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderSummaryRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
+        public UserService(ICategoryRepository categoryRepository, IFileServices fileServices, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;
@@ -332,19 +332,19 @@ namespace CrazyPetals.Service
             return strrandom;
         }
 
-        public async Task<UserWrapperViewModel> GetWrapperForIndexView(UserFilter filter)
+        public async Task<CustomerWrapperViewModel> GetWrapperForIndexView(FilterBase filter)
         {
-            UserWrapperViewModel ResponseModel = new UserWrapperViewModel
+            CustomerWrapperViewModel ResponseModel = new CustomerWrapperViewModel
             {
-                TotalCount = _applicationUserRepository.GetIndexViewTotalCount(filter)
+                TotalCount = _applicationUserRepository.GetCustomerIndexViewTotalCount(filter)
             };
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
-            List<ApplicationUser> list = await _applicationUserRepository.GetIndexViewRecordsAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
-            ResponseModel.UserList = list.Select((x, index) => new UserListViewModel
+            List<ApplicationUser> list = await _applicationUserRepository.GetCusotmerIndexViewRecordsAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
+            ResponseModel.UserList = list.Select((x, index) => new CustomerListViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
-                Role = x.Role.Name,
+                Email = x.Email,
                 CreatedDate = x.CreatedDate.ToCrazyPattelsPattern(),
                 Number = ResponseModel.PagingData.FromRecord + index,
             }).ToList();
