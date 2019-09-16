@@ -407,8 +407,11 @@ namespace CrazyPetals.Service
                     UserAddressId = request.AddressId,
                     ApplicationUserId = request.ApplicationUserId,
                     CreatedDate = DateTime.Now,
+                    PaymentStatusId = 1,
+                    FullfillmentStatusId = 1,
                 };
-                
+                var OrderNumber = DateTime.Now.ToString("yyyyMMddHHmmssf");
+                obj.OrderNumber = OrderNumber;
 
                 _orderRepository.Add(obj);
                 _unitOfWork.SaveChanges();
