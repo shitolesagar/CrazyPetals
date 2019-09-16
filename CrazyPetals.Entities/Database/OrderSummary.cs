@@ -28,5 +28,11 @@ namespace CrazyPetals.Entities.Database
 
         public ICollection<OrderDetails> OrderDetails { get; set; }
         public int MRP { get; set; }
+
+        public int PaymentStatusId { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
+
+        public int FullfillmentStatusId { get; set; }
+        public FullfillmentStatus FullfillmentStatus { get; set; }
     }
 }

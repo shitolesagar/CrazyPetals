@@ -60,11 +60,11 @@ namespace CrazyPetals.WebApi
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICheckoutService, CheckoutService>();
             services.AddScoped<IDelivery_chargeRepository, Delivery_chargeRepository>();
+            services.AddScoped<IPaymentStatusRepository, PaymentStatusRepository>();
+            services.AddScoped<IFullfillmentStatusRepository, FullfillmentStatusRepository>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseMySql("server=165.22.60.17;port=3306;uid=admin;password=Omni#1234$;database=CrazyPetalsDB_testing;");
-            });
+               options.UseMySql(Configuration.GetConnectionString("defaultConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

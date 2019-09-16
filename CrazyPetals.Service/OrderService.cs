@@ -33,8 +33,9 @@ namespace CrazyPetals.Service
             ResponseModel.OrderList = list.Select((x, index) => new OrderListViewModel
             {
                 Id = x.Id,
-                OrderNumber = x.Id.ToString(),
-                Status = "",
+                OrderNumber = x.OrderNumber,
+                Status = x.FullfillmentStatus.Fullfillment_Status,
+                CreatedDate = x.CreatedDate,
                 Number = ResponseModel.PagingData.FromRecord + index,
             }).ToList();
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
