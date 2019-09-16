@@ -8,32 +8,6 @@ namespace CrazyPetals.Entities.WebViewModels
 {
     public class AddProductViewModel
     {
-        [Required(ErrorMessage = "Product name is required")]
-        public string ProductName { get; set; }
-
-        public int? CategoryId { get; set; }
-        public int? SubcategoryId { get; set; }
-
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Original Price is not valid.")]
-        public int? OriginalPrice { get; set; }
-
-        [Required(ErrorMessage = "Offer price is required.")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Offer Price is not valid.")]
-        public int DiscountedPrice { get; set; }
-
-        [Required(ErrorMessage = "Description is required.")]
-        public string LongDescription { get; set; }
-
-        [Required(ErrorMessage = "Unit is required.")]
-        public int? UnitId { get; set; }
-
-        [Required(ErrorMessage = "Quantity is required.")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Quantity is not valid.")]
-        public string Quantity { get; set; }
-
-        [Required(ErrorMessage = "Status is required.")]
-        public string Status { get; set; }
-
         public IFormFile Image { get; set; }
         [Required(ErrorMessage = "Main image is required.")]
         public string MainImageText { get; set; }
@@ -43,10 +17,39 @@ namespace CrazyPetals.Entities.WebViewModels
         public IFormFile Image3 { get; set; }
         public IFormFile Image4 { get; set; }
 
+        [Required(ErrorMessage = "Product name is required")]
+        public string ProductName { get; set; }
+
+        [Required(ErrorMessage = "Description is required.")]
+        public string LongDescription { get; set; }
+
+        public int? CategoryId { get; set; }
+
+        public int? FilterId { get; set; }
+
+        public List<int> SelectedColorIds { get; set; }
+
+        [Required(ErrorMessage = "Status is required.")]
+        public string Status { get; set; }
+
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Original Price is not valid.")]
+        public int? OriginalPrice { get; set; }
+
+        [Required(ErrorMessage = "Offer price is required.")]
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Offer Price is not valid.")]
+        public int DiscountedPrice { get; set; }
+
+        public string AvailableSize { get; set; }
+        public string ProductLength { get; set; }
+        public string ProductWidth { get; set; }
+        public string ProductHeight { get; set; }
+        public string ProductWeight { get; set; }
+
+        public string MaterialType { get; set; }
+        public string Accessories { get; set; }
+        public string PrecautionsInstructions { get; set; }
+        public string DeliveryTime { get; set; }
+
         public string StockKeepingUnit { get; set; }
-        public string Brand { get; set; }
-
-
-        public List<int> Ids { get; set; }
     }
 }

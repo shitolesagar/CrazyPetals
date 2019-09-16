@@ -7,8 +7,126 @@
     ViewData["ActiveTab"] = "customer";
 }
 
-<div class="row bg-white">
-    <div class="col">
+<div class="row bg-white py-3">
+    <div class="col-2">
         <img src="~/images/icons/user profile@2x.png" alt="" class="detailView-img" />
+    </div>
+    <div class="col-10">
+        <p class="f-gray">Name</p>
+        <p class="f-bold">Rohan Bhokare</p>
+        <p class="f-gray mt-3">Email</p>
+        <p class="f-bold">admin@gmail.com</p>
+        <p class="f-gray mt-3">Mobile</p>
+        <p class="f-bold">9423237999</p>
+    </div>
+    <div class="col-3">
+        <p class="f-gray mt-3">Register On: <span class="f-bold f-black">2-Aug-2019</span></p>
+    </div>
+</div>
+
+<div class="row bg-white py-3">
+    <div class="col-12">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item my-nav-item">
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#order" role="tab" aria-selected="true">Order</a>
+            </li>
+            <li class="nav-item my-nav-item">
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#address" role="tab" aria-selected="false">Address</a>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="order" role="tabpanel">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Order Number</th>
+                            <th>Status</th>
+                            <th>Placed Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>122222222222</td>
+                            <td>Delivered</td>
+                            <td>20-12-2018</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>122222222222</td>
+                            <td>Delivered</td>
+                            <td>20-12-2018</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>122222222222</td>
+                            <td>Delivered</td>
+                            <td>20-12-2018</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="address" role="tabpanel">
+                <div class="row m-auto">
+                    <div class="col-md-3 p-2 d-flex align-items-stretch">
+                        <div class="card mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Address 1</div>
+                            <div class="card-body">
+                                <p class="card-text">14 ajinkyacity ambejogai road Latur</p>
+                                <p class="card-text">Locality:</p>
+                                <p class="card-text">PinCode</p>
+                                <p class="text-right">MobileNumber</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-2 d-flex align-items-stretch">
+                        <div class="card mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Address 2</div>
+                            <div class="card-body">
+                                <p class="card-text">14 ajinkyacity ambejogai road Latur</p>
+                                <p class="card-text">Locality:</p>
+                                <p class="card-text">PinCode</p>
+                                <p class="text-right">MobileNumber</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-2 d-flex align-items-stretch">
+                        <div class="card mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Address 3</div>
+                            <div class="card-body">
+                                <p class="card-text">14 ajinkyacity ambejogai road Latur</p>
+                                <p class="card-text">Locality:</p>
+                                <p class="card-text">PinCode</p>
+                                <p class="text-right">MobileNumber</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-2 d-flex align-items-stretch">
+                        <div class="card mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Address 4</div>
+                            <div class="card-body">
+                                <p class="card-text">14 ajinkyacity ambejogai road Latur</p>
+                                <p class="card-text">Locality:</p>
+                                <p class="card-text">PinCode</p>
+                                <p class="text-right">MobileNumber</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-2 d-flex align-items-stretch">
+                        <div class="card mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Address 5</div>
+                            <div class="card-body">
+                                <p class="card-text">14 ajinkyacity ambejogai road Latur</p>
+                                <p class="card-text">Locality:</p>
+                                <p class="card-text">PinCode</p>
+                                <p class="text-right">MobileNumber</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
