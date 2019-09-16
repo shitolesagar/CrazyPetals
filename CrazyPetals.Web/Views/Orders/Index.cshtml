@@ -1,12 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Orders";
     string stringHtml = "<span class=\"display-inline\">Orders</span>";
+    string seachButton = "<input class=\"form-control\" id=\"txtSearch\" type=\"text\" placeholder=\"Search\" /><img src=\"/images/icons/search.png\" class=\"search-icon\" />";
 
     ViewData["TabHeading"] = stringHtml;
     ViewData["ActiveTab"] = "order";
+    ViewData["TabSearch"] = seachButton;
     var message = TempData["Message"] ?? string.Empty;
 }
 
+<div class="row" id="filterRow">
+    <div class="col-lg-6 col-sm-6">
+        <div class="form-group  position-relative">
+            <span class="f-bold display-inline m-r-10 f-18 dropDownLabel-mob">Status:</span>
+            <div class="custom-select display-inline">
+                <select onchange="filter(this)" class="m-r-15 form-control select-dropDown" id="ddlCategory" asp-items="ViewBag.FullfillmentStatusList">
+                    <option value="">select</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @await Component.InvokeAsync("Order", new { isPartial = false, filter = ViewBag.Filters })
@@ -14,10 +28,111 @@
 
 
 @section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script>
         var message = "@message";
         if (message) {
             ShowSlackbarSucessMessage(message);
         }
+        $(document).ready(function () {
+            $("#txtSearch").keyup(onSearch);
+        });
+
+
+        var sortColumn = "";
+        var isSortDecending = true;
+
+        function getRecordsByPageIndex(pageIndex) {
+            var url = CreateUrlString() + "pageIndex=" + pageIndex + "&";
+            $(".loader-wrapper").show();
+            $("#tblContent").load(url, function () {
+                reinitializeDropdown();
+                $(".loader-wrapper").hide();
+            });
+        }
+        function filter(obj) {
+            if (($("#tblContent").text()).length > 0) {
+                $(obj).addClass("active-state");
+                $('.selectpicker').selectpicker('refresh');
+                $(".loader-wrapper").show();
+                $("#tblContent").load(CreateUrlString(), function () {
+                    reinitializeDropdown();
+                    $(".loader-wrapper").hide();
+                });
+            }
+        }
+
+        function onSearch() {
+            $("#ddlCategory").val('');
+            if (($("#tblContent").text()).length > 0) {
+                $(".loader-wrapper").show();
+                $("#tblContent").load(CreateUrlString(), function () {
+                    reinitializeDropdown();
+                    $(".loader-wrapper").hide();
+                    showHideFilters("filterRow");
+                });
+            }
+        }
+        function CreateUrlString() {
+            var url = "/orders/indexpartial?";
+            var filter = {
+                status: $("#ddlCategory").val(),
+                search: $("#txtSearch").val()
+            };
+            if (filter.status !== "")
+                url = url + "StatusId=" + encodeURIComponent(filter.status) + "&";
+            
+            if (filter.search !== "")
+                url = url + "search=" + encodeURIComponent(filter.search) + "&";
+            return url;
+        }
+
+        function reinitializeDropdown() {
+            $(".selectpicker").selectpicker('refresh');
+        }
+
+        function openModal(id) {
+            $('#myModal').modal('show');
+            $("#delete-id").val(id)
+        }
+
+
+        $(document).ready(function () {
+            $("#ddlCategory").change(function () {
+                $.get("/Product/GetSubcategoryDropList", { categoryId: $("#ddlCategory").val() }, function (data) {
+                    $('#ddlSubCategory').find('option:first').attr('selected', 'selected');
+                    $("#ddlSubCategory").empty();
+                    $("#ddlSubCategory").append("<option value=''>select</option>")
+                    $.each(data, function (index, row) {
+                        $("#ddlSubCategory").append("<option value='" + row.Id + "'>" + row.SubCategoryName + "</option>")
+                    })
+                })
+            })
+        })
+
+        function showHideFilters(elementId) {
+            if ($("#tblContent > table").length <= 0) {
+                hideElement(elementId);
+            } else {
+                showElement(elementId);
+            }
+        }
+
+        function showElement(elementId) {
+            if ($("#" + elementId).not(":visible")) {
+                $("#" + elementId).show();
+            }
+        }
+
+        function hideElement(elementId) {
+            if ($("#" + elementId).is(":visible")) {
+                $("#" + elementId).hide();
+            }
+        }
+    </script>
+    <script>
+
     </script>
 }

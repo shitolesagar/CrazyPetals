@@ -267,6 +267,19 @@ namespace CrazyPetals.Repository.Migrations
                     b.ToTable("ForgotPassword");
                 });
 
+            modelBuilder.Entity("CrazyPetals.Entities.Database.FullfillmentStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Fullfillment_Status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FullfillmentStatuses");
+                });
+
             modelBuilder.Entity("CrazyPetals.Entities.Database.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -305,11 +318,15 @@ namespace CrazyPetals.Repository.Migrations
 
                     b.Property<decimal>("DiscountPrice");
 
+                    b.Property<int>("FullfillmentStatusId");
+
                     b.Property<decimal>("GSTPrice");
 
                     b.Property<int>("MRP");
 
                     b.Property<string>("OrderNumber");
+
+                    b.Property<int>("PaymentStatusId");
 
                     b.Property<decimal>("SubTotalPrice");
 
@@ -320,6 +337,10 @@ namespace CrazyPetals.Repository.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("FullfillmentStatusId");
+
+                    b.HasIndex("PaymentStatusId");
 
                     b.HasIndex("UserAddressId");
 
@@ -349,6 +370,19 @@ namespace CrazyPetals.Repository.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("CrazyPetals.Entities.Database.PaymentStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Payment_Status");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PaymentStatuses");
                 });
 
             modelBuilder.Entity("CrazyPetals.Entities.Database.Product", b =>
@@ -629,6 +663,16 @@ namespace CrazyPetals.Repository.Migrations
                     b.HasOne("CrazyPetals.Entities.Database.ApplicationUser", "ApplicationUser")
                         .WithMany("Orders")
                         .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CrazyPetals.Entities.Database.FullfillmentStatus", "FullfillmentStatus")
+                        .WithMany("Orders")
+                        .HasForeignKey("FullfillmentStatusId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CrazyPetals.Entities.Database.PaymentStatus", "PaymentStatus")
+                        .WithMany("Orders")
+                        .HasForeignKey("PaymentStatusId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("CrazyPetals.Entities.Database.UserAddress", "UserAddress")
