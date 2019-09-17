@@ -6,6 +6,7 @@ using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Abstraction.Service;
 using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.WebViewModels;
+using CrazyPetals.Entities.WebViewModels.DetailsPageViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -35,9 +36,10 @@ namespace CrazyPetals.Web.Controllers
             return ViewComponent("Order", new { filter, IsPartial = true });
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            OrderDetailsViewModel model = await _orderService.GetOrderDetails(id);
+            return View(model);
         }
     }
 }

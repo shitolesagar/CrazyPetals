@@ -1,4 +1,4 @@
-﻿
+﻿@model CrazyPetals.Entities.WebViewModels.DetailsPageViewModels.OrderDetailsViewModel
 @{
     ViewData["Title"] = "Order Details";
     string stringHtml = "<span onclick=\"goToPreviousPage()\"><img src=\"/images/icons/arrow-left.png\" class=\"vertical-middle iconWidth-25 cursor-pointer m-r-20\"></span>";
@@ -8,7 +8,100 @@
     ViewData["ActiveTab"] = "order";
 }
 
+<div class="block-container">
+    <label class="m-l-10 m-t-20">Order Summary :</label>
+    <div class="row m-l-20 py-3">
 
+        <div class="col-4">
+            <p class="f-gray">ApplicationUser Name</p>
+            <p class="f-bold">@Model.ApplicationUser</p>
+        </div>
+        <div class="col-4">
+            <p class="f-gray mt-3">Order Number</p>
+            <p class="f-bold">@Model.OrderNumber</p>
+        </div>
+        <div class="col-4">
+            <p class="f-gray mt-3">Order Placed Date</p>
+            <p class="f-bold">@Model.CreatedDate</p>
+        </div>
+        <div class="col-4">
+            <p class="f-gray mt-3">Total Price</p>
+            <p class="f-bold">@Model.TotalPrice</p>
+        </div>
+        <div class="col-4">
+            <p class="f-gray mt-3">Discounted Price</p>
+            <p class="f-bold">@Model.DiscountedPrice</p>
+        </div>
+        <div class="col-4">
+            <p class="f-gray mt-3">GST</p>
+            <p class="f-bold">@Model.GSTPrice</p>
+        </div>
+        <div class="col-4">
+            <p class="f-gray mt-3">Delivery Charges</p>
+            <p class="f-bold">@Model.DeliveryCharges</p>
+        </div>
+        <div class="col-4">
+            <p class="f-gray mt-3">Subtotal</p>
+            <p class="f-bold">@Model.SubTotal</p>
+        </div>
+        <div class="col-4">
+            <p class="f-gray mt-3">Delivery Status</p>
+            <p class="f-bold">@Model.DeliveryStatus</p>
+        </div>
+        <div class="col-4">
+            <p class="f-gray mt-3">Payment Status</p>
+            <p class="f-bold">@Model.PaymentStatus</p>
+        </div>
+        <div class="col-4">
+            <p class="f-gray mt-3">Delivery Address</p>
+            <p class="f-bold">@Model.ShippingAddress</p>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="block-container m-t-20">
+    <div class="tab-content" id="myTabContent">
+        <label class="m-l-10 m-t-20">Order Details :</label>
+        <div class="tab-pane fade show active" id="order" role="tabpanel">
+            @if (Model.OrderDetails.Count > 0)
+            {
+                <table class="table m-l-20">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Original Price</th>
+                            <th>Discounted Price</th>
+                            <th>Quantity</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.OrderDetails)
+                        {
+                            <tr>
+                                <td>@order.ProductName</td>
+                                <td>@order.OriginalPrice</td>
+                                <td>@order.DiscountedPrice</td>
+                                <td>@order.Quantity</td>
+                                <td>@order.TotalPrice</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="text-center m-5 p-5">
+                    <p class="f-22 f-bold">
+                        No orders has been placed yet.
+                    </p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
 @section Scripts {
     <script>
         function goToPreviousPage() {
