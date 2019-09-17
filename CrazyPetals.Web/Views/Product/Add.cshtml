@@ -104,7 +104,7 @@
                 <div class="form-group  position-relative ">
                     <label class="float-label">Product has a category?</label>
                     <div class="my-custom-select width-100">
-                        <select class="form-control select-dropDown" asp-for="CategoryId" value="" asp-items="ViewBag.CategoriesList">
+                        <select class="form-control select-dropDown" asp-for="CategoryId" value="" asp-items="ViewBag.CategoryList">
                             <option value="">select</option>
                         </select>
                     </div>
@@ -117,7 +117,7 @@
 
                     <label class="float-label">Product has a filter?</label>
                     <div class="my-custom-select width-100">
-                        <select class="form-control select-dropDown" asp-for="FilterId" value="" asp-items="ViewBag.SubCategoriesList">
+                        <select class="form-control select-dropDown" asp-for="FilterId" value="" asp-items="ViewBag.FiltersList">
                             <option value="">select</option>
                         </select>
                     </div>
@@ -127,10 +127,8 @@
             <div class="col-md-4">
                 <label class="float-label">Product has a color varient?</label>
                 <div class="my-custom-select width-100">
-                    <select class="form-control selectpicker" asp-for="SelectedColorIds" title="select">
-                        <option>Red</option>
-                        <option>Green</option>
-                        <option>Yellow</option>
+                    <select class="form-control selectpicker" asp-for="SelectedColorIds" asp-items="ViewBag.ColorList" title="select">
+                        
                     </select>
                 </div>
                 <span asp-validation-for="SelectedColorIds" class="text-danger"></span>
@@ -149,7 +147,7 @@
             <div class="col-4">
                 <label class="float-label">Available size</label>
                 <div class="my-custom-select width-100">
-                    <select class="form-control select-dropDown" asp-for="AvailableSize" value="">
+                    <select class="form-control select-dropDown" asp-for="AvailableSize" asp-items="ViewBag.AvaliableSizeList" value="">
                         <option value="">select</option>
                     </select>
                 </div>
@@ -164,28 +162,28 @@
             <div class="col-2">
                 <div class="form-group m-t-10 float-container position-relative">
                     <label class="control-label float-label">Product Length</label>
-                    <input type="text" asp-for="ProductLength" class="form-control" placeholder="Product Length" required />
+                    <input type="text" asp-for="ProductLength" class="form-control" placeholder="Product Length" />
                     <span asp-validation-for="ProductLength" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-2">
                 <div class="form-group m-t-10 float-container position-relative">
                     <label class="control-label float-label">Product Width</label>
-                    <input type="text" asp-for="ProductWidth" class="form-control" placeholder="Product Width" required />
+                    <input type="text" asp-for="ProductWidth" class="form-control" placeholder="Product Width" />
                     <span asp-validation-for="ProductWidth" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-2">
                 <div class="form-group m-t-10 float-container position-relative">
                     <label class="control-label float-label">Product Height</label>
-                    <input type="text" asp-for="ProductHeight" class="form-control" placeholder="Product Height" required />
+                    <input type="text" asp-for="ProductHeight" class="form-control" placeholder="Product Height" />
                     <span asp-validation-for="ProductHeight" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-2">
                 <div class="form-group m-t-10 float-container position-relative">
                     <label class="control-label float-label">Product Weight</label>
-                    <input type="text" asp-for="ProductWeight" class="form-control" placeholder="Product Weight" required />
+                    <input type="text" asp-for="ProductWeight" class="form-control" placeholder="Product Weight" />
                     <span asp-validation-for="ProductWeight" class="text-danger"></span>
                 </div>
             </div>
@@ -233,7 +231,7 @@
             <div class="col-md-6">
                 <div class="form-group m-t-10 float-container position-relative">
                     <label class="control-label float-label">Accessories</label>
-                    <input type="text" asp-for="Accessories" class="form-control" placeholder="Accessories" required />
+                    <input type="text" asp-for="Accessories" class="form-control" placeholder="Accessories" />
                     <span asp-validation-for="Accessories" class="text-danger"></span>
                 </div>
             </div>
@@ -264,7 +262,7 @@
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
     </div>
     <div class="m-t-30">
-        <button type="button" id="btnSubmit" class="btn btn-primary m-r-10">Add</button>
+        <button type="submit" id="btnSubmit" class="btn btn-primary m-r-10">Add</button>
         <a asp-controller="product" asp-action="index" class="btn btn-secondary">Cancel</a>
     </div>
 
@@ -285,13 +283,6 @@
                     ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                 ]
-
-            });
-
-            $("#btnSubmit").click(function () {
-                if ($("#productForm").valid() && $("#MainImageText").valid()) {
-                    $("#productForm").submit();
-                }
             });
 
             $(".note-editable").blur(function () {
@@ -301,9 +292,7 @@
                 }
                 $("#txtSummernote").valid();
             });
-        })
 
-        $(document).ready(function () {
             $("#CategoryId").change(function () {
                 $.get("/Product/GetSubcategoryDropList", { categoryId: $("#CategoryId").val() }, function (data) {
                     $("#SubcategoryId").empty();
@@ -314,8 +303,8 @@
             })
 
             // following is used to initilize select picler
-            $('#Ids').selectpicker({
-                selectedTextFormat: 'count > 4',
+            $('#ColorIds').selectpicker({
+                selectedTextFormat: 'count > 3',
                 noneSelectedText: 'Select'
             });
         })
@@ -394,6 +383,10 @@
             }
             return divString;
         }
+
+        $.validator.setDefaults({
+            ignore: [],
+        });
     </script>
 
 }

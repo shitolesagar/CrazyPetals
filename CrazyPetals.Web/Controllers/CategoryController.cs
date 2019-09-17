@@ -28,7 +28,7 @@ namespace CrazyPetals.Web.Controllers
 
         public IActionResult IndexPartial(FilterBase filter)
         {
-            return ViewComponent("Category", new { filter });
+            return ViewComponent("Category", new { filter, IsPartial=true });
         }
 
         public IActionResult Add()

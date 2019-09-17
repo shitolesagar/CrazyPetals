@@ -15,16 +15,59 @@ namespace CrazyPetals.Service
     {
         private readonly IProductRepository _productRepository;
         private IUnitOfWork _unitOfWork;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IFilterRepository _filterRepository;
+        private readonly IColorsRepository _colorsRepository;
+        private readonly ISizeRepository _sizeRepository;
 
-        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository productRepository,
+            IUnitOfWork unitOfWork,
+            ICategoryRepository categoryRepository,
+            IFilterRepository filterRepository,
+            IColorsRepository colorsRepository,
+            ISizeRepository sizeRepository
+            )
         {
             _productRepository = productRepository;
             _unitOfWork = unitOfWork;
+            _categoryRepository = categoryRepository;
+            _filterRepository = filterRepository;
+            _colorsRepository = colorsRepository;
+            _sizeRepository = sizeRepository;
         }
 
-        public Task<int> AddProductAsync(AddProductViewModel model)
+
+        public Task<int> AddProductAsync(AddProductViewModel model, List<string> imageUrls)
         {
             throw new System.NotImplementedException();
+        }
+
+        public async Task<List<IdNameViewModel>> GetAvailableSizeList()
+        {
+            var list = await _sizeRepository.GetAllAsync();
+            var responseList = list.Select(x => new IdNameViewModel { Id = x.Id, Name = x.ProductSize }).ToList();
+            return responseList;
+        }
+
+        public async Task<List<IdNameViewModel>> GetCategoryListAsync()
+        {
+            var list = await _categoryRepository.GetAllAsync();
+            var responseList = list.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Name }).ToList();
+            return responseList;
+        }
+
+        public async Task<List<IdNameViewModel>> GetColorListAsync()
+        {
+            var list = await _colorsRepository.GetAllAsync();
+            var responseList = list.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Name }).ToList();
+            return responseList;
+        }
+
+        public async Task<List<IdNameViewModel>> GetFilterListAsync()
+        {
+            var list = await _filterRepository.GetAllAsync();
+            var responseList = list.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Name }).ToList();
+            return responseList;
         }
 
         public async Task<ProductWrapperViewModel> GetWrapperForIndexView(ProductFilter filter)

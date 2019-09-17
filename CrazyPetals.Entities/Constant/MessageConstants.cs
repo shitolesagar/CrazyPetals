@@ -18,5 +18,8 @@ namespace CrazyPetals.Entities.Constant
         public static string BannerDeleteFailedMessage { get; } = "Something went wrong.";
         public static string NotificationDeleteSuccessMessage { get; } = "Notification Deleted Sucessfully";
         public static string NotificationDeleteFailedMessage { get; } = "Something went wrong.";
+        public static object ProductAddSuccessMessage { get; set; } = "Product Added Sucessfully.";
+        public static object ProductDeletedSuccessMessage { get; set; } = "Product Deleted Sucessfully.";
+        public static object ProductDeletionFailedMessage { get; set; } = "Something went wrong.";
     }
 }

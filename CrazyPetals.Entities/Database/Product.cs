@@ -37,7 +37,6 @@ namespace CrazyPetals.Entities.Database
         public ICollection<ProductImages> ProductImages { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }
         public ICollection<CartDetails> CartDetails { get; set; }
-        //public ICollection<FilterProduct> FilterProducts { get; set; }
         public ICollection<ProductColor> ProductColors { get; set; }
         public ICollection<ProductSize> ProductSizes { get; set; }
     }
