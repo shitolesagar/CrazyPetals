@@ -30,9 +30,9 @@ namespace CrazyPetals.Entities.Database
         public int MRP { get; set; }
 
         public int PaymentStatusId { get; set; }
-        public PaymentStatus PaymentStatus { get; set; }
+        public OrderPaymentStatus PaymentStatus { get; set; }
 
-        public int FullfillmentStatusId { get; set; }
-        public FullfillmentStatus FullfillmentStatus { get; set; }
+        public int DeliveryStatusId { get; set; }
+        public OrderDeliveryStatus DeliveryStatus { get; set; }
     }
 }

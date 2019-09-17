@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CrazyPetals.Entities.WebViewModels.CustomerDetailsViewModel
+@{
     ViewData["Title"] = "Customer Details";
     string stringHtml = "<a href=\"/customer\"><img src=\"/images/icons/arrow-left.png\" class=\"vertical-middle iconWidth-25 cursor-pointer m-r-20\"></a>";
     stringHtml = stringHtml + "<span class=\"display-inline\">Customer Details</span>";
@@ -9,18 +10,18 @@
 
 <div class="row bg-white py-3">
     <div class="col-2">
-        <img src="~/images/icons/user profile@2x.png" alt="" class="detailView-img" />
+        <img src="@(Model.ImagePath?? "/images/icons/user profile@2x.png")" alt="profile pic" class="detailView-img" />
     </div>
     <div class="col-10">
         <p class="f-gray">Name</p>
-        <p class="f-bold">Rohan Bhokare</p>
+        <p class="f-bold">@Model.Name</p>
         <p class="f-gray mt-3">Email</p>
-        <p class="f-bold">admin@gmail.com</p>
+        <p class="f-bold">@Model.Email</p>
         <p class="f-gray mt-3">Mobile</p>
-        <p class="f-bold">9423237999</p>
+        <p class="f-bold">@Model.MobileNumber</p>
     </div>
     <div class="col-3">
-        <p class="f-gray mt-3">Register On: <span class="f-bold f-black">2-Aug-2019</span></p>
+        <p class="f-gray mt-3">Register On: <span class="f-bold f-black">@Model.RegisteredDate</span></p>
     </div>
 </div>
 
@@ -37,96 +38,76 @@
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="order" role="tabpanel">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Order Number</th>
-                            <th>Status</th>
-                            <th>Placed Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>122222222222</td>
-                            <td>Delivered</td>
-                            <td>20-12-2018</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>122222222222</td>
-                            <td>Delivered</td>
-                            <td>20-12-2018</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>122222222222</td>
-                            <td>Delivered</td>
-                            <td>20-12-2018</td>
-                        </tr>
-                    </tbody>
-                </table>
+                @if (Model.OrderList.Count > 0)
+                {
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Order Number</th>
+                                <th>Status</th>
+                                <th>Placed Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model.OrderList)
+                            {
+                                <tr onclick="gotoDetailsPage('@order.Id')">
+                                    <td>@order.Number</td>
+                                    <td>@order.OrderNumber</td>
+                                    <td>@order.Status</td>
+                                    <td>@order.CreatedDate</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <div class="text-center m-5 p-5">
+                        <p class="f-22 f-bold">
+                            No orders has been placed yet.
+                        </p>
+                    </div>
+                }
             </div>
             <div class="tab-pane fade" id="address" role="tabpanel">
-                <div class="row m-auto">
-                    <div class="col-md-3 p-2 d-flex align-items-stretch">
-                        <div class="card mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Address 1</div>
-                            <div class="card-body">
-                                <p class="card-text">14 ajinkyacity ambejogai road Latur</p>
-                                <p class="card-text">Locality:</p>
-                                <p class="card-text">PinCode</p>
-                                <p class="text-right">MobileNumber</p>
+                @if (Model.UserAddressList.Count > 0)
+                {
+                    <div class="row m-auto">
+                        @foreach (var address in Model.UserAddressList)
+                        {
+                            <div class="col-md-3 p-2 d-flex align-items-stretch">
+                                <div class="card mb-3 w-100" style="max-width: 18rem;">
+                                    <div class="card-header">Address @address.Number</div>
+                                    <div class="card-body">
+                                        <p class="card-text" title="Address">@address.Address</p>
+                                        <p class="card-text" title="Locality">@address.Locality</p>
+                                        <p class="card-text" title="Pincode">@address.Pincode</p>
+                                        <p class="text-right" title="Mobile Number">@address.MobileNumber</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        }
                     </div>
-                    <div class="col-md-3 p-2 d-flex align-items-stretch">
-                        <div class="card mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Address 2</div>
-                            <div class="card-body">
-                                <p class="card-text">14 ajinkyacity ambejogai road Latur</p>
-                                <p class="card-text">Locality:</p>
-                                <p class="card-text">PinCode</p>
-                                <p class="text-right">MobileNumber</p>
-                            </div>
-                        </div>
+                }
+                else
+                {
+                    <div class="text-center m-5 p-5">
+                        <p class="f-22 f-bold">
+                            No Address has been added yet.
+                        </p>
                     </div>
-                    <div class="col-md-3 p-2 d-flex align-items-stretch">
-                        <div class="card mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Address 3</div>
-                            <div class="card-body">
-                                <p class="card-text">14 ajinkyacity ambejogai road Latur</p>
-                                <p class="card-text">Locality:</p>
-                                <p class="card-text">PinCode</p>
-                                <p class="text-right">MobileNumber</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 p-2 d-flex align-items-stretch">
-                        <div class="card mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Address 4</div>
-                            <div class="card-body">
-                                <p class="card-text">14 ajinkyacity ambejogai road Latur</p>
-                                <p class="card-text">Locality:</p>
-                                <p class="card-text">PinCode</p>
-                                <p class="text-right">MobileNumber</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 p-2 d-flex align-items-stretch">
-                        <div class="card mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Address 5</div>
-                            <div class="card-body">
-                                <p class="card-text">14 ajinkyacity ambejogai road Latur</p>
-                                <p class="card-text">Locality:</p>
-                                <p class="card-text">PinCode</p>
-                                <p class="text-right">MobileNumber</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        function gotoDetailsPage(id) {
+            window.location.href = "/orders/details/" + id;
+        }
+    </script>
+}

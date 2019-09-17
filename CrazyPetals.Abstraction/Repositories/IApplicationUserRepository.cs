@@ -12,5 +12,6 @@ namespace CrazyPetals.Abstraction.Repositories
         ApplicationUser FindByEmail(string Email);
         int GetCustomerIndexViewTotalCount(FilterBase filter);
         Task<List<ApplicationUser>> GetCusotmerIndexViewRecordsAsync(FilterBase filter, int skip, int pageSize);
+        Task<ApplicationUser> GetCustomerDetails(int id);
     }
 }

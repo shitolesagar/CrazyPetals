@@ -30,6 +30,11 @@ namespace CrazyPetals.Repository.Repositories
             return query.OrderByDescending(x => x.CreatedDate).Skip(skip).Take(pageSize).ToListAsync();
         }
 
+        public Task<ApplicationUser> GetCustomerDetails(int id)
+        {
+            return Set.Include(x => x.Orders).ThenInclude(x => x.DeliveryStatus).Include(x => x.UserAddresses).FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public int GetCustomerIndexViewTotalCount(FilterBase filter)
         {
             var query = Set.Where(x => x.Role.Name == "Customer").AsQueryable();

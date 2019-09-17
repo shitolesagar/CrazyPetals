@@ -6,9 +6,9 @@ using System.Text;
 
 namespace CrazyPetals.Repository.Repositories
 {
-    public class FullfillmentStatusRepository : Repository<FullfillmentStatus>, IFullfillmentStatusRepository
+    public class OrderDeliveryStatusRepository : Repository<OrderDeliveryStatus>, IOrderDeliveryStatusRepository
     {
-        public FullfillmentStatusRepository(ApplicationDbContext context) : base(context)
+        public OrderDeliveryStatusRepository(ApplicationDbContext context) : base(context)
         {
         }
     }

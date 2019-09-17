@@ -3087,3 +3087,8 @@ my-nav-item, my-nav-item > a {
         border: none;
         color: #000;
     }
+
+
+.flex-grow {
+    flex: 1 0 auto;
+}

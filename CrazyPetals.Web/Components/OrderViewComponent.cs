@@ -22,6 +22,7 @@ namespace CrazyPetals.Web.Components
         }
         public async Task<IViewComponentResult> InvokeAsync(OrderFilter filter, bool IsPartial)
         {
+
             OrderWrapperViewModel ResponseModel = await _orderService.GetWrapperForIndexView(filter);
             ViewBag.ShowEmptyState = !IsPartial;
             return View(ResponseModel);

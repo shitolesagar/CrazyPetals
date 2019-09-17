@@ -8,6 +8,7 @@ using CrazyPetals.Abstraction.Service;
 using CrazyPetals.Entities.Database;
 using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.WebViewModels;
+using CrazyPetals.Service.ExtensionMethods;
 
 namespace CrazyPetals.Service
 {
@@ -15,11 +16,13 @@ namespace CrazyPetals.Service
     {
         private readonly IOrderRepository _orderRepository;
         private IUnitOfWork _unitOfWork;
+        private readonly IOrderDeliveryStatusRepository _deliveryStatusRepository;
 
-        public OrderService(IOrderRepository orderRepository , IUnitOfWork unitOfWork)
+        public OrderService(IOrderRepository orderRepository , IUnitOfWork unitOfWork, IOrderDeliveryStatusRepository orderDeliveryStatusRepository)
         {
             _orderRepository = orderRepository;
             _unitOfWork = unitOfWork;
+            _deliveryStatusRepository = orderDeliveryStatusRepository;
         }
 
         public async Task<OrderWrapperViewModel> GetWrapperForIndexView(OrderFilter filter)
@@ -34,12 +37,19 @@ namespace CrazyPetals.Service
             {
                 Id = x.Id,
                 OrderNumber = x.OrderNumber,
-                Status = x.FullfillmentStatus.Fullfillment_Status,
-                CreatedDate = x.CreatedDate,
+                Status = x.DeliveryStatus.Status,
+                CreatedDate = x.CreatedDate.ToCrazyPattelsPattern(),
                 Number = ResponseModel.PagingData.FromRecord + index,
             }).ToList();
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
             return ResponseModel;
+        }
+
+        public async Task<List<IdNameViewModel>> GetAllDeliveryStatusAsync()
+        {
+            var list = await _deliveryStatusRepository.GetAllAsync();
+            var responseList = list.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Status }).ToList();
+            return responseList;
         }
     }
 }

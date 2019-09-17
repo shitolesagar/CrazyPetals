@@ -7,13 +7,13 @@ using System.Text;
 
 namespace CrazyPetals.Repository.Configurations
 {
-    internal class FullfillmentStatusConfiguration : IEntityTypeConfiguration<FullfillmentStatus>
+    internal class OrderPaymentStatusConfiguration : IEntityTypeConfiguration<OrderPaymentStatus>
     {
-        public void Configure(EntityTypeBuilder<FullfillmentStatus> builder)
+        public void Configure(EntityTypeBuilder<OrderPaymentStatus> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseMySqlIdentityColumn();
-            builder.Property(x => x.Fullfillment_Status);
+            builder.Property(x => x.Status);
         }
     }
 }

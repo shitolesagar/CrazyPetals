@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CrazyPetals.Abstraction.Repositories
 {
-    public interface IFullfillmentStatusRepository : IRepository<FullfillmentStatus>
+    public interface IOrderPaymentStatusRepository : IRepository<OrderPaymentStatus>
     {
 
     }

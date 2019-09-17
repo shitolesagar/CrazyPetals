@@ -63,8 +63,8 @@ namespace CrazyPetals.Web
             services.AddScoped<IUserAddressRepository, UserAddressRepository>();
             services.AddScoped<IProductImagesRepository, ProductImagesRepository>();
             services.AddScoped<ISmtpMailRepository, SmtpMailRepository>();
-            services.AddScoped<IPaymentStatusRepository, PaymentStatusRepository>();
-            services.AddScoped<IFullfillmentStatusRepository, FullfillmentStatusRepository>();
+            services.AddScoped<IOrderPaymentStatusRepository, OrderPaymentStatusRepository>();
+            services.AddScoped<IOrderDeliveryStatusRepository, OrderDeliveryStatusRepository>();
             #endregion
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

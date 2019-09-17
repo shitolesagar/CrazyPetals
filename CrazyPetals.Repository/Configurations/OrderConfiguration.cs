@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CrazyPetals.Repository.Configurations
 {
-    internal class OrderSummaryConfiguration : IEntityTypeConfiguration<Order>
+    internal class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
@@ -14,7 +14,7 @@ namespace CrazyPetals.Repository.Configurations
             builder.HasOne(x => x.ApplicationUser).WithMany(x => x.Orders).HasForeignKey(x => x.ApplicationUserId);
             builder.HasOne(x => x.UserAddress).WithMany(x => x.Orders).HasForeignKey(x => x.UserAddressId);
             builder.HasOne(x => x.PaymentStatus).WithMany(x => x.Orders).HasForeignKey(x => x.PaymentStatusId);
-            builder.HasOne(x => x.FullfillmentStatus).WithMany(x => x.Orders).HasForeignKey(x => x.FullfillmentStatusId);
+            builder.HasOne(x => x.DeliveryStatus).WithMany(x => x.Orders).HasForeignKey(x => x.DeliveryStatusId);
         }
     }
 }

@@ -245,6 +245,41 @@ namespace CrazyPetals.Service
         }
         #endregion
 
+        public async Task<CustomerDetailsViewModel> GetCustomerDetails(int id)
+        {
+            CustomerDetailsViewModel model;
+            ApplicationUser user = await _applicationUserRepository.GetCustomerDetails(id);
+            if (user == null)
+                return null;
+            model = new CustomerDetailsViewModel()
+            {
+                Email = user.Email,
+                ImagePath = user.ProfilePicture,
+                MobileNumber = user.MobileNumber,
+                Id = user.Id,
+                Name = user.Name,
+                RegisteredDate = user.CreatedDate.ToCrazyPattelsPattern()
+            };
+            model.UserAddressList = user.UserAddresses.Select((x, index) => new UserAddressViewModels()
+            {
+                Address = x.Address,
+                Locality = x.Locality,
+                MobileNumber = x.MobileNumber,
+                Number = index + 1,
+                Pincode = x.PINCode
+            }).ToList();
+
+            model.OrderList = user.Orders.Select((x, index) => new OrderListViewModel()
+            {
+                CreatedDate = x.CreatedDate.ToCrazyPattelsPattern(),
+                Id = x.Id,
+                Number = index + 1,
+                OrderNumber = x.OrderNumber,
+                Status = x.DeliveryStatus.Status
+            }).ToList();
+            return model;
+        }
+
         #region Private Methods
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
@@ -351,6 +386,8 @@ namespace CrazyPetals.Service
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
             return ResponseModel;
         }
+
+
 
         #endregion
     }

@@ -10,11 +10,11 @@
 }
 
 <div class="row" id="filterRow">
-    <div class="col-lg-6 col-sm-6">
+    <div class="col-lg-4 col-sm-4">
         <div class="form-group  position-relative">
-            <span class="f-bold display-inline m-r-10 f-18 dropDownLabel-mob">Status:</span>
-            <div class="custom-select display-inline">
-                <select onchange="filter(this)" class="m-r-15 form-control select-dropDown" id="ddlCategory" asp-items="ViewBag.FullfillmentStatusList">
+            <span class="f-bold display-inline f-18 dropDownLabel-mob">Status:</span>
+            <div class="my-custom-select">
+                <select onchange="filter(this)" class="form-control select-dropDown" id="ddlStatus" asp-items="ViewBag.DeliveryStatusList">
                     <option value="">select</option>
                 </select>
             </div>
@@ -40,77 +40,58 @@
             $("#txtSearch").keyup(onSearch);
         });
 
-
-        var sortColumn = "";
-        var isSortDecending = true;
-
         function getRecordsByPageIndex(pageIndex) {
             var url = CreateUrlString() + "pageIndex=" + pageIndex + "&";
-            $(".loader-wrapper").show();
-            $("#tblContent").load(url, function () {
-                reinitializeDropdown();
-                $(".loader-wrapper").hide();
-            });
+            ajaxCall(url);
         }
+
         function filter(obj) {
             if (($("#tblContent").text()).length > 0) {
                 $(obj).addClass("active-state");
                 $('.selectpicker').selectpicker('refresh');
-                $(".loader-wrapper").show();
-                $("#tblContent").load(CreateUrlString(), function () {
-                    reinitializeDropdown();
-                    $(".loader-wrapper").hide();
-                });
+                ajaxCall(CreateUrlString())
             }
         }
 
         function onSearch() {
-            $("#ddlCategory").val('');
-            if (($("#tblContent").text()).length > 0) {
-                $(".loader-wrapper").show();
-                $("#tblContent").load(CreateUrlString(), function () {
-                    reinitializeDropdown();
-                    $(".loader-wrapper").hide();
-                    showHideFilters("filterRow");
-                });
-            }
+            ajaxCall(CreateUrlString());
         }
+
         function CreateUrlString() {
             var url = "/orders/indexpartial?";
             var filter = {
-                status: $("#ddlCategory").val(),
+                status: $("#ddlStatus").val(),
                 search: $("#txtSearch").val()
             };
             if (filter.status !== "")
-                url = url + "StatusId=" + encodeURIComponent(filter.status) + "&";
+                url = url + "statusid=" + encodeURIComponent(filter.status) + "&";
             
             if (filter.search !== "")
                 url = url + "search=" + encodeURIComponent(filter.search) + "&";
             return url;
         }
 
+
+
+        function ajaxCall(url) {
+            $(".loader-wrapper").show();
+            $.get(url, function (data) {
+                $(".loader-wrapper").hide();
+                $("#indexPartialContent").replaceWith(data);
+            });
+        }
+
+
+
+
         function reinitializeDropdown() {
             $(".selectpicker").selectpicker('refresh');
         }
 
-        function openModal(id) {
-            $('#myModal').modal('show');
-            $("#delete-id").val(id)
-        }
+      
 
 
-        $(document).ready(function () {
-            $("#ddlCategory").change(function () {
-                $.get("/Product/GetSubcategoryDropList", { categoryId: $("#ddlCategory").val() }, function (data) {
-                    $('#ddlSubCategory').find('option:first').attr('selected', 'selected');
-                    $("#ddlSubCategory").empty();
-                    $("#ddlSubCategory").append("<option value=''>select</option>")
-                    $.each(data, function (index, row) {
-                        $("#ddlSubCategory").append("<option value='" + row.Id + "'>" + row.SubCategoryName + "</option>")
-                    })
-                })
-            })
-        })
+
 
         function showHideFilters(elementId) {
             if ($("#tblContent > table").length <= 0) {
@@ -131,8 +112,10 @@
                 $("#" + elementId).hide();
             }
         }
-    </script>
-    <script>
 
+        function gotoDetailsPage(id) {
+            window.location.href = "/orders/details/" + id;
+        }
     </script>
+    
 }

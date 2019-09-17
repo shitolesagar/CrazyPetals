@@ -60,8 +60,8 @@ namespace CrazyPetals.WebApi
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ICheckoutService, CheckoutService>();
             services.AddScoped<IDelivery_chargeRepository, Delivery_chargeRepository>();
-            services.AddScoped<IPaymentStatusRepository, PaymentStatusRepository>();
-            services.AddScoped<IFullfillmentStatusRepository, FullfillmentStatusRepository>();
+            services.AddScoped<IOrderPaymentStatusRepository, OrderPaymentStatusRepository>();
+            services.AddScoped<IOrderDeliveryStatusRepository, OrderDeliveryStatusRepository>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseMySql(Configuration.GetConnectionString("defaultConnection")));

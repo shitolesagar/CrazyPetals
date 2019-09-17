@@ -22,5 +22,6 @@ namespace CrazyPetals.Abstraction.Service
         CommonResponse VerifyOTP(VerifyOtpRequest request);
 
         MyProfileResponse GetMyProfile(int Id);
+        Task<CustomerDetailsViewModel> GetCustomerDetails(int id);
     }
 }

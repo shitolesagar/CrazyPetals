@@ -4,10 +4,10 @@ using System.Text;
 
 namespace CrazyPetals.Entities.Database
 {
-    public class PaymentStatus
+    public class OrderDeliveryStatus
     {
         public int Id { get; set; }
-        public string Payment_Status { get; set; }
+        public string Status { get; set; }
 
         public ICollection<Order> Orders { get; set; }
     }

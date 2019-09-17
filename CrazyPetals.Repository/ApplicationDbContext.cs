@@ -36,8 +36,8 @@ namespace CrazyPetals.Repository
         public DbSet<UserAddress> UserAddress { get; set; }
         public DbSet<VersionControl> VersionControl { get; set; }
         public DbSet<Delivery_charge> delivery_Charges { get; set; }
-        public DbSet<PaymentStatus> PaymentStatuses { get; set; }
-        public DbSet<FullfillmentStatus> FullfillmentStatuses { get; set; }
+        public DbSet<OrderPaymentStatus> OrderPaymentStatus { get; set; }
+        public DbSet<OrderDeliveryStatus> OrderDeliveryStatus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -55,7 +55,7 @@ namespace CrazyPetals.Repository
             modelBuilder.ApplyConfiguration(new NotificationConfiguration());
             modelBuilder.ApplyConfiguration(new OrderDetailsConfiguration());
             modelBuilder.ApplyConfiguration(new VersionControlConfiguration());
-            modelBuilder.ApplyConfiguration(new OrderSummaryConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderConfiguration());
             modelBuilder.ApplyConfiguration(new ProductColorConfiguration());
             modelBuilder.ApplyConfiguration(new ProductConfiguration());
             modelBuilder.ApplyConfiguration(new ProductImagesConfiguration());
@@ -64,8 +64,8 @@ namespace CrazyPetals.Repository
             modelBuilder.ApplyConfiguration(new SmtpMailConfiguration());
             modelBuilder.ApplyConfiguration(new UserAddressConfiguration());
             modelBuilder.ApplyConfiguration(new Delivery_chargeConfiguration());
-            modelBuilder.ApplyConfiguration(new PaymentStatusConfiguration());
-            modelBuilder.ApplyConfiguration(new FullfillmentStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderPaymentStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderDeliveryStatusConfiguration());
         }
     }
 }
