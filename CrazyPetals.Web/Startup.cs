@@ -10,6 +10,7 @@ using CrazyPetals.Entities.Constant;
 using CrazyPetals.Repository;
 using CrazyPetals.Repository.Repositories;
 using CrazyPetals.Service;
+using CrazyPetals.Service.ExtensionMethods;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
