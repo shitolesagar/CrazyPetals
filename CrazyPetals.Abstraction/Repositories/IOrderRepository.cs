@@ -9,5 +9,6 @@ namespace CrazyPetals.Abstraction.Repositories
     {
         int GetIndexViewTotalCount(OrderFilter filter);
         Task<List<Order>> GetIndexViewRecordsAsync(OrderFilter filter, int skip, int pageSize);
+        Task<Order> GetOrderDetails(int id);
     }
 }

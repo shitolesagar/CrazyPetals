@@ -268,7 +268,6 @@ namespace CrazyPetals.Service
                 Number = index + 1,
                 Pincode = x.PINCode
             }).ToList();
-
             model.OrderList = user.Orders.Select((x, index) => new OrderListViewModel()
             {
                 CreatedDate = x.CreatedDate.ToCrazyPattelsPattern(),
