@@ -3092,3 +3092,9 @@ my-nav-item, my-nav-item > a {
 .flex-grow {
     flex: 1 0 auto;
 }
+
+.note-popover.popover.in.note-link-popover.bottom,
+.note-popover.popover.in.note-image-popover.bottom,
+.note-popover.popover.in.note-table-popover.bottom {
+    display: none;
+}
