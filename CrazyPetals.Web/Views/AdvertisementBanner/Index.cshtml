@@ -15,6 +15,7 @@
             <div class="my-custom-select">
                 <select onchange="filter(this)" class="form-control select-dropDown" id="ddlStatus">
                     <option value="Active">Active</option>
+                    <option value="InActive">InActive</option>
                     <option value="Expired">Expired</option>
                 </select>
             </div>
@@ -52,6 +53,8 @@
             var selectedValue = $("#ddlStatus").val();
             if (selectedValue == "Expired")
                 url = url + "showExpired=" + encodeURIComponent("true") + "&";
+            else if (selectedValue == "InActive")
+                url = url + "showInActive=" + encodeURIComponent("true") + "&";
             return url;
         }
 

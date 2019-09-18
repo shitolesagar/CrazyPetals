@@ -17,6 +17,7 @@ namespace CrazyPetals.Entities.WebViewModels
 
        // [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? ExpireDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
         public IFormFile File { get; set; }
     }

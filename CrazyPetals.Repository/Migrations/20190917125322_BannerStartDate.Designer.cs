@@ -4,14 +4,16 @@ using CrazyPetals.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CrazyPetals.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190917125322_BannerStartDate")]
+    partial class BannerStartDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -404,13 +406,13 @@ namespace CrazyPetals.Repository.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("Dimension");
+
                     b.Property<int>("DiscountPercentage");
 
-                    b.Property<decimal>("DiscountedPrice");
+                    b.Property<int>("DiscountedPrice");
 
                     b.Property<int?>("FilterId");
-
-                    b.Property<string>("Height");
 
                     b.Property<string>("IncludedAccessories");
 
@@ -422,21 +424,19 @@ namespace CrazyPetals.Repository.Migrations
 
                     b.Property<bool>("IsPublish");
 
-                    b.Property<string>("Length");
-
                     b.Property<string>("MaterialType");
 
                     b.Property<string>("Name");
 
-                    b.Property<decimal?>("OriginalPrice");
+                    b.Property<int>("OriginalPrice");
 
                     b.Property<string>("Precautions");
 
-                    b.Property<string>("StockKeepingUnit");
+                    b.Property<string>("Size");
+
+                    b.Property<int>("StockKeepingUnit");
 
                     b.Property<string>("Weight");
-
-                    b.Property<string>("Width");
 
                     b.HasKey("Id");
 
