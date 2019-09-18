@@ -25,6 +25,8 @@ namespace CrazyPetals.Repository.Repositories
             var query = Set.AsQueryable();
             if (filter.showExpired == true)
                 query = query.Where(x => x.ExpiryDate != null && x.ExpiryDate.Value.Date <= DateTime.Now.Date);
+            else if(filter.showInActive == true)
+                query = query.Where(x => x.StartDate != null && x.StartDate.Value.Date >= DateTime.Now.Date);
             else
                 query = query.Where(x => (x.ExpiryDate != null && x.ExpiryDate.Value.Date > DateTime.Now.Date) || x.ExpiryDate == null);
             return query.Skip(skip).Take(pageSize).ToListAsync();

@@ -32,6 +32,7 @@ namespace CrazyPetals.Service
                 AppId = StringConstants.AppId,
                 CreatedDate = DateTime.Now,
                 ExpiryDate = model.ExpireDate,
+                StartDate = model.StartDate,
                 Image = imageRelativePath,
                 Title = model.Caption
             };
