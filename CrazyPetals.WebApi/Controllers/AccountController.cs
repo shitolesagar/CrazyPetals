@@ -52,16 +52,13 @@ namespace CrazyPetals.WebApi.Controllers
             return View();
         }
 
-        #region Registration
-        [Route("api/Account/Register")]
+        #region RegistrationWithImage
+        [Route("api/Account/RegisterWithImage")]
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Register(Register request)
+        public async Task<IActionResult> Register(RegisterWithImage request)
         {
-            if (string.IsNullOrEmpty(request.AppId))
-                return Ok(new { statusCode = StringConstants.StatusCode20, message = StringConstants.AppIdNull });
-
-            var response = await _userService.RegisterUser(request);
+            var response = await _userService.RegisterUserWithImage(request);
 
             if(response.error==true)
             {
@@ -69,6 +66,23 @@ namespace CrazyPetals.WebApi.Controllers
             }
             return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message, data = response.data });
            
+        }
+        #endregion
+
+        #region RegistrationWithData
+        [Route("api/Account/RegisterWithData")]
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult RegisterWithData([FromBody]RegisterWithData request)
+        {
+            var response =  _userService.RegisterUserWithData(request);
+
+            if (response.error == true)
+            {
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = response.Message });
+            }
+            return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message, data = response.data });
+
         }
         #endregion
 

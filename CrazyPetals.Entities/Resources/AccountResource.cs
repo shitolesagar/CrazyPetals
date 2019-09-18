@@ -29,13 +29,17 @@ namespace CrazyPetals.Entities.Resources
     {
         public string Password { get; set; }
     }
-    public class Register : ExternalLoginRequest
+    public class RegisterWithData : ExternalLoginRequest
     {
 
         public string Password { get; set; }
         public string Name { get; set; }
         public string EmailId { get; set; }
         public string AppId { get; set; }
+        public string Image { get; set; }
+    }
+    public class RegisterWithImage
+    {
         public IFormFile file { get; set; }
     }
     public class RegisterApiResponseResource
@@ -49,6 +53,12 @@ namespace CrazyPetals.Entities.Resources
         public bool error { get; set; } = false;
         public string Message { get; set; }
         public RegisterApiResponseResource data { get; set; }
+    }
+    public class RegisterWithImageResponse
+    {
+        public bool error { get; set; } = false;
+        public string Message { get; set; }
+        public string data { get; set; }
     }
 
     public class CommonResponse

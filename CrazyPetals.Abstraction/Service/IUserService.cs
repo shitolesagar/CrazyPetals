@@ -9,7 +9,9 @@ namespace CrazyPetals.Abstraction.Service
 {
     public interface IUserService
     {
-        Task<RegisterResponse> RegisterUser(Register request);
+        RegisterResponse RegisterUserWithData(RegisterWithData request);
+
+        Task<RegisterWithImageResponse> RegisterUserWithImage(RegisterWithImage request);
 
         CommonResponse LoginUser(LoginRequest request);
 
