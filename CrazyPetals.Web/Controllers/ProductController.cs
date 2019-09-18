@@ -36,33 +36,18 @@ namespace CrazyPetals.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddProductViewModel model)
         {
-            List<string> imageUrls = new List<string>();
-            string imageRelativePath = string.Empty;
             if (!ModelState.IsValid)
                 return RedirectToAction("Add");
             model.MainImageText = await _fileServices.SaveImageAndReturnRelativePath(model.Image, FolderConstants.ProductsFolder);
             if (model.Image1 != null)
-            {
-                imageRelativePath = await _fileServices.SaveImageAndReturnRelativePath(model.Image1, FolderConstants.ProductsFolder);
-                imageUrls.Add(imageRelativePath);
-            }
+                model.Image1RelativePath = await _fileServices.SaveImageAndReturnRelativePath(model.Image1, FolderConstants.ProductsFolder);
             if (model.Image2 != null)
-            {
-                imageRelativePath = await _fileServices.SaveImageAndReturnRelativePath(model.Image2, FolderConstants.ProductsFolder);
-                imageUrls.Add(imageRelativePath);
-            }
+                model.Image2RelativePath = await _fileServices.SaveImageAndReturnRelativePath(model.Image2, FolderConstants.ProductsFolder);
             if (model.Image3 != null)
-            {
-                imageRelativePath = await _fileServices.SaveImageAndReturnRelativePath(model.Image3, FolderConstants.ProductsFolder);
-                imageUrls.Add(imageRelativePath);
-            }
+                model.Image3RelativePath = await _fileServices.SaveImageAndReturnRelativePath(model.Image3, FolderConstants.ProductsFolder);
             if (model.Image4 != null)
-            {
-                imageRelativePath = await _fileServices.SaveImageAndReturnRelativePath(model.Image4, FolderConstants.ProductsFolder);
-                imageUrls.Add(imageRelativePath);
-            }
-
-            await _productService.AddProductAsync(model, imageUrls);
+                model.Image4RelativePath = await _fileServices.SaveImageAndReturnRelativePath(model.Image4, FolderConstants.ProductsFolder);
+            await _productService.AddProductAsync(model);
             TempData["Message"] = MessageConstants.ProductAddSuccessMessage;
             return RedirectToAction("Index");
         }

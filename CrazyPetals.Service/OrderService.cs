@@ -76,7 +76,14 @@ namespace CrazyPetals.Service
                 ApplicationUser = order.ApplicationUser.Name,
                 DeliveryStatus = order.DeliveryStatus.Status,
                 PaymentStatus = order.PaymentStatus.Status,
-                ShippingAddress = order.UserAddress.Address+","+order.UserAddress.Locality+","+order.UserAddress.PINCode
+                UserId = order.ApplicationUserId.ToString(),
+                ShippingAddress = new UserAddressViewModels()
+                {
+                    Address = order.UserAddress.Address,
+                    Locality = order.UserAddress.Locality,
+                    MobileNumber = order.UserAddress.MobileNumber,
+                    Pincode = order.UserAddress.PINCode
+                }
             };
             List<OrderDetails> Orders = _orderDetailsRepository.GetAllItemsForOrder(id);
             model.OrderDetails = Orders.Select((x, index) => new OrderDetailsModel()
@@ -85,7 +92,7 @@ namespace CrazyPetals.Service
                 DiscountedPrice = x.DiscountedPrice,
                 Quantity = x.Quantity,
                 ProductName = x.Product.Name,
-                TotalPrice = x.DiscountedPrice*x.Quantity,
+                TotalPrice = x.DiscountedPrice * x.Quantity,
             }).ToList();
             return model;
         }

@@ -7,11 +7,13 @@ namespace CrazyPetals.Abstraction.Service
 {
     public interface IProductService
     {
-        Task<int> AddProductAsync(AddProductViewModel model, List<string> imageUrls);
+        Task<int> AddProductAsync(AddProductViewModel model);
         Task<ProductWrapperViewModel> GetWrapperForIndexView(ProductFilter filter);
         Task<List<IdNameViewModel>> GetCategoryListAsync();
         Task<List<IdNameViewModel>> GetFilterListAsync();
         Task<List<IdNameViewModel>> GetColorListAsync();
         Task<List<IdNameViewModel>> GetAvailableSizeList();
+        Task<int> DeleteProduct(int id);
+        Task<AddProductViewModel> getForEditAsync(int id);
     }
 }

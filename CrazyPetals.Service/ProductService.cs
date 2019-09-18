@@ -1,10 +1,12 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CrazyPetals.Abstraction;
 using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Abstraction.Service;
+using CrazyPetals.Entities.Constant;
 using CrazyPetals.Entities.Database;
 using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.WebViewModels;
@@ -19,13 +21,19 @@ namespace CrazyPetals.Service
         private readonly IFilterRepository _filterRepository;
         private readonly IColorsRepository _colorsRepository;
         private readonly ISizeRepository _sizeRepository;
+        private readonly IProductColorRepository _productColorRepository;
+        private readonly IProductImagesRepository _productImagesRepository;
+        private readonly IProductSizeRepository _productSizeRepository;
 
         public ProductService(IProductRepository productRepository,
             IUnitOfWork unitOfWork,
             ICategoryRepository categoryRepository,
             IFilterRepository filterRepository,
             IColorsRepository colorsRepository,
-            ISizeRepository sizeRepository
+            ISizeRepository sizeRepository,
+            IProductColorRepository productColorRepository,
+            IProductImagesRepository productImagesRepository,
+            IProductSizeRepository productSizeRepository
             )
         {
             _productRepository = productRepository;
@@ -34,12 +42,98 @@ namespace CrazyPetals.Service
             _filterRepository = filterRepository;
             _colorsRepository = colorsRepository;
             _sizeRepository = sizeRepository;
+            _productColorRepository = productColorRepository;
+            _productImagesRepository = productImagesRepository;
+            _productSizeRepository = productSizeRepository;
         }
 
 
-        public Task<int> AddProductAsync(AddProductViewModel model, List<string> imageUrls)
+        public async Task<int> AddProductAsync(AddProductViewModel model)
         {
-            throw new System.NotImplementedException();
+            var databaseModel = new Product()
+            {
+                AppId = StringConstants.AppId,
+                CategoryId = model.CategoryId,
+                CreatedDate = DateTime.Now,
+                DeliveryTime = model.DeliveryTime,
+                Description = model.LongDescription,
+                DiscountedPrice = model.DiscountedPrice,
+                FilterId = model.FilterId,
+                IncludedAccessories = model.Accessories,
+                IsAvailable = model.IsAvailable,
+                MaterialType = model.MaterialType,
+                IsDeleted = false,
+                IsExclusive = model.IsExclusive,
+                IsPublish = model.Status.ToLower() == "publish",
+                Name = model.ProductName,
+                OriginalPrice = model.OriginalPrice,
+                Precautions = model.PrecautionsInstructions,
+                StockKeepingUnit = model.StockKeepingUnit,
+                Weight = model.ProductWeight,
+                Width = model.ProductWidth,
+                Length = model.ProductLength,
+                Height = model.ProductHeight,
+                DiscountPercentage = 0,                    // here we have to calculate percentage
+            };
+
+            _productRepository.Add(databaseModel);
+            var result = await _unitOfWork.SaveChangesAsync();
+
+            // save images
+            await SaveImages(model.MainImageText, databaseModel.Id, true);
+            await SaveImages(model.Image1RelativePath, databaseModel.Id, false);
+            await SaveImages(model.Image2RelativePath, databaseModel.Id, false);
+            await SaveImages(model.Image3RelativePath, databaseModel.Id, false);
+            await SaveImages(model.Image4RelativePath, databaseModel.Id, false);
+            // save colors
+            await SaveColors(model.SelectedColorIds, databaseModel.Id);
+            //save sizes
+            await SaveSizes(model.SelectedSizeIds, databaseModel.Id);
+            return result;
+        }
+
+        private async Task SaveSizes(List<int> selectedSizeIds, int productId)
+        {
+            foreach (var sizeId in selectedSizeIds)
+            {
+                ProductSize size = new ProductSize()
+                {
+                    SizeId = sizeId,
+                    ProductId = productId
+                };
+                _productSizeRepository.Add(size);
+                await _unitOfWork.SaveChangesAsync();
+            }
+        }
+
+        private async Task SaveColors(List<int> selectedColorIds, int productId)
+        {
+            foreach (var colorId in selectedColorIds)
+            {
+                ProductColor color = new ProductColor()
+                {
+                    ColorsId = colorId,
+                    ProductId = productId
+                };
+                _productColorRepository.Add(color);
+                await _unitOfWork.SaveChangesAsync();
+            }
+        }
+
+        private async Task SaveImages(string imageUrl, int productId, bool isMain)
+        {
+            if(!string.IsNullOrEmpty(imageUrl))
+            {
+                ProductImages img = new ProductImages()
+                {
+                    Image = imageUrl,
+                    IsMain = true,
+                    ProductId = productId,
+                    AppId = StringConstants.AppId,
+                };
+                _productImagesRepository.Add(img);
+                await _unitOfWork.SaveChangesAsync();
+            }
         }
 
         public async Task<List<IdNameViewModel>> GetAvailableSizeList()
@@ -88,5 +182,19 @@ namespace CrazyPetals.Service
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
             return ResponseModel;
         }
+
+        
+
+        public Task<int> DeleteProduct(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<AddProductViewModel> getForEditAsync(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        
     }
 }

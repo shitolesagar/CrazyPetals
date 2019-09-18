@@ -124,15 +124,7 @@
                     <span asp-validation-for="FilterId" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-4">
-                <label class="float-label">Product has a color varient?</label>
-                <div class="my-custom-select width-100">
-                    <select class="form-control selectpicker" asp-for="SelectedColorIds" asp-items="ViewBag.ColorList" title="select">
-                        
-                    </select>
-                </div>
-                <span asp-validation-for="SelectedColorIds" class="text-danger"></span>
-            </div>
+            
             <div class="col-md-4">
                 <label class="float-label">Publish in mobile app?<span class="f-red">*</span></label>
                 <div class="my-custom-select width-100">
@@ -147,11 +139,16 @@
             <div class="col-4">
                 <label class="float-label">Available size</label>
                 <div class="my-custom-select width-100">
-                    <select class="form-control select-dropDown" asp-for="AvailableSize" asp-items="ViewBag.AvaliableSizeList" value="">
-                        <option value="">select</option>
-                    </select>
+                    <select class="form-control selectpicker" asp-for="SelectedSizeIds" asp-items="ViewBag.AvaliableSizeList" title="select"></select>
                 </div>
-                <span asp-validation-for="AvailableSize" class="text-danger"></span>
+                <span asp-validation-for="SelectedSizeIds" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label class="float-label">Product has a color varient?</label>
+                <div class="my-custom-select width-100">
+                    <select class="form-control selectpicker" asp-for="SelectedColorIds" asp-items="ViewBag.ColorList" title="select"></select>
+                </div>
+                <span asp-validation-for="SelectedColorIds" class="text-danger"></span>
             </div>
         </div>
     </div>
@@ -303,8 +300,8 @@
             })
 
             // following is used to initilize select picler
-            $('#ColorIds').selectpicker({
-                selectedTextFormat: 'count > 3',
+            $('.selectpicker').selectpicker({
+                selectedTextFormat: 'count > 5',
                 noneSelectedText: 'Select'
             });
         })

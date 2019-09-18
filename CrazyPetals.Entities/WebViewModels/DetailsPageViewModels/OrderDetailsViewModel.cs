@@ -14,9 +14,10 @@ namespace CrazyPetals.Entities.WebViewModels.DetailsPageViewModels
         public string OrderNumber { get; set; }
         public string CreatedDate { get; set; }
         public string ApplicationUser { get; set; }
+        public string UserId { get; set; }
         public string DeliveryStatus { get; set; }
         public string PaymentStatus { get; set; }
-        public string ShippingAddress { get; set; }
+        public UserAddressViewModels ShippingAddress { get; set; }
         public List<OrderDetailsModel> OrderDetails { get; set; }
     }
     public class OrderDetailsModel

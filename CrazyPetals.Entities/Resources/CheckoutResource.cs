@@ -26,8 +26,8 @@ namespace CrazyPetals.Entities.Resources
         public string ProductImageURL { get; set; }
         public string ProductName { get; set; }
         public string ShortDescription { get; set; }
-        public int? OriginalPrice { get; set; }
-        public int DiscountedPrice { get; set; }
+        public decimal? OriginalPrice { get; set; }
+        public decimal DiscountedPrice { get; set; }
 
     }
 

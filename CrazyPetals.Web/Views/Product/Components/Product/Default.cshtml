@@ -1,29 +1,28 @@
 ﻿@model CrazyPetals.Entities.WebViewModels.ProductWrapperViewModel
 
-@if (Model.TotalCount <= 0)
-{
-    <div class="list-empty-state">
-        @if (ViewBag.ShowEmptyState == true)
-        {
-            <a asp-action="add" asp-controller="product" class="btn btn-primary mr-4 add-icon"> Add New Product <img src="/images/icons/Plus.png"></a>
-            <p class="mt-4 f-22 f-bold">
-                Start adding products.
-            </p>
-            <p class="f-gray mt-2 f-14">Click on "Add New Product" button to add product.</p>
-        }
-        else
-        {
-            @*<img src="~/images/search@2x.png" alt="Sorry" />*@
-            <p class="mt-4 f-22 f-bold">
-                No Result Found!
-            </p>
-            <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
-        }
-    </div>
-}
-else
-{
-    <div id="tblContent" class="table-wrapper">
+<div id="indexPartialContent">
+    @if (Model.TotalCount <= 0)
+    {
+        <div class="list-empty-state">
+            @if (ViewBag.ShowEmptyState == true)
+            {
+                <a asp-action="add" asp-controller="product" class="btn btn-primary mr-4 add-icon"> Add New Product <img src="/images/icons/Plus.png"></a>
+                <p class="mt-4 f-22 f-bold">
+                    Start adding products.
+                </p>
+                <p class="f-gray mt-2 f-14">Click on "Add New Product" button to add product.</p>
+            }
+            else
+            {
+                <p class="mt-4 f-22 f-bold">
+                    No Result Found!
+                </p>
+                <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
+            }
+        </div>
+    }
+    else
+    {
         <table class="table">
             <thead>
                 <tr>
@@ -38,13 +37,8 @@ else
                 {
                     <tr>
                         <td>@product.Number</td>
-                        <td>
-                            @product.Name
-                        </td>
-                        <td>
-                            @product.CategoryName
-                        </td>
-
+                        <td>@product.Name</td>
+                        <td>@product.CategoryName</td>
                         <td class="text-center">
                             <span class="display-inline position-relative more-action">
                                 <img src="~/images/icons/more-vertical.png" class="img-responsive  cursor-pointer" />
@@ -58,10 +52,9 @@ else
                         </td>
                     </tr>
                 }
-
             </tbody>
         </table>
         <!--Pagination-->
         <partial name="_pagination" model="Model.PagingData" />
-    </div>
-}
+    }
+</div>

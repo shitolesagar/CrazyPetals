@@ -352,7 +352,7 @@ namespace CrazyPetals.Service
                     }
                     else
                     {
-                        obj.MRP = obj.MRP + (item.DiscountedPrice * item.Quantity);
+                        obj.MRP = Convert.ToInt32(obj.MRP + (item.DiscountedPrice * item.Quantity));
                     }
                     int discount = 0;
                     if (item.OriginalPrice != null)
@@ -429,8 +429,8 @@ namespace CrazyPetals.Service
                         OrderId = obj.Id,
                         ProductId = order.ProductDetailId,
                         Quantity = order.Quantity,
-                        OriginalPrice = pro.OriginalPrice * order.Quantity,
-                        DiscountedPrice =pro.DiscountedPrice*order.Quantity
+                        OriginalPrice = Convert.ToInt32(pro.OriginalPrice * order.Quantity),
+                        DiscountedPrice = Convert.ToInt32(pro.DiscountedPrice*order.Quantity)
                     
                     };
                     _orderDetailsRepository.Add(ob);

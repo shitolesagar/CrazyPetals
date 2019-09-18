@@ -10,18 +10,19 @@ namespace CrazyPetals.Entities.Database
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsPublish { get; set; }
-        public int OriginalPrice { get; set; }
-        public int DiscountedPrice { get; set; }
+        public decimal? OriginalPrice { get; set; }
+        public decimal DiscountedPrice { get; set; }
         public string Description { get; set; }
         public int DiscountPercentage { get; set; }
         public bool IsExclusive { get; set; }
         public DateTime CreatedDate { get; set; }
         public string AppId { get; set; }
         public bool IsAvailable { get; set; }
-        public int StockKeepingUnit { get; set; }
-        public string Size { get; set; }
+        public string StockKeepingUnit { get; set; }
         public bool IsDeleted { get; set; }
-        public string Dimension { get; set; }
+        public string Width { get; set; }
+        public string Length { get; set; }
+        public string Height { get; set; }
         public string Weight { get; set; }
         public string MaterialType { get; set; }
         public string IncludedAccessories { get; set; }

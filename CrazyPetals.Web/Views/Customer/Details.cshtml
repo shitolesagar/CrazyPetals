@@ -1,7 +1,7 @@
 ﻿@model CrazyPetals.Entities.WebViewModels.CustomerDetailsViewModel
 @{
     ViewData["Title"] = "Customer Details";
-    string stringHtml = "<a href=\"/customer\"><img src=\"/images/icons/arrow-left.png\" class=\"vertical-middle iconWidth-25 cursor-pointer m-r-20\"></a>";
+    string stringHtml = "<span onclick=\"goToPreviousPage()\"><img src=\"/images/icons/arrow-left.png\" class=\"vertical-middle iconWidth-25 cursor-pointer m-r-20\"></span>";
     stringHtml = stringHtml + "<span class=\"display-inline\">Customer Details</span>";
 
     ViewData["TabHeading"] = stringHtml;
@@ -109,5 +109,10 @@
         function gotoDetailsPage(id) {
             window.location.href = "/orders/details/" + id;
         }
+
+        function goToPreviousPage() {
+            window.history.back();
+        }
     </script>
+
 }
