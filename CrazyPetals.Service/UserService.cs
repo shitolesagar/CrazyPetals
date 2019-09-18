@@ -73,7 +73,7 @@ namespace CrazyPetals.Service
                         Name = request.Name,
                         Email = request.EmailId,
                         AppId = request.AppId,
-                        RoleId = 3,
+                        RoleId = 2,
                         MobileNumber = request.PhoneNumber,
                         ProfilePicture = relativePath,
                     };
