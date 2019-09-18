@@ -64,8 +64,8 @@
                 search: $("#txtSearch").val()
             };
             if (filter.status !== "")
-                url = url + "StatusId=" + encodeURIComponent(filter.status) + "&";
-            
+                url = url + "statusid=" + encodeURIComponent(filter.status) + "&";
+
             if (filter.search !== "")
                 url = url + "search=" + encodeURIComponent(filter.search) + "&";
             return url;
@@ -88,7 +88,7 @@
             $(".selectpicker").selectpicker('refresh');
         }
 
-      
+
 
 
 
@@ -117,5 +117,5 @@
             window.location.href = "/orders/details/" + id;
         }
     </script>
-    
+
 }

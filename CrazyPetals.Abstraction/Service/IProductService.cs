@@ -1,5 +1,6 @@
 ﻿using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.WebViewModels;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CrazyPetals.Abstraction.Service
@@ -8,5 +9,11 @@ namespace CrazyPetals.Abstraction.Service
     {
         Task<int> AddProductAsync(AddProductViewModel model);
         Task<ProductWrapperViewModel> GetWrapperForIndexView(ProductFilter filter);
+        Task<List<IdNameViewModel>> GetCategoryListAsync();
+        Task<List<IdNameViewModel>> GetFilterListAsync();
+        Task<List<IdNameViewModel>> GetColorListAsync();
+        Task<List<IdNameViewModel>> GetAvailableSizeList();
+        Task<int> DeleteProduct(int id);
+        Task<AddProductViewModel> getForEditAsync(int id);
     }
 }

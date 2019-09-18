@@ -13,9 +13,16 @@ namespace CrazyPetals.Entities.WebViewModels
         public string MainImageText { get; set; }
 
         public IFormFile Image1 { get; set; }
+        public string Image1RelativePath { get; set; }
+
         public IFormFile Image2 { get; set; }
+        public string Image2RelativePath { get; set; }
+
         public IFormFile Image3 { get; set; }
+        public string Image3RelativePath { get; set; }
+
         public IFormFile Image4 { get; set; }
+        public string Image4RelativePath { get; set; }
 
         [Required(ErrorMessage = "Product name is required")]
         public string ProductName { get; set; }
@@ -23,7 +30,8 @@ namespace CrazyPetals.Entities.WebViewModels
         [Required(ErrorMessage = "Description is required.")]
         public string LongDescription { get; set; }
 
-        public int? CategoryId { get; set; }
+        [Required(ErrorMessage = "Category is required")]
+        public int CategoryId { get; set; }
 
         public int? FilterId { get; set; }
 
@@ -33,13 +41,13 @@ namespace CrazyPetals.Entities.WebViewModels
         public string Status { get; set; }
 
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Original Price is not valid.")]
-        public int? OriginalPrice { get; set; }
+        public decimal? OriginalPrice { get; set; }
 
         [Required(ErrorMessage = "Offer price is required.")]
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Offer Price is not valid.")]
-        public int DiscountedPrice { get; set; }
+        public decimal DiscountedPrice { get; set; }
 
-        public string AvailableSize { get; set; }
+        public List<int> SelectedSizeIds { get; set; }
         public string ProductLength { get; set; }
         public string ProductWidth { get; set; }
         public string ProductHeight { get; set; }
@@ -51,5 +59,7 @@ namespace CrazyPetals.Entities.WebViewModels
         public string DeliveryTime { get; set; }
 
         public string StockKeepingUnit { get; set; }
+        public bool IsExclusive { get; set; }
+        public bool IsAvailable { get; set; }
     }
 }

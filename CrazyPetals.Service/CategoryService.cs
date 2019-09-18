@@ -286,7 +286,7 @@ namespace CrazyPetals.Service
                     DiscountedPrice = product.DiscountedPrice,
                     DiscountPercent = product.DiscountPercentage,
                     Weight = product.Weight,
-                    Dimension = product.Dimension,
+                    Dimension = product.Width,
                     MaterialType = product.MaterialType,
                     IncludedAccesories = product.IncludedAccessories,
                     Precautions = product.Precautions,
