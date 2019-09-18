@@ -852,7 +852,7 @@ input[type="radio"] {
 .switch {
     position: relative;
     display: inline-block;
-    width: 112px;
+    width: 90px;
     height: 30px;
 }
 
@@ -885,7 +885,8 @@ input[type="radio"] {
     }
 
 input:checked + .slider {
-    background: linear-gradient(to right, #3b29b3,#bb68d4);
+    /*background: linear-gradient(to right, #3b29b3,#bb68d4);*/
+    background: linear-gradient(to right, #005389,#C65589);
 }
 
 input:focus + .slider {
@@ -893,9 +894,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-    -webkit-transform: translateX(82px);
-    -ms-transform: translateX(82px);
-    transform: translateX(82px);
+    -webkit-transform: translateX(60px);
+    -ms-transform: translateX(60px);
+    transform: translateX(60px);
 }
 
 /*------ ADDED CSS ---------*/

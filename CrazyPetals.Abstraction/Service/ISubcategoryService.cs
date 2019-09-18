@@ -13,5 +13,6 @@ namespace CrazyPetals.Abstraction.Service
         Task<int> Deletefilter(int id);
         Task<AddFilterViewModel> getForEditAsync(int id);
         Task EditFilterAsync(int id, AddFilterViewModel model);
+        Task<List<IdNameViewModel>> GetFilterListAsync(int categoryId);
     }
 }

@@ -21,18 +21,13 @@
                     <div class="card" style="width: 18rem;">
                         <img src="@category.ImagePath" class="card-img-top" alt="@category.Name">
                         <div class="card-body">
-                            <h5 class="card-title">@category.Name</h5>
+                            <h5 class="card-title">
+                                @category.Name
+                                <span title="Edit" class="ml-4 cursor-pointer" onclick="redirectToEdit('/category/edit/@category.Id')"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                                <span title="Delete" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@category.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
+                            </h5>
                         </div>
-                        <div class="card-footer bg-white">
-                            <div class="d-flex flex-row justify-content-center">
-                                <div class="px-5">
-                                    <a asp-controller="category" asp-action="edit" asp-route-id="@category.Id" class="card-link text-danger">edit</a>
-                                </div>
-                                <div class="px-5">
-                                    <span onclick="openModal('@category.Id')" class="cursor-pointer card-link text-danger">delete</span>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             }

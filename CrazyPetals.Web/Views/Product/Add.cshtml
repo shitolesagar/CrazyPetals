@@ -117,7 +117,7 @@
 
                     <label class="float-label">Product has a filter?</label>
                     <div class="my-custom-select width-100">
-                        <select class="form-control select-dropDown" asp-for="FilterId" value="" asp-items="ViewBag.FiltersList">
+                        <select class="form-control select-dropDown" asp-for="FilterId" value="">
                             <option value="">select</option>
                         </select>
                     </div>
@@ -252,6 +252,26 @@
                     <span asp-validation-for="StockKeepingUnit" class="text-danger"></span>
                 </div>
             </div>
+            <div class="col-2">
+                <label class="float-label m-t-10">Is product Available?</label>
+                <div class="my-custom-select width-100">
+                    <select class="form-control select-dropDown" asp-for="IsAvailable">
+                        <option value="false">select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
+                <label class="float-label m-t-10">Is Product Exclusive?</label>
+                <div class="my-custom-select width-100">
+                    <select class="form-control select-dropDown" asp-for="IsExclusive">
+                        <option value="false">select</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -291,10 +311,12 @@
             });
 
             $("#CategoryId").change(function () {
-                $.get("/Product/GetSubcategoryDropList", { categoryId: $("#CategoryId").val() }, function (data) {
-                    $("#SubcategoryId").empty();
+                $.get("/Product/GetSubcategoryDropList?categoryId=" + $("#CategoryId").val(), function (data) {
+                    $("#FilterId").empty();
+                    console.log(data);
+                    $("#FilterId").append("<option value=''>Select</option>")
                     $.each(data, function (index, row) {
-                        $("#SubcategoryId").append("<option value='" + row.Id + "'>" + row.SubCategoryName + "</option>")
+                        $("#FilterId").append("<option value='" + row.id + "'>" + row.name + "</option>")
                     })
                 })
             })

@@ -95,5 +95,13 @@ namespace CrazyPetals.Service
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
             return ResponseModel;
         }
+
+        public async Task<List<IdNameViewModel>> GetFilterListAsync(int categoryId)
+        {
+            var filters = await _filterRepository.GetAllAsync();
+            var list = filters.Where(x => x.CategoryId == categoryId);
+            var responseList = list.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Name }).ToList();
+            return responseList;
+        }
     }
 }

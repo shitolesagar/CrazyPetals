@@ -40,18 +40,12 @@
                     <tr>
                         <td>@Filter.Number</td>
                         <td>@Filter.Name</td>
-                        <td>@Filter.Category
+                        <td>
+                            @Filter.Category
                         </td>
                         <td class="text-center">
-                            <span class="display-inline position-relative more-action">
-                                <img src="~/images/icons/more-vertical.png" class="img-responsive  cursor-pointer" />
-                                <div class="editRemove-popup">
-                                    <ul>
-                                        <li><a asp-controller="filter" asp-action="edit" asp-route-id="@Filter.Id"><img src="~/images/icons/edit.png" class="action-icon img-responsive" /> Edit</a> </li>
-                                        <li onclick="openModal('@Filter.Id')"><img src="~/images/icons/trash.png" class="action-icon" />Remove</li>
-                                    </ul>
-                                </div>
-                            </span>
+                            <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/filter/edit/@Filter.Id')"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                            <span title="Delete" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@Filter.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
                         </td>
                     </tr>
                 }
@@ -59,6 +53,6 @@
             </tbody>
         </table>
         <!--Pagination-->
-        <partial name="_pagination" model="Model.PagingData"  />
+        <partial name="_pagination" model="Model.PagingData" />
     }
 </div>
