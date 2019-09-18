@@ -1,7 +1,18 @@
-﻿
-@{
-    ViewData["Title"] = "Edit";
+﻿@{
+    ViewData["Title"] = "Edit Product";
+    string stringHtml = "<span onclick=\"goToPreviousPage()\"><img src=\"/images/icons/arrow-left.png\" class=\"vertical-middle iconWidth-25 cursor-pointer m-r-20\"></span>";
+    stringHtml = stringHtml + "<span class=\"display-inline\">Edit Details</span>";
+
+    ViewData["TabHeading"] = stringHtml;
+    ViewData["ActiveTab"] = "product";
 }
 
-<h1>Edit</h1>
+<h5>Coming soon</h5>
 
+@section Scripts {
+    <script>
+        function goToPreviousPage() {
+            window.history.back();
+        }
+    </script>
+}

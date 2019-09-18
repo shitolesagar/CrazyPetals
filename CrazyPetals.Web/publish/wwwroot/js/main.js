@@ -59,3 +59,19 @@ function ShowSlackbarErrorMessage(alertMsg) {
             $("#alertErrorPopup").text('');
         });
 }
+
+
+function redirectToDetails(url) {
+    event.stopPropagation();
+    window.location.href = url;
+}
+function redirectToEdit(url) {
+    event.stopPropagation();
+    window.location.href = url;
+}
+function OpenDeleteConfirmBox(id) {
+    event.stopPropagation();
+    $('#myModal').modal('show');
+    $("#delete-id").val(id)
+
+}

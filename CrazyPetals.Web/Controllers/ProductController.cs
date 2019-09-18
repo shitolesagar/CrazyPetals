@@ -68,7 +68,7 @@ namespace CrazyPetals.Web.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             await GetDropdownData();
-            AddProductViewModel model = await _productService.getForEditAsync(id);
+          //  AddProductViewModel model = await _productService.getForEditAsync(id);
             return View();
         }
         [HttpPost]
