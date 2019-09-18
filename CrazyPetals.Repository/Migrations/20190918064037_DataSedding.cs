@@ -11,7 +11,7 @@ namespace CrazyPetals.Repository.Migrations
             migrationBuilder.Sql("INSERT INTO `CrazyPetalsDB_test`.`delivery_Charges` (`AppId`, `Min`, `Max`, `DeliveryCharge`) VALUES ('CrazyPetals', '101', '300', '20');");
             migrationBuilder.Sql("INSERT INTO `CrazyPetalsDB_test`.`delivery_Charges` (`AppId`, `Min`, `Max`, `DeliveryCharge`) VALUES ('CrazyPetals', '301', '0', '0');");
             migrationBuilder.Sql("INSERT INTO `CrazyPetalsDB_test`.`Role` (`Name`, `AppId`) VALUES ('Admin', 'CrazyPetals');");
-            migrationBuilder.Sql("INSERT INTO `CrazyPetalsDB_test`.`Role` (`Name`, `AppId`) VALUES ('User', 'CrazyPetals');");
+            migrationBuilder.Sql("INSERT INTO `CrazyPetalsDB_test`.`Role` (`Name`, `AppId`) VALUES ('Customer', 'CrazyPetals');");
             migrationBuilder.Sql("INSERT INTO `CrazyPetalsDB_test`.`SmtpMail` (`FromMail`, `SmtpPassword`, `Host`, `Port`, `DisplayName`, `Description`, `AppId`) VALUES ('CrazypetalsHelp@gmail.com', 'Mrunalini@1234$', 'smtp.gmail.com', '587', 'gmail', 'This is CrazyPetals', 'CrazyPetals');");
         }
 

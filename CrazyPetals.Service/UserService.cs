@@ -48,15 +48,13 @@ namespace CrazyPetals.Service
             _fileServices = fileServices;
         }
 
-        #region RegisterUser
-        public async Task<RegisterResponse> RegisterUser(Register request)
+        #region RegisterUserWithData
+        public RegisterResponse RegisterUserWithData(RegisterWithData request)
         {
 
             RegisterResponse res = new RegisterResponse();
 
             var user = _applicationUserRepository.FindByEmail(request.EmailId);
-
-
             try
             {
                 if (user != null)
@@ -67,7 +65,6 @@ namespace CrazyPetals.Service
                 }
                 else
                 {
-                    string relativePath = await _fileServices.SaveImageAndReturnRelativePath(request.file, FolderConstants.UserFolder);
                     user = new ApplicationUser
                     {
                         Name = request.Name,
@@ -75,7 +72,7 @@ namespace CrazyPetals.Service
                         AppId = request.AppId,
                         RoleId = 2,
                         MobileNumber = request.PhoneNumber,
-                        ProfilePicture = relativePath,
+                        ProfilePicture = request.Image,
                     };
 
                     if (!string.IsNullOrEmpty(request.Password))
@@ -98,6 +95,27 @@ namespace CrazyPetals.Service
                     res.Message = StringConstants.UserSaved;
                     return res;
                 }
+            }
+            catch (Exception e)
+            {
+                Debug.Print(e.Message);
+                res.error = true;
+                res.Message = StringConstants.ServerError;
+                return res;
+            }
+        }
+        #endregion
+
+        #region RegisterUserWithImage
+        public async Task<RegisterWithImageResponse> RegisterUserWithImage(RegisterWithImage request)
+        {
+            RegisterWithImageResponse res = new RegisterWithImageResponse();
+            try
+            {
+                string relativePath = await _fileServices.SaveImageAndReturnRelativePath(request.file, FolderConstants.UserFolder);
+                res.Message = StringConstants.Success;
+                res.data = relativePath;
+                return res;
             }
             catch (Exception e)
             {
