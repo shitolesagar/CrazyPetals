@@ -34,11 +34,6 @@
             ShowSlackbarSucessMessage(message);
         }
 
-        function openModal(id) {
-            $('#myModal').modal('show');
-            $("#delete-id").val(id)
-        }
-
         function getRecordsByPageIndex(pageIndex) {
             var url = CreateUrlString() + "pageIndex=" + pageIndex + "&";
             $(".loader-wrapper").show();

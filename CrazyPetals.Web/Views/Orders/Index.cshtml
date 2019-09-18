@@ -46,14 +46,13 @@
         }
 
         function filter(obj) {
-            if (($("#tblContent").text()).length > 0) {
-                $(obj).addClass("active-state");
-                $('.selectpicker').selectpicker('refresh');
-                ajaxCall(CreateUrlString())
-            }
+            $(obj).addClass("active-state");
+            $('.selectpicker').selectpicker('refresh');
+            ajaxCall(CreateUrlString())
         }
 
         function onSearch() {
+            $("#ddlStatus").val('');
             ajaxCall(CreateUrlString());
         }
 
@@ -64,7 +63,7 @@
                 search: $("#txtSearch").val()
             };
             if (filter.status !== "")
-                url = url + "statusid=" + encodeURIComponent(filter.status) + "&";
+                url = url + "StatusId=" + encodeURIComponent(filter.status) + "&";
 
             if (filter.search !== "")
                 url = url + "search=" + encodeURIComponent(filter.search) + "&";
@@ -111,10 +110,6 @@
             if ($("#" + elementId).is(":visible")) {
                 $("#" + elementId).hide();
             }
-        }
-
-        function gotoDetailsPage(id) {
-            window.location.href = "/orders/details/" + id;
         }
     </script>
 

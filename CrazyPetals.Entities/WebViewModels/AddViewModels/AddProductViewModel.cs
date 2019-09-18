@@ -35,7 +35,7 @@ namespace CrazyPetals.Entities.WebViewModels
 
         public int? FilterId { get; set; }
 
-        public List<int> SelectedColorIds { get; set; }
+        public List<int> SelectedColorIds { get; set; } = new List<int>();
 
         [Required(ErrorMessage = "Status is required.")]
         public string Status { get; set; }
@@ -47,7 +47,7 @@ namespace CrazyPetals.Entities.WebViewModels
         [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Offer Price is not valid.")]
         public decimal DiscountedPrice { get; set; }
 
-        public List<int> SelectedSizeIds { get; set; }
+        public List<int> SelectedSizeIds { get; set; } = new List<int>();
         public string ProductLength { get; set; }
         public string ProductWidth { get; set; }
         public string ProductHeight { get; set; }

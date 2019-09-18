@@ -23,7 +23,7 @@
     }
     else
     {
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th>No.</th>
@@ -35,20 +35,13 @@
             <tbody>
                 @foreach (var product in Model.ProductList)
                 {
-                    <tr>
+                    <tr onclick="redirectToDetails('/product/details/@product.Id')">
                         <td>@product.Number</td>
                         <td>@product.Name</td>
                         <td>@product.CategoryName</td>
                         <td class="text-center">
-                            <span class="display-inline position-relative more-action">
-                                <img src="~/images/icons/more-vertical.png" class="img-responsive  cursor-pointer" />
-                                <div class="editRemove-popup">
-                                    <ul>
-                                        <li><a asp-controller="product" asp-action="edit" asp-route-id="@product.Id"><img src="~/images/icons/edit.png" class="action-icon img-responsive" /> Edit</a> </li>
-                                        <li onclick="openModal('@product.Id')"><img src="~/images/icons/trash.png" class="action-icon" />Remove</li>
-                                    </ul>
-                                </div>
-                            </span>
+                            <span title="Edit" onclick="redirectToEdit('/product/edit/@product.Id')"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                            <span title="Delete" onclick="OpenDeleteConfirmBox('@product.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
                         </td>
                     </tr>
                 }

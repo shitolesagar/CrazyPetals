@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using CrazyPetals.Entities.WebViewModels;
 using Microsoft.AspNetCore.Http;
 
 namespace CrazyPetals.Abstraction.Service

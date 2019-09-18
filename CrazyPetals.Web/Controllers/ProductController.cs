@@ -15,11 +15,13 @@ namespace CrazyPetals.Web.Controllers
     {
         private readonly IProductService _productService;
         private readonly IFileServices _fileServices;
+        private readonly IFilterService _filterService;
 
-        public ProductController(IProductService productService, IFileServices fileServices)
+        public ProductController(IProductService productService, IFileServices fileServices, IFilterService filterService)
         {
             _productService = productService;
             _fileServices = fileServices;
+            _filterService = filterService;
         }
         public IActionResult Index(ProductFilter filter)
         {
@@ -57,10 +59,16 @@ namespace CrazyPetals.Web.Controllers
             return View();
         }
 
+        public async Task<JsonResult> GetSubcategoryDropList(int categoryId)
+        {
+            List<IdNameViewModel> list = await _filterService.GetFilterListAsync(categoryId);
+            return Json(list);
+        }
+
         public async Task<IActionResult> Edit(int id)
         {
             await GetDropdownData();
-            AddProductViewModel model = await _productService.getForEditAsync(id);
+          //  AddProductViewModel model = await _productService.getForEditAsync(id);
             return View();
         }
         [HttpPost]

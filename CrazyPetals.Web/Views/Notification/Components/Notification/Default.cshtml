@@ -43,14 +43,7 @@
                         <td>@notificaiton.Message</td>
                         <td>@notificaiton.SentDate</td>
                         <td class="text-center">
-                            <span class="display-inline position-relative more-action">
-                                <img src="~/images/icons/more-vertical.png" class="img-responsive  cursor-pointer" />
-                                <div class="editRemove-popup">
-                                    <ul>
-                                        <li onclick="openModal('@notificaiton.Id')"><img src="~/images/icons/trash.png" class="action-icon" />Remove</li>
-                                    </ul>
-                                </div>
-                            </span>
+                            <span title="Delete" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@notificaiton.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
                         </td>
                     </tr>
                 }

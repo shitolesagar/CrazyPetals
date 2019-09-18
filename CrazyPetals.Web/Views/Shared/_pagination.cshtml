@@ -2,8 +2,8 @@
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-<div class="pagination justify-content-center align-items-center">
+<div class="pagination align-items-center">
     <button onclick="getRecordsByPageIndex(@(Model.CurrentIndex-1))" @(Model.IsFirst ? "disabled" : "")><img src="~/images/icons/left.png" /></button>
+    <button class="ml-2" onclick="getRecordsByPageIndex(@(Model.CurrentIndex+1))" @(Model.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
     <span class="mx-4">Viewing <span class="f-semi-bold">@Model.FromRecord - @Model.UpToRecord</span> out of <span class="f-semi-bold">@Model.TotalCount</span></span>
-    <button onclick="getRecordsByPageIndex(@(Model.CurrentIndex+1))" @(Model.IsLast ? "disabled" : "")><img src="/images/icons/right.png" /></button>
 </div>

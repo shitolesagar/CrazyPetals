@@ -11,7 +11,6 @@
             }
             else
             {
-                <img src="~/images/search@2x.png" alt="Sorry" />
                 <p class="m-t-25 f-22 f-bold">
                     No Result Found!
                 </p>
@@ -32,7 +31,7 @@
             <tbody>
                 @foreach (var order in Model.OrderList)
                 {
-                    <tr onclick="gotoDetailsPage('@order.Id')">
+                    <tr onclick="redirectToDetails('/orders/details/@order.Id')">
                         <td>@order.Number</td>
                         <td>@order.OrderNumber</td>
                         <td>@order.Status</td>
