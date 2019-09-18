@@ -14,5 +14,6 @@ namespace CrazyPetals.Entities.Database
         public string AppId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ExpiryDate { get; set; }
+        public DateTime? StartDate { get; set; }
     }
 }
