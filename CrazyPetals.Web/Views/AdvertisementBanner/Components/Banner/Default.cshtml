@@ -28,12 +28,14 @@
             @foreach (var banner in Model.BannerList)
             {
                 <div class="col-md-3 p-2 d-flex align-items-stretch">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card cp-manage-icon" style="width: 18rem;">
+                        <span class="cp-manage-button">
+                            <i onclick="OpenDeleteConfirmBox('@banner.Id')" class="fa fa-trash" title="Delete" aria-hidden="true"></i>
+                        </span>
                         <img src="@banner.ImagePath" class="card-img-top" alt="@banner.Caption">
                         <div class="card-body">
                             <h5 class="card-title">
                                 @banner.Caption
-                                <span title="Delete" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@banner.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
                             </h5>
                             @if (banner.IsExpired)
                             {

@@ -148,6 +148,13 @@ namespace CrazyPetals.Service
             res.Message = StringConstants.ServerError;
             return res;
         }
+
+        
+        public ApplicationUser LoginAdmin(string email)
+        {
+            var user = _applicationUserRepository.FindByEmail(email);
+            return user;
+        }
         #endregion
 
         #region SendOTP
@@ -403,6 +410,10 @@ namespace CrazyPetals.Service
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
             return ResponseModel;
         }
+
+       
+
+
 
 
 

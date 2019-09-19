@@ -185,13 +185,18 @@ namespace CrazyPetals.Service
 
         
 
-        public Task<int> DeleteProduct(int id)
+        public async Task<int> DeleteProduct(int id)
         {
-            throw new System.NotImplementedException();
+            var record = await _productRepository.FindByIdAsync(id);
+            if(record!=null)
+                record.IsDeleted = true;
+            var result = await _unitOfWork.SaveChangesAsync();
+            return result;
         }
 
-        public Task<AddProductViewModel> getForEditAsync(int id)
+        public async Task<AddProductViewModel> getForEditAsync(int id)
         {
+            Product record = await _productRepository.FindByIdAsync(id, true);
             throw new System.NotImplementedException();
         }
 

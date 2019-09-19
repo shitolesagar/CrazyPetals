@@ -54,8 +54,9 @@ namespace CrazyPetals.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
+            //AddProductViewModel model = await _productService.getForEditAsync(id);
             return View();
         }
 
@@ -68,7 +69,7 @@ namespace CrazyPetals.Web.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             await GetDropdownData();
-          //  AddProductViewModel model = await _productService.getForEditAsync(id);
+            //AddProductViewModel model = await _productService.getForEditAsync(id);
             return View();
         }
         [HttpPost]

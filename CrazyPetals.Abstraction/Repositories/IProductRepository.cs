@@ -25,5 +25,7 @@ namespace CrazyPetals.Abstraction.Repositories
         List<Product> GetAllProductForCategory(int CategoryId, string AppId);
 
         List<Product> GetAllProductForRecommended(int CategoryId,int ProductId, string AppId);
+
+        Task<Product> FindByIdAsync(int id, bool includes);
     }
 }
