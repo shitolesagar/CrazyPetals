@@ -160,7 +160,7 @@ namespace CrazyPetals.Service
                 var user = _applicationUserRepository.FindByEmail(request.Email);
                 if (user != null)
                 {
-                    if (user.RoleId != 3)
+                    if (user.RoleId != 2)
                     {
                         res.error = true;
                         res.Message = StringConstants.UserNotAuthorised;
