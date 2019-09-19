@@ -37,12 +37,16 @@ namespace CrazyPetals.Repository.Repositories
 
         public int GetIndexViewTotalCount(ProductFilter filter)
         {
-            return Set.Count();
+            var query = Set.AsQueryable();
+            query = query.Where(x => x.IsDeleted == false);
+            return query.Count();
         }
 
         public Task<List<Product>> GetIndexViewRecordsAsync(ProductFilter filter, int skip, int pageSize)
         {
-            return Set.Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
+            var query = Set.AsQueryable();
+            query = query.Where(x => x.IsDeleted == false);
+            return query.Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
         }
         public List<Product> GetAllProductForCategory(int CategoryId, string AppId, int skip, int take)
         {
@@ -62,6 +66,13 @@ namespace CrazyPetals.Repository.Repositories
         public List<Product> GetAllProductForRecommended(int CategoryId,int ProductId, string AppId)
         {
             return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId && x.Id == ProductId).Where(x => x.IsDeleted == false).ToList();
+        }
+
+        public Task<Product> FindByIdAsync(int id, bool includes)
+        {
+            return Set.Include(x => x.Category).Include(x => x.Filter).Include(x => x.ProductImages)
+                .Include(x => x.ProductColors).ThenInclude(x => x.Colors)
+                .Include(x => x.ProductSizes).ThenInclude(x => x.Size).FirstOrDefaultAsync();
         }
     }
 }

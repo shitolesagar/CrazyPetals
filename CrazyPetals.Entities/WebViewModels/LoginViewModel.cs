@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CrazyPetals.Web.Models
+namespace CrazyPetals.Entities.WebViewModels
 {
     public class LoginViewModel
     {

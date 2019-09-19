@@ -35,9 +35,9 @@ namespace CrazyPetals.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            
-            
-            
+
+
+
 
             #region Services
             services.AddScoped<IFileServices, FileServices>();
@@ -50,6 +50,7 @@ namespace CrazyPetals.Web
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IEmailService, EmailService>();
             #endregion
+
 
             #region Repostiory
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -91,7 +92,7 @@ namespace CrazyPetals.Web
                         options.LoginPath = "/account/index";
                         options.Cookie.Name = StringConstants.AppId;
                     });
-            
+
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()

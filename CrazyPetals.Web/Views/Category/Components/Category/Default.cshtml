@@ -18,16 +18,18 @@
             @foreach (var category in Model.CategoryList)
             {
                 <div class="col-md-3 p-2 d-flex align-items-stretch">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card cp-manage-icon" style="width: 18rem;">
+                        <span class="cp-manage-button">
+                            <i onclick="redirectToEdit('/category/edit/@category.Id')" class="fa fa-pencil" title="Edit" aria-hidden="true"></i>
+                            <i onclick="OpenDeleteConfirmBox('@category.Id')" class="fa fa-trash ml-1" title="Delete" aria-hidden="true"></i>
+                        </span>
                         <img src="@category.ImagePath" class="card-img-top" alt="@category.Name">
                         <div class="card-body">
                             <h5 class="card-title">
                                 @category.Name
-                                <span title="Edit" class="ml-4 cursor-pointer" onclick="redirectToEdit('/category/edit/@category.Id')"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                                <span title="Delete" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@category.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
                             </h5>
                         </div>
-                        
+
                     </div>
                 </div>
             }

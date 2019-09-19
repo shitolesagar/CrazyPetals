@@ -3099,3 +3099,26 @@ my-nav-item, my-nav-item > a {
 .note-popover.popover.in.note-table-popover.bottom {
     display: none;
 }
+
+.cp-manage-icon {
+    position: relative;
+}
+
+.cp-manage-button {
+    cursor: pointer;
+    position: absolute;
+    font-size: 18px;
+    right: 5px;
+    top: 5px;
+    padding: 1px 8px;
+    display:none;
+}
+
+.cp-manage-icon:hover .cp-manage-button {
+    display:block;
+}
+
+.cp-manage-button i {
+    background: #fff;
+    padding: 8px;
+}

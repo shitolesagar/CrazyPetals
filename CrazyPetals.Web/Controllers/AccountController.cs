@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using CrazyPetals.Abstraction.Service;
 using CrazyPetals.Entities.Constant;
 using CrazyPetals.Entities.Database;
+using CrazyPetals.Entities.Resources;
+using CrazyPetals.Entities.WebViewModels;
 using CrazyPetals.Web.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -41,23 +43,19 @@ namespace CrazyPetals.Web.Controllers
         {
             try
             {
-                // ApplicationUser user = await _userService.GetUserByEmail(model.Email);
-                ApplicationUser user = new ApplicationUser()
-                {
-                    Email = "admin@gmail.com",
-                    Name = "Admin",
-                    RoleId = 1,
-                    Id = 1
-                };
+                ApplicationUser user = _userService.LoginAdmin(model.Email);
                 if (user != null)
                 {
-                    //if (!VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt))
-                    //{
-                    //    ModelState.AddModelError("Password", StringConstants.LoginError);
-                    //    return View(model);
-                    //}
-                    await SignInAsync(user);
-                    return RedirectToAction("Index", "Product");
+                    if (!VerifyPasswordHash(model.Password, user.PasswordHash, user.PasswordSalt))
+                    {
+                        ModelState.AddModelError("Password", StringConstants.LoginError);
+                        return View(model);
+                    }
+                    if(user.RoleId == 1)
+                    {
+                        await SignInAsync(user);
+                        return RedirectToAction("Index", "Product");
+                    }
                 }
                 ModelState.AddModelError("Password", StringConstants.LoginError);
             }

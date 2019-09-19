@@ -22,7 +22,7 @@ namespace CrazyPetals.Abstraction.Service
         Task<CustomerWrapperViewModel> GetWrapperForIndexView(FilterBase filter);
 
         CommonResponse VerifyOTP(VerifyOtpRequest request);
-
+        ApplicationUser LoginAdmin(string email);
         MyProfileResponse GetMyProfile(int Id);
         Task<CustomerDetailsViewModel> GetCustomerDetails(int id);
     }
