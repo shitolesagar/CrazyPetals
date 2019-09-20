@@ -133,7 +133,7 @@ namespace CrazyPetals.Service
         {
             CommonResponse res = new CommonResponse();
             var user = _applicationUserRepository.FindByEmail(request.EmailId);
-            if (user != null && user.AppId == request.AppId)
+            if (user != null && user.AppId == request.AppId && user.IsOTPVerified == true)
             {
                 if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
                 {
@@ -212,6 +212,9 @@ namespace CrazyPetals.Service
             var userData = _forgotPasswordRepository.FindByEmailOtp(request.Email, request.OTP);
             if (userData != null)
             {
+                var user=_applicationUserRepository.FindByEmail(request.Email);
+                user.IsOTPVerified = true;
+                _unitOfWork.SaveChanges();
                 res.Message = StringConstants.OTPMatch;
                 return res;
             }

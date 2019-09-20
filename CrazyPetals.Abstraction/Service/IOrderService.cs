@@ -11,5 +11,6 @@ namespace CrazyPetals.Abstraction.Service
         Task<OrderWrapperViewModel> GetWrapperForIndexView(OrderFilter filter);
         Task<List<IdNameViewModel>> GetAllDeliveryStatusAsync();
         Task<OrderDetailsViewModel> GetOrderDetails(int id);
+        string UpdateStatus(UpdateStatusResource filter);
     }
 }

@@ -16,6 +16,7 @@ namespace CrazyPetals.Entities.Database
         public string MobileNumber { get; set; }
         public string ProfilePicture { get; set; }
         public string AppId { get; set; }
+        public bool IsOTPVerified { get; set; }
 
         public int RoleId { get; set; }
         public Role Role { get; set; }

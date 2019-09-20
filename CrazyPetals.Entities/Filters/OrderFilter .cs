@@ -8,4 +8,10 @@ namespace CrazyPetals.Entities.Filters
     {
         public int StatusId { get; set; }
     }
+
+    public class UpdateStatusResource
+    {
+        public int Id { get; set; }
+        public int DeliveryStatusId { get; set; }
+    }
 }

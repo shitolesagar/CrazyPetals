@@ -8,12 +8,14 @@
     ViewData["ActiveTab"] = "order";
 }
 
+<p>@ViewBag.result</p>
 <div class="block-container">
-    <span class="h4">Order Number : @Model.OrderNumber</span> 
+    <span class="h4">Order Number : @Model.OrderNumber</span>
     <span class="h6 ml-2">
         by <a asp-controller="customer" asp-action="details" asp-route-id="@Model.UserId">
-                @Model.ApplicationUser</a> 
-        <span class="ml-2"> on:  @Model.CreatedDate</span> 
+            @Model.ApplicationUser
+        </a>
+        <span class="ml-2"> on:  @Model.CreatedDate</span>
     </span>
     <div class="row py-3">
         <div class="col-7">
@@ -37,8 +39,15 @@
                 <div class="col-4"></div>
                 <div class="col-4"></div>
                 <div class="col-4">
-                    <p class="f-gray mt-5">Delivery Status</p>
-                    <p class="f-bold">@Model.DeliveryStatus</p>
+                    <div class="form-group  position-relative">
+                        <label class="float-label">Select Delivery Status</label>
+                        <div class="custom-select width-100">
+                            <select onchange="filter(this)" class="form-control select-dropDown" asp-for="DeliveryStatusId" value="" id="status" asp-items="ViewBag.DeliveryStatusList">
+                                <option value="">select</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="DeliveryStatusId" class="text-danger"></span>
+                    </div>
                 </div>
                 <div class="col-4">
                     <p class="f-gray mt-5">Payment Status</p>
@@ -106,10 +115,38 @@
         </div>
     </div>
 </div>
+@{
+
+    var message = TempData["Message"] ?? string.Empty;
+
+}
 @section Scripts {
     <script>
+        var orderId = '@Model.Id';
         function goToPreviousPage() {
             window.history.back();
+        }
+       
+
+        function filter(obj) {
+            ajaxCall(CreateUrlString())
+        }
+
+        function CreateUrlString() {
+            var url = "/orders/updatestatus?DeliveryStatusId=" + $("#status").val() + "&id=" + orderId;
+            return url;
+        }
+
+        function ajaxCall(url) {
+            $(".loader-wrapper").show();
+            $.get(url, function (data) {
+                $(".loader-wrapper").hide();
+            });
+        }
+         var message = '@message';
+        if (message)
+        {
+            alert(message);
         }
     </script>
 }
