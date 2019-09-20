@@ -72,7 +72,7 @@ namespace CrazyPetals.Repository.Repositories
         {
             return Set.Include(x => x.Category).Include(x => x.Filter).Include(x => x.ProductImages)
                 .Include(x => x.ProductColors).ThenInclude(x => x.Colors)
-                .Include(x => x.ProductSizes).ThenInclude(x => x.Size).FirstOrDefaultAsync();
+                .Include(x => x.ProductSizes).ThenInclude(x => x.Size).FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

@@ -11,9 +11,12 @@ namespace CrazyPetals.Abstraction.Service
         Task<ProductWrapperViewModel> GetWrapperForIndexView(ProductFilter filter);
         Task<List<IdNameViewModel>> GetCategoryListAsync();
         Task<List<IdNameViewModel>> GetFilterListAsync();
+        Task<List<IdNameViewModel>> GetFilterListForProductEditAsync(int categoryId);
         Task<List<IdNameViewModel>> GetColorListAsync();
         Task<List<IdNameViewModel>> GetAvailableSizeList();
         Task<int> DeleteProduct(int id);
-        Task<AddProductViewModel> getForEditAsync(int id);
+        Task<ProductDetailsViewModel> GetForDetailsAsync(int id);
+        Task<AddProductViewModel> GetForEditAsync(int id);
+        Task<int> EditProductSaveAsync(int id, AddProductViewModel model);
     }
 }

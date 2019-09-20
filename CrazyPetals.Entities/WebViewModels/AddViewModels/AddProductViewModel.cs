@@ -61,5 +61,10 @@ namespace CrazyPetals.Entities.WebViewModels
         public string StockKeepingUnit { get; set; }
         public bool IsExclusive { get; set; }
         public bool IsAvailable { get; set; }
+
+        // fields for edit
+        public List<IdNameViewModel> EditViewImageList { get; set; } = new List<IdNameViewModel>();
+        public string DeleteIds { get; set; }
     }
+
 }
