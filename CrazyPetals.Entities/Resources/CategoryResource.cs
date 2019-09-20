@@ -117,6 +117,7 @@ namespace CrazyPetals.Entities.Resources
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int? FilterId { get; set; }
         public string Image { get; set; }
         public decimal? OriginalPrice { get; set; }
         public decimal DiscountedPrice { get; set; }
@@ -187,5 +188,13 @@ namespace CrazyPetals.Entities.Resources
         public bool error { get; set; } = false;
         public string Message { get; set; }
         public ProductDetailsResource data { get; set; }
+    }
+    public class ApplyFiltersResource
+    {
+        public int CategoryId { get; set; }
+        public string AppId { get; set; }
+        public int skip { get; set; }
+        public int take { get; set; }
+        public List<int> Filters { get; set; }
     }
 }

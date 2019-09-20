@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CrazyPetals.Abstraction;
 using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Abstraction.Service;
+using CrazyPetals.Entities.Constant;
 using CrazyPetals.Entities.Database;
 using CrazyPetals.Entities.Filters;
 using CrazyPetals.Entities.WebViewModels;
@@ -66,6 +67,7 @@ namespace CrazyPetals.Service
                 return null;
             model = new OrderDetailsViewModel()
             {
+                Id = order.Id,
                 SubTotal = Math.Round(order.SubTotalPrice, 2),
                 DiscountedPrice = Math.Round(order.DiscountPrice, 2) ,
                 TotalPrice = Math.Round(order.TotalPrice, 2) ,
@@ -74,7 +76,7 @@ namespace CrazyPetals.Service
                 OrderNumber = order.OrderNumber,
                 CreatedDate = DateExtension.ToCrazyPattelsPattern(order.CreatedDate),
                 ApplicationUser = order.ApplicationUser.Name,
-                DeliveryStatus = order.DeliveryStatus.Status,
+                DeliveryStatusId = order.DeliveryStatusId,
                 PaymentStatus = order.PaymentStatus.Status,
                 UserId = order.ApplicationUserId.ToString(),
                 ShippingAddress = new UserAddressViewModels()
@@ -95,6 +97,20 @@ namespace CrazyPetals.Service
                 TotalPrice = x.DiscountedPrice * x.Quantity,
             }).ToList();
             return model;
+        }
+        public string UpdateStatus(UpdateStatusResource filter)
+        {
+            try
+            {
+                Order order = _orderRepository.FindById(filter.Id);
+                order.DeliveryStatusId = filter.DeliveryStatusId;
+                _unitOfWork.SaveChanges();
+                return StringConstants.Success;
+            }
+            catch(Exception e)
+            {
+                return StringConstants.ServerError;
+            }
         }
     }
 }

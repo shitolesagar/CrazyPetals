@@ -6,6 +6,7 @@ namespace CrazyPetals.Entities.WebViewModels.DetailsPageViewModels
 {
     public class OrderDetailsViewModel
     {
+        public int Id { get; set; }
         public decimal SubTotal { get; set; }
         public decimal DiscountedPrice { get; set; }
         public decimal TotalPrice { get; set; }
@@ -15,10 +16,16 @@ namespace CrazyPetals.Entities.WebViewModels.DetailsPageViewModels
         public string CreatedDate { get; set; }
         public string ApplicationUser { get; set; }
         public string UserId { get; set; }
-        public string DeliveryStatus { get; set; }
+        public int DeliveryStatusId { get; set; }
         public string PaymentStatus { get; set; }
         public UserAddressViewModels ShippingAddress { get; set; }
         public List<OrderDetailsModel> OrderDetails { get; set; }
+    }
+    public class EditOrderDetailsModel
+    {
+        public int OrderId { get; set; }
+        public int DeliveryStatusId { get; set; }
+        public int PaymentStatusId { get; set; }
     }
     public class OrderDetailsModel
     {
