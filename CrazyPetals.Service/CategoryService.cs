@@ -202,6 +202,12 @@ namespace CrazyPetals.Service
             FilterResponse res = new FilterResponse();
             try
             {
+                if (CategoryId == 0)
+                {
+                    res.error = true;
+                    res.Message = StringConstants.CatNotFound;
+                    return res;
+                }
                 var data = await _filterRepository.GetFilterAsync(CategoryId, AppId);
                 FilterResourceWrapper response = new FilterResourceWrapper
                 {
@@ -358,6 +364,66 @@ namespace CrazyPetals.Service
 
                     }).ToList();
                     response.TotalCount = ProductRecordsForCount.Count;
+                }
+                res.Message = StringConstants.Message;
+                res.data = response;
+                return res;
+            }
+            catch (Exception e)
+            {
+                res.error = true;
+                res.Message = StringConstants.ServerError;
+                return res;
+            }
+        }
+        #endregion
+
+        #region ApplyAllFilters
+        public ProductListResponse ApplyAllFilters(ApplyFiltersResource request)
+        {
+            ProductListResponse res = new ProductListResponse();
+            try
+            {
+                ProductDetailsResourceWrapper response = new ProductDetailsResourceWrapper
+                {
+                    ProductList = new List<ProductResource>()
+                };
+                if (request.CategoryId == 0)
+                {
+                    res.error = true;
+                    res.Message = StringConstants.CatNotFound;
+                    return res;
+                }
+
+                else
+                {
+
+                    List<Product> ProductRecordsList = _productRepository.GetAllProductForCategory(request.CategoryId, request.AppId);
+
+                    List<ProductResource> AllProductList = ProductRecordsList.Select(x => new ProductResource()
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        FilterId = x.FilterId,
+                        Image = StringConstants.CPImageUrl + x.ProductImages.Where(y => y.IsMain == true).FirstOrDefault().Image,
+                        OriginalPrice = x.OriginalPrice,
+                        DiscountedPrice = x.DiscountedPrice,
+                        DiscountPercentage = x.DiscountPercentage,
+                        IsExclusive = x.IsExclusive,
+
+                    }).ToList();
+                    List<ProductResource> FilteredProductList = new List<ProductResource>();
+                    foreach (var pro in AllProductList)
+                    {
+                        foreach (var filter in request.Filters)
+                        {
+                            if (pro.FilterId == filter)
+                                FilteredProductList.Add(pro);
+                            
+                        }
+                    }
+                    response.TotalCount = FilteredProductList.Count;
+                    response.ProductList = FilteredProductList.Skip(request.skip).Take(request.take).ToList();
                 }
                 res.Message = StringConstants.Message;
                 res.data = response;

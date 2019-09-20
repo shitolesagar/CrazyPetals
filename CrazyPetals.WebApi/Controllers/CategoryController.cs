@@ -239,6 +239,29 @@ namespace CrazyPetals.WebApi.Controllers
         }
         #endregion
 
+        #region ApplyAllFilters
+        /// <summary>
+        /// This API returns Product List for selected Category
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="AppId"></param>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        [Route("api/category/ApplyAllFilters")]
+        [HttpGet]
+        public IActionResult ApplyAllFilters([FromBody]ApplyFiltersResource request)
+        {
+            var response = _categoryService.ApplyAllFilters(request);
+
+            if (response.error == true)
+            {
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = response.Message });
+            }
+            return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message, data = response.data });
+        }
+        #endregion
+
         #region GetRecommendedProduct
         /// <summary>
         /// This API returns Product List for RecommendedProduct

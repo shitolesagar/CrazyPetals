@@ -27,5 +27,7 @@ namespace CrazyPetals.Abstraction.Service
         ProductListResponse GetAllProductForCategory(int categoryId, string AppId, int skip, int take);
 
         ProductListResponse GetRecommendedProduct(int categoryId,int ProductId, string AppId, int skip, int take);
+
+        ProductListResponse ApplyAllFilters(ApplyFiltersResource request);
     }
 }

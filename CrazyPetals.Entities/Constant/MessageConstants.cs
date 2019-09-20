@@ -21,5 +21,6 @@ namespace CrazyPetals.Entities.Constant
         public static object ProductAddSuccessMessage { get; set; } = "Product Added Sucessfully.";
         public static object ProductDeletedSuccessMessage { get; set; } = "Product Deleted Sucessfully.";
         public static object ProductDeletionFailedMessage { get; set; } = "Something went wrong.";
+        public static object DeliveryStatusUpdated { get; set; } = "Delivery status updated successfully.";
     }
 }
