@@ -14,7 +14,7 @@
         <form asp-controller="advertisementbanner" asp-action="add" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
             <div class="detail-container">
                 <img src="~/images/icons/default-img.png" id="tempImg" class="img-responsive add-banner-img display-inline m-r-25" />
-                <label for="file-input" class="btn btn-primary">Add/Change Image</label>
+                <label for="file-input" id="btnAdd" class="btn btn-primary">Add/Change Image</label>
                 <input asp-for="File" id="file-input" class="form-control display-none" accept="image/*">
                 <div>
                     <input type="text" asp-for="ImageUrl" class="display-none" />
@@ -32,21 +32,22 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="form-group">
-                            <label asp-for="ExpireDate" class="control-label float-label">Expiry Date (Optional)</label>
-                            <input type="text" asp-for="ExpireDate" readonly="readonly" class="form-control" maxlength="40" value="" />
-                            <span asp-validation-for="ExpireDate" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="form-group">
                             <label asp-for="StartDate" class="control-label float-label">Start Date (Optional)</label>
                             <input type="text" asp-for="StartDate" readonly="readonly" class="form-control" maxlength="40" value="" />
                             <span asp-validation-for="StartDate" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="form-group">
+                            <label asp-for="ExpireDate" class="control-label float-label">Expiry Date (Optional)</label>
+                            <input type="text" asp-for="ExpireDate" readonly="readonly" class="form-control" maxlength="40" value="" />
+                            <span asp-validation-for="ExpireDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="detailBtn-group">
                     <button type="submit" class="btn btn-primary">Add</button>
                     <a asp-controller="advertisementbanner" asp-action="index" class="btn btn-secondary">Cancel</a>
@@ -59,6 +60,16 @@
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#btnAdd').click(function () {
+                // $(this).prop("OnSubmitBehaviour", false);
+                $(this).attr("disabled", true);
+                $(this).val('Submitted');
+            });
+        });
+    </script>
     <script>
 
         var _URL = window.URL || window.webkitURL;
@@ -97,5 +108,7 @@
                 startDate: "+1d"
             });
         })
+
     </script>
+
 }

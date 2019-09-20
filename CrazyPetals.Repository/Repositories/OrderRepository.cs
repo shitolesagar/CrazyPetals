@@ -16,7 +16,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public Task<List<Order>> GetIndexViewRecordsAsync(OrderFilter filter, int skip, int pageSize)
         {
-            var query = Set.Include(x => x.DeliveryStatus).AsQueryable();
+            var query = Set.Include(x => x.DeliveryStatus).Include(x => x.ApplicationUser).AsQueryable();
             if (!string.IsNullOrEmpty(filter.search))
             {
                 query = query.Where(x => x.OrderNumber.ToLower().Contains(filter.search.ToLower()) );

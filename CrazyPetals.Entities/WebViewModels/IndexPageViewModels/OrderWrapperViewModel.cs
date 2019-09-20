@@ -18,5 +18,6 @@ namespace CrazyPetals.Entities.WebViewModels
         public string OrderNumber { get; set; }
         public string Status { get; set; }
         public string CreatedDate { get; set; }
+        public string UserName { get; set; }
     }
 }

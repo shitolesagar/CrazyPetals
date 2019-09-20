@@ -20,9 +20,13 @@ namespace CrazyPetals.Abstraction.Repositories
 
         List<Product> GetAllProductForCategory(int CategoryId, string AppId, int skip, int take);
 
+        List<Product> GetAllExclusiveProductForCategory(int CategoryId, string AppId, int skip, int take);
+
         List<Product> GetAllProductForRecommended(int CategoryId,int ProductId, string AppId, int skip, int take);
 
         List<Product> GetAllProductForCategory(int CategoryId, string AppId);
+
+        List<Product> GetAllExclusiveProductForCategory(int CategoryId, string AppId);
 
         List<Product> GetAllProductForRecommended(int CategoryId,int ProductId, string AppId);
 
