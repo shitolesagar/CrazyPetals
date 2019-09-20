@@ -258,7 +258,7 @@ namespace CrazyPetals.Service
                     Name = profile.Name,
                     MobileNumber = profile.MobileNumber,
                     EmailId = profile.Email,
-                    ProfilePicture = StringConstants.CPImageUrl + profile.ProfilePicture
+                    ProfilePicture = StringConstants.CPAPIImageUrl + profile.ProfilePicture
                 };
                 res.Message = StringConstants.Success;
                 res.data = obj;
@@ -282,7 +282,7 @@ namespace CrazyPetals.Service
             model = new CustomerDetailsViewModel()
             {
                 Email = user.Email,
-                ImagePath = user.ProfilePicture,
+                ImagePath = StringConstants.CPAPIImageUrl + user.ProfilePicture,
                 MobileNumber = user.MobileNumber,
                 Id = user.Id,
                 Name = user.Name,

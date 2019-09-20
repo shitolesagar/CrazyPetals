@@ -43,6 +43,7 @@ namespace CrazyPetals.Service
             {
                 Id = x.Id,
                 OrderNumber = x.OrderNumber,
+                UserName = x.ApplicationUser.Email,
                 Status = x.DeliveryStatus.Status,
                 CreatedDate = x.CreatedDate.ToCrazyPattelsPattern(),
                 Number = ResponseModel.PagingData.FromRecord + index,

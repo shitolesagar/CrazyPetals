@@ -22,7 +22,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public Task<List<Product>> GetProductListForSearch(int take, string AppId, string Search)
         {
-            return Set.Include(x=>x.Category).ThenInclude(x=> x.Filters).Include(x=>x.ProductImages).Include(y=>y.Filter). Where(x => x.AppId == AppId && x.Name.Contains(Search)).Skip(0).Take(take).ToListAsync();
+            return Set.Include(x=>x.Category).ThenInclude(x=> x.Filters).Include(x=>x.ProductImages).Include(y=>y.Filter). Where(x => x.AppId == AppId && x.IsPublish == true && x.Name.Contains(Search)).Skip(0).Take(take).ToListAsync();
         }
 
         public Product FindById(int Id, string AppId)
@@ -50,22 +50,30 @@ namespace CrazyPetals.Repository.Repositories
         }
         public List<Product> GetAllProductForCategory(int CategoryId, string AppId, int skip, int take)
         {
-            return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).OrderByDescending(x => x.Id).Skip(skip).Take(take).ToList();
+            return Set.Where(x => x.AppId == AppId && x.IsPublish == true).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).OrderByDescending(x => x.Id).Skip(skip).Take(take).ToList();
+        }
+        public List<Product> GetAllExclusiveProductForCategory(int CategoryId, string AppId, int skip, int take)
+        {
+            return Set.Where(x => x.AppId == AppId && x.IsPublish == true && x.IsExclusive == true).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).OrderByDescending(x => x.Id).Skip(skip).Take(take).ToList();
         }
 
         public List<Product> GetAllProductForRecommended(int CategoryId,int ProductId, string AppId, int skip, int take)
         {
-            return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId && x.Id != ProductId).Where(x => x.IsDeleted == false).OrderByDescending(x => x.Id).Skip(skip).Take(take).ToList();
+            return Set.Where(x => x.AppId == AppId && x.IsPublish == true).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId && x.Id != ProductId).Where(x => x.IsDeleted == false).OrderByDescending(x => x.Id).Skip(skip).Take(take).ToList();
         }
 
         public List<Product> GetAllProductForCategory(int CategoryId, string AppId)
         {
-            return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Include(y=>y.Filter).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
+            return Set.Where(x => x.AppId == AppId && x.IsPublish == true).Include(x => x.ProductImages).Include(y=>y.Filter).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
+        }
+        public List<Product> GetAllExclusiveProductForCategory(int CategoryId, string AppId)
+        {
+            return Set.Where(x => x.AppId == AppId && x.IsPublish == true && x.IsExclusive == true).Include(x => x.ProductImages).Include(y => y.Filter).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
         }
 
         public List<Product> GetAllProductForRecommended(int CategoryId,int ProductId, string AppId)
         {
-            return Set.Where(x => x.AppId == AppId).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId && x.Id == ProductId).Where(x => x.IsDeleted == false).ToList();
+            return Set.Where(x => x.AppId == AppId && x.IsPublish == true).Include(x => x.ProductImages).Where(x => x.CategoryId == CategoryId && x.Id == ProductId).Where(x => x.IsDeleted == false).ToList();
         }
 
         public Task<Product> FindByIdAsync(int id, bool includes)
