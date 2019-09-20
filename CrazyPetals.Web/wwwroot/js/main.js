@@ -73,5 +73,8 @@ function OpenDeleteConfirmBox(id) {
     event.stopPropagation();
     $('#myModal').modal('show');
     $("#delete-id").val(id)
+}
 
+function goToPreviousPage() {
+    window.history.back();
 }
