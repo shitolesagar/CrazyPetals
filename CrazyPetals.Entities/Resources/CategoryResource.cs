@@ -168,9 +168,7 @@ namespace CrazyPetals.Entities.Resources
     }
     public class ProductImagesResource
     {
-        public int Id { get; set; }
         public string Image { get; set; }
-        public bool IsMaIN { get; set; }
     }
     public class ProductColorsResource
     {
