@@ -299,9 +299,7 @@ namespace CrazyPetals.Service
 
                     Images = product.ProductImages.Where(y => y.ProductId == product.Id).Select(y => new ProductImagesResource()
                     {
-                        Id = y.Id,
                         Image = StringConstants.CPImageUrl + y.Image,
-                        IsMaIN = y.IsMain,
                     }).ToList(),
                     ColorList = product.ProductColors.Where(y => y.ProductId == product.Id).Select(y => new ProductColorsResource()
                     {
