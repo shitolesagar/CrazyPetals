@@ -239,6 +239,28 @@ namespace CrazyPetals.WebApi.Controllers
         }
         #endregion
 
+        #region GetAllExclusiveProductForCategory
+        /// <summary>
+        /// This API returns all exclusive Product List for selected Category
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <param name="skip"></param>
+        /// <param name="take"></param>
+        /// <returns></returns>
+        [Route("api/category/GetAllExclusiveProductForCategory")]
+        [HttpGet]
+        public IActionResult GetAllExclusiveProductForCategory(int CategoryId, string AppId, int skip, int take)
+        {
+            var response = _categoryService.GetAllExclusiveProductForCategory(CategoryId, AppId, skip, take);
+
+            if (response.error == true)
+            {
+                return Ok(new { statusCode = StringConstants.StatusCode20, message = response.Message });
+            }
+            return Ok(new { statusCode = StringConstants.StatusCode10, message = response.Message, data = response.data });
+        }
+        #endregion
+
         #region ApplyAllFilters
         /// <summary>
         /// This API returns Product List for selected Category

@@ -24,19 +24,21 @@
             <thead>
                 <tr>
                     <th>No.</th>
+                    <th>User Name</th>
                     <th>Order Number</th>
                     <th>Status</th>
                     <th>Placed Date</th>
-            </thead>
+</thead>
             <tbody>
                 @foreach (var order in Model.OrderList)
                 {
-                    <tr onclick="redirectToDetails('/orders/details/@order.Id')">
-                        <td>@order.Number</td>
-                        <td>@order.OrderNumber</td>
-                        <td>@order.Status</td>
-                        <td>@order.CreatedDate</td>
-                    </tr>
+                <tr onclick="redirectToDetails('/orders/details/@order.Id')">
+                    <td>@order.Number</td>
+                    <td>@order.UserName</td>
+                    <td>@order.OrderNumber</td>
+                    <td>@order.Status</td>
+                    <td>@order.CreatedDate</td>
+                </tr>
                 }
             </tbody>
         </table>
