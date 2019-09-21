@@ -65,6 +65,7 @@ namespace CrazyPetals.Entities.WebViewModels
         // fields for edit
         public List<IdNameViewModel> EditViewImageList { get; set; } = new List<IdNameViewModel>();
         public string DeleteIds { get; set; }
+        public int MainImageId { get; set; }
     }
 
 }

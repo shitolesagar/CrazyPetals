@@ -8,5 +8,6 @@ namespace CrazyPetals.Entities.Filters
     {
         public int CategoryId { get; set; }
         public int SubategoryId { get; set; }
+        public string PublishStatus { get; set; }
     }
 }

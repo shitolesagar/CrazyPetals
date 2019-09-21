@@ -17,5 +17,7 @@ namespace CrazyPetals.Entities.WebViewModels
         public int Id { get; set; }
         public string Name { get; set; }
         public string CategoryName { get; set; }
+        public string PublishStatus { get; set; }
+        public string FilterName { get; set; }
     }
 }

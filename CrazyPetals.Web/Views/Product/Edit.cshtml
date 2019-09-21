@@ -17,7 +17,7 @@
     <div class="row block-container m-1">
         <div class="col-lg-3 col-md-4 col-sm-5">
             <div id="mainImgDiv" class="img-wrapper m-b-20">
-                <img src="~/images/icons/close.png" onclick="onRemoveImageClick('mainImgDiv',true,'Image','0')" class="close-icon iconWidth-25 cursor-pointer">
+                <img src="~/images/icons/close.png" onclick="onRemoveImageClick('mainImgDiv',true,'Image','@Model.MainImageId')" class="close-icon iconWidth-25 cursor-pointer">
                 <img src="@Model.MainImageText" style="height: 250px;" class="img-responsive  display-inline m-r-25 detailMain-img" />
             </div>
             <input type="file" class="display-none" onchange="ValidateAndSetImage('mainImgDiv', this, true, 'Image')" asp-for="Image" accept="image">
