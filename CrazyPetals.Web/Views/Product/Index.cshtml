@@ -10,7 +10,7 @@
 }
 
 
-<div class="row mb-3" id="filterRow">
+<div class="row mb-3" id="filterRow"  style="display:none">
     <div class="col-lg-4 col-sm-4">
         <div class="form-group  position-relative">
             <span class="f-bold display-inline f-18 dropDownLabel-mob">Status:</span>
@@ -27,7 +27,7 @@
         <div class="form-group  position-relative">
             <span class="f-bold display-inline f-18 dropDownLabel-mob">Category:</span>
             <div class="my-custom-select">
-                <select onchange="filter(this)" class="form-control select-dropDown" id="ddlCategory">
+                <select onchange="filter(this)" class="form-control select-dropDown" asp-items="ViewBag.CategoryList" id="ddlCategory">
                     <option value="">select</option>
                 </select>
             </div>
@@ -58,5 +58,8 @@
         if (message) {
             ShowSlackbarSucessMessage(message);
         }
+    // this is called form main method to hide or show filters
+    showHideFilters("filterRow");
     </script>
+
 }

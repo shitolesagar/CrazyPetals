@@ -9,7 +9,7 @@
     var message = TempData["Message"] ?? string.Empty;
 }
 
-<div class="row" id="filterRow">
+<div class="row" id="filterRow"  style="display:none">
     <div class="col-lg-4 col-sm-4">
         <div class="form-group  position-relative">
             <span class="f-bold display-inline f-18 dropDownLabel-mob">Status:</span>
@@ -81,36 +81,8 @@
         }
 
 
-
-
-        function reinitializeDropdown() {
-            $(".selectpicker").selectpicker('refresh');
-        }
-
-
-
-
-
-
-        function showHideFilters(elementId) {
-            if ($("#tblContent > table").length <= 0) {
-                hideElement(elementId);
-            } else {
-                showElement(elementId);
-            }
-        }
-
-        function showElement(elementId) {
-            if ($("#" + elementId).not(":visible")) {
-                $("#" + elementId).show();
-            }
-        }
-
-        function hideElement(elementId) {
-            if ($("#" + elementId).is(":visible")) {
-                $("#" + elementId).hide();
-            }
-        }
+        // this is called form main method to hide or show filters
+        showHideFilters("filterRow");
     </script>
 
 }

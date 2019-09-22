@@ -23,8 +23,10 @@ namespace CrazyPetals.Web.Controllers
             _fileServices = fileServices;
             _filterService = filterService;
         }
-        public IActionResult Index(ProductFilter filter)
+        public async Task<IActionResult> Index(ProductFilter filter)
         {
+            List<IdNameViewModel> categoryList = await _productService.GetCategoryListAsync();
+            ViewBag.CategoryList = categoryList.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name });
             ViewBag.Filters = filter;
             return View();
         }

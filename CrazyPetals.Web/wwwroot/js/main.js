@@ -78,3 +78,26 @@ function OpenDeleteConfirmBox(id) {
 function goToPreviousPage() {
     window.history.back();
 }
+
+
+// show or hide filters 
+function showHideFilters(elementId) {
+    if ($("#indexPartialContent > table").length <= 0) {
+        hideElement(elementId);
+    } else {
+        showElement(elementId);
+    }
+}
+
+function showElement(elementId) {
+    if ($("#" + elementId).not(":visible")) {
+        $("#" + elementId).show();
+    }
+}
+
+function hideElement(elementId) {
+    if ($("#" + elementId).is(":visible")) {
+        $("#" + elementId).hide();
+    }
+}
+// show or hide filters end

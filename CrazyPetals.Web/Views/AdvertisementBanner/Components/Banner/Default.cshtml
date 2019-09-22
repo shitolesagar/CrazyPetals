@@ -14,7 +14,6 @@
             }
             else
             {
-                @*<img src="~/images/search@2x.png" alt="Sorry" />*@
                 <p class="m-t-25 f-22 f-bold">
                     No Result Found!
                 </p>
@@ -48,6 +47,11 @@
         </div>
         <!--Pagination-->
         <partial name="_pagination" model="Model.PagingData" />
-
+        // following table helps in hiding or showing filter when we have empty state
+        <table class="display-none">
+            <tr>
+                <td></td>
+            </tr>
+        </table>
     }
 </div>
