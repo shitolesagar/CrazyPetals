@@ -691,6 +691,7 @@
       },
       "CrazyPetals.Repository/1.0.0": {
         "dependencies": {
+          "CrazyPetals.Abstraction": "1.0.0",
           "CrazyPetals.Entities": "1.0.0",
           "Microsoft.EntityFrameworkCore": "2.2.6",
           "Microsoft.EntityFrameworkCore.Design": "2.2.6",
