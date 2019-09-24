@@ -185,7 +185,9 @@ namespace CrazyPetals.Service
                 Id = x.Id,
                 Name = x.Name,
                 CategoryName = x.Category.Name,
+                PublishStatus = x.IsPublish ? "Published" : "Unpublished",
                 Number = ResponseModel.PagingData.FromRecord + index,
+                FilterName = x.Filter?.Name
             }).ToList();
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
             return ResponseModel;
@@ -266,6 +268,7 @@ namespace CrazyPetals.Service
             {
                 response = new AddProductViewModel()
                 {
+                    Id = record.Id,
                     Accessories = record.IncludedAccessories,
                     CategoryId = record.CategoryId,
                     DeliveryTime = record.DeliveryTime,
@@ -300,6 +303,11 @@ namespace CrazyPetals.Service
                             Name = img.Image
                         };
                         response.EditViewImageList.Add(model);
+                    }
+                    else
+                    {
+                        response.MainImageText = img.Image;
+                        response.MainImageId = img.Id;
                     }
                 }
 

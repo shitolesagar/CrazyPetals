@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrazyPetals.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190918064037_DataSedding")]
-    partial class DataSedding
+    [Migration("20190924111802_Delete behaviour changed to set Null")]
+    partial class DeletebehaviourchangedtosetNull
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,6 +80,8 @@ namespace CrazyPetals.Repository.Migrations
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Email");
+
+                    b.Property<bool>("IsOTPVerified");
 
                     b.Property<string>("MobileNumber");
 
@@ -398,7 +400,7 @@ namespace CrazyPetals.Repository.Migrations
                     b.Property<string>("AppId")
                         .HasMaxLength(30);
 
-                    b.Property<int>("CategoryId");
+                    b.Property<int?>("CategoryId");
 
                     b.Property<DateTime>("CreatedDate");
 
@@ -705,7 +707,7 @@ namespace CrazyPetals.Repository.Migrations
                     b.HasOne("CrazyPetals.Entities.Database.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("CrazyPetals.Entities.Database.Filter", "Filter")
                         .WithMany("Products")

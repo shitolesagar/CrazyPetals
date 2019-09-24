@@ -8,6 +8,7 @@ namespace CrazyPetals.Entities.Constant
     {
         public static string LoginError { get; } = "Please enter valid email address or password";
         public static string AppId { get; } = "CrazyPetals";
+        public static string DatabaseName { get; } = "CrazyPetalsDB_testing";
 
         public static readonly string ServerError = "Something went wrong.";
         public static readonly string DeletedMessage = "Record Deleted Successfully";

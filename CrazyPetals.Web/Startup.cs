@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CrazyPetals.Abstraction;
 using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Abstraction.Service;
+using CrazyPetals.Entities;
 using CrazyPetals.Entities.Constant;
 using CrazyPetals.Repository;
 using CrazyPetals.Repository.Repositories;
@@ -35,10 +36,6 @@ namespace CrazyPetals.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-
-
-
-
             #region Services
             services.AddScoped<IFileServices, FileServices>();
             services.AddScoped<IWebCategoryService, WebCategoryService>();
@@ -50,7 +47,6 @@ namespace CrazyPetals.Web
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IEmailService, EmailService>();
             #endregion
-
 
             #region Repostiory
             services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -77,7 +73,7 @@ namespace CrazyPetals.Web
             services.AddDbContext<ApplicationDbContext>(options =>
                options.UseMySql(Configuration.GetConnectionString("defaultConnection")));
 
-            // services.Configure<AppSettings>(Configuration.GetSection("ApplicationSettings"));
+            services.Configure<AppSettings>(Configuration.GetSection("ApplicationSettings"));
 
             services.Configure<RequestLocalizationOptions>(options =>
             {

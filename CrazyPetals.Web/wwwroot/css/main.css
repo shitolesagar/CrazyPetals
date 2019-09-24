@@ -126,7 +126,6 @@ p {
         display: inline-block;
         float: right;
         padding: 15px 0px;
-        ;
         position: relative;
         user-select: none;
     }
@@ -185,10 +184,7 @@ p {
             .hamburger-menu .menu-btn:checked ~ .menu-icon .navicon:after {
                 top: 0;
             }
-        /* .hamburger-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
-  .hamburger-menu .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
-    top: 0;
-  } */
+        
         .hamburger-menu .menu-btn:checked ~ .menu-icon:has(.left_col) {
             width: 20px;
         }
@@ -1254,7 +1250,7 @@ ul li a, ul li a:active {
 .left_col {
     background: #C65589;
     border-right: solid 1px #D9DEE4;
-    width: 300px;
+    width: 200px;
     min-height: 100%;
     padding: 0;
     z-index: 1;
@@ -1372,13 +1368,13 @@ input[type=file] {
 .logo-wrapper {
     text-align: center;
     color: #fff;
-    padding-bottom: 30px;
+    padding-bottom: 15px;
 }
 
 
     .logo-wrapper img {
-        width: 220px;
-        margin: 0 auto;
+        width: 180px;
+        margin: 14px 0 0 0;
     }
 
 
@@ -1438,7 +1434,7 @@ input[type=file] {
     }
 
 .right_col {
-    margin-left: 300px;
+    margin-left: 200px;
     background: #f2f2f2;
     min-height: 100vh;
     padding-top: 75px;
@@ -1479,8 +1475,8 @@ input[type=file] {
     left: 0;
     top: 0;
     z-index: 99;
-    margin-left: 300px;
-    width: calc(100% - 300px);
+    margin-left: 200px;
+    width: calc(100% - 200px);
     transition: all .2s ease-out;
 }
 

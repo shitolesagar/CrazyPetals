@@ -29,6 +29,8 @@
                     <th>No.</th>
                     <th>Name</th>
                     <th>Category</th>
+                    <th>Filter</th>
+                    <th>Status</th>
                     <th class="text-center">Manage</th>
                 </tr>
             </thead>
@@ -39,9 +41,11 @@
                         <td>@product.Number</td>
                         <td>@product.Name</td>
                         <td>@product.CategoryName</td>
+                        <td>@(product.FilterName?? "NA")</td>
+                        <td>@product.PublishStatus</td>
                         <td class="text-center">
                             <span title="Edit" onclick="redirectToEdit('/product/edit/@product.Id')"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                            <span title="Delete" onclick="OpenDeleteConfirmBox('@product.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
+                            <span title="Remove" onclick="OpenDeleteConfirmBox('@product.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
                         </td>
                     </tr>
                 }

@@ -17,45 +17,45 @@
             <div class="menu_section">
                 <ul class="nav side-menu">
                     <li class="nav-item @(activetab == "product" ? "active" :"" )">
-                        <a title="Product" asp-controller="product" asp-action="index" data-toggle="tooltip" data-placement="right">
-                            <img src="~/images/icons/ic_products.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
-                            <span class="vertical-middle display-inline">Manage Products</span>
+                        <a title="Products" asp-controller="product" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/ic_products.png" class="ml-1 mr-3 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Products</span>
                         </a>
                     </li>
                     <li class="nav-item @(activetab == "order" ? "active" :"" )">
                         <a title="Orders" asp-controller="orders" asp-action="index" data-toggle="tooltip" data-placement="right">
-                            <img src="~/images/icons/ic_orders.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
-                            <span class="vertical-middle display-inline">Manage Orders</span>
+                            <img src="~/images/icons/ic_orders.png" class="ml-1 mr-3 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Orders</span>
                         </a>
                     </li>
                     <li class="nav-item @(activetab == "customer" ? "active" :"" )">
                         <a title="Users" asp-controller="customer" asp-action="index" data-toggle="tooltip" data-placement="right">
-                            <img src="~/images/icons/ic_customers.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
-                            <span class="vertical-middle display-inline">All Customers</span>
+                            <img src="~/images/icons/ic_customers.png" class="ml-1 mr-3 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Customers</span>
                         </a>
                     </li>
                     <li class="nav-item @(activetab == "dashboard" ? "active" :"" )">
                         <a title="Categories" asp-controller="category" asp-action="index" data-toggle="tooltip" data-placement="right">
-                            <img src="~/images/icons/ic_main_category.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
-                            <span class="vertical-middle display-inline">Main Categories</span>
+                            <img src="~/images/icons/ic_main_category.png" class="ml-1 mr-3 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Categories</span>
                         </a>
                     </li>
                     <li class="nav-item @(activetab == "filter" ? "active" :"" )">
-                        <a title="Filter" asp-controller="filter" asp-action="index" data-toggle="tooltip" data-placement="right">
-                            <img src="~/images/icons/ic_sub_category.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
-                            <span class="vertical-middle display-inline">Category Filters</span>
+                        <a title="Subcategories" asp-controller="filter" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/ic_sub_category.png" class="ml-1 mr-3 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Subcategories</span>
                         </a>
                     </li>
                     <li class="nav-item @(activetab == "banner" ? "active" :"" )">
-                        <a title="Advertisement Banner" asp-controller="advertisementbanner" asp-action="index" data-toggle="tooltip" data-placement="right">
-                            <img src="~/images/icons/ic_baner_ads.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
+                        <a title="Banner Ads" asp-controller="advertisementbanner" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/ic_baner_ads.png" class="ml-1 mr-3 vertical-middle hamburger-menu-icon" />
                             <span class="vertical-middle display-inline">Banner Ads</span>
                         </a>
                     </li>
                     <li class="nav-item @(activetab == "notification" ? "active" :"" )">
-                        <a title="Notification" asp-controller="notification" asp-action="index" data-toggle="tooltip" data-placement="right">
-                            <img src="~/images/icons/ic_notification.png" class="m-r-10 vertical-middle hamburger-menu-icon" />
-                            <span class="vertical-middle display-inline">Notification</span>
+                        <a title="Notifications" asp-controller="notification" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/ic_notification.png" class="ml-1 mr-3 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Notifications</span>
                         </a>
                     </li>
                 </ul>
@@ -63,8 +63,8 @@
         </div>
         <div class="signOut-section" data-toggle="tooltip" data-placement="right" title="Sign out">
             <span class="display-inline f-bold f-16 cursor-pointer" onclick="document.getElementById('logoutForm').submit()">
-                <img src="~/images/icons/log-out.png" class="m-r-5" />
-                <span class="display-inline vertical-middle hideMobile-txt">Sign out</span>
+                <img src="~/images/icons/log-out.png" class="ml-1 mr-3" />
+                <span class="display-inline vertical-middle hideMobile-txt">Logout</span>
             </span>
         </div>
     </div>

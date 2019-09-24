@@ -1,8 +1,8 @@
 ﻿@model CrazyPetals.Entities.WebViewModels.AddProductViewModel
 @{
     ViewData["Title"] = "Edit Product";
-    string stringHtml = "<span onclick=\"goToPreviousPage()\"><img src=\"/images/icons/arrow-left.png\" class=\"vertical-middle iconWidth-25 cursor-pointer m-r-20\"></span>";
-    stringHtml = stringHtml + "<span class=\"display-inline\">Edit Details</span>";
+    string stringHtml = "<a href=\"/product/details/"+ Model.Id+"\"><img src=\"/images/icons/arrow-left.png\" class=\"vertical-middle iconWidth-25 cursor-pointer m-r-20\"></a>";
+    stringHtml = stringHtml + "<span class=\"display-inline\">Edit Product</span>";
 
     ViewData["TabHeading"] = stringHtml;
     ViewData["ActiveTab"] = "product";
@@ -17,7 +17,7 @@
     <div class="row block-container m-1">
         <div class="col-lg-3 col-md-4 col-sm-5">
             <div id="mainImgDiv" class="img-wrapper m-b-20">
-                <img src="~/images/icons/close.png" onclick="onRemoveImageClick('mainImgDiv',true,'Image','0')" class="close-icon iconWidth-25 cursor-pointer">
+                <img src="~/images/icons/close.png" onclick="onRemoveImageClick('mainImgDiv',true,'Image','@Model.MainImageId')" class="close-icon iconWidth-25 cursor-pointer">
                 <img src="@Model.MainImageText" style="height: 250px;" class="img-responsive  display-inline m-r-25 detailMain-img" />
             </div>
             <input type="file" class="display-none" onchange="ValidateAndSetImage('mainImgDiv', this, true, 'Image')" asp-for="Image" accept="image">

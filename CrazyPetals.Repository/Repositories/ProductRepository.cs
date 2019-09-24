@@ -46,7 +46,7 @@ namespace CrazyPetals.Repository.Repositories
         {
             var query = Set.AsQueryable();
             query = query.Where(x => x.IsDeleted == false);
-            return query.Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
+            return query.Include(x => x.Filter).Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
         }
         public List<Product> GetAllProductForCategory(int CategoryId, string AppId, int skip, int take)
         {

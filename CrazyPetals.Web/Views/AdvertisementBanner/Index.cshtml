@@ -9,7 +9,7 @@
     var message = TempData["Message"] ?? string.Empty;
 }
 
-<div class="row" id="filterRow">
+<div class="row" id="filterRow" style="display:none">
     <div class="col-lg-4 col-sm-4">
         <div class="form-group  position-relative">
             <div class="my-custom-select">
@@ -63,5 +63,9 @@
                 });
             }
         }
+
+
+        // this is called form main method to hide or show filters
+        showHideFilters("filterRow");
     </script>
 }
