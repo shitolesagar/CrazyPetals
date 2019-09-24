@@ -92,6 +92,7 @@ namespace CrazyPetals.Web.Controllers
             if (model.Image4 != null)
                 model.Image4RelativePath = await _fileServices.SaveImageAndReturnRelativePath(model.Image4, FolderConstants.ProductsFolder);
             await _productService.EditProductSaveAsync(id, model);
+            TempData["Message"] = MessageConstants.ProductUpdateSuccessMessage;
             return RedirectToAction("details", new { id  });
         }
        

@@ -75,6 +75,7 @@ namespace CrazyPetals.Web.Controllers
             if (model.File != null)
                  relativePath = await _fileServices.SaveImageAndReturnRelativePath(model.File, FolderConstants.CategoriesFolder);
             await _categoryService.EditCategoryAsync(id, model, relativePath);
+            TempData["Message"] = MessageConstants.CategoryUpdateSuccessMessage;
             return RedirectToAction("Index");
         }
     }
