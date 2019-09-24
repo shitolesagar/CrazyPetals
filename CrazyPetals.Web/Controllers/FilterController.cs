@@ -77,6 +77,7 @@ namespace CrazyPetals.Web.Controllers
             if (!ModelState.IsValid)
                 return View();
             await _filterService.EditFilterAsync(id, model);
+            TempData["Message"] = MessageConstants.FilterUpdateSuccessMessage;
             return RedirectToAction("Index");
         }
     }

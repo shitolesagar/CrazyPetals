@@ -6,6 +6,7 @@
 
     ViewData["TabHeading"] = stringHtml;
     ViewData["ActiveTab"] = "product";
+    var message = TempData["Message"] ?? string.Empty;
 }
 
 
@@ -78,12 +79,12 @@
         </div>
         <div class="col-4">
             <label class="float-label">Available size</label>
-            <p class="f-bold"> @(Model.AvailableSizes?? "NA")</p>
+            <p class="f-bold"> @(Model.AvailableSizes ?? "NA")</p>
 
         </div>
         <div class="col-md-4">
             <label class="float-label">Product has a color varient?</label>
-            <p class="f-bold"> @(Model.AvailableColors?? "NA")</p>
+            <p class="f-bold"> @(Model.AvailableColors ?? "NA")</p>
 
         </div>
     </div>
@@ -189,4 +190,13 @@
 </div>
 
 <partial name="_deletePopup" />
+
+@section Scripts{
+    <script>
+        var message = "@message";
+        if (message) {
+            ShowSlackbarSucessMessage(message);
+    }
+    </script>
+}
 
