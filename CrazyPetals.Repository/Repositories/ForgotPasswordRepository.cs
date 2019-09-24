@@ -14,7 +14,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public ForgotPassword FindByEmailOtp(string Email, string OTP)
         {
-            return Set.Include(x => x.ApplicationUser).FirstOrDefault(x => x.OTP == OTP && DateTime.Now < x.ExpireDate && x.ApplicationUser.Email == Email);
+            return Set.Include(x => x.ApplicationUser).LastOrDefault(x=>x.ExpireDate > DateTime.Now && x.ApplicationUser.Email == Email);
         }
     }
 }

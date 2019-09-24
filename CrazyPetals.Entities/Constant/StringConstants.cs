@@ -64,5 +64,6 @@ namespace CrazyPetals.Entities.Constant
         public static readonly string Message = "Successfull";
         public static readonly string CPImageUrl = "http://165.22.60.17:9292";
         public static readonly string CPAPIImageUrl =  "http://165.22.60.17:9293";
+        public static readonly string OTPNotVerified = "Users OTP is not verified.";
     }
 }
