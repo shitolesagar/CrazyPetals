@@ -268,6 +268,7 @@ namespace CrazyPetals.Service
             {
                 response = new AddProductViewModel()
                 {
+                    Id = record.Id,
                     Accessories = record.IncludedAccessories,
                     CategoryId = record.CategoryId,
                     DeliveryTime = record.DeliveryTime,

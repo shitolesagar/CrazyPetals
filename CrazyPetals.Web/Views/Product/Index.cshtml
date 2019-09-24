@@ -58,8 +58,27 @@
         if (message) {
             ShowSlackbarSucessMessage(message);
         }
+
+        $(document).ready(function () {
+            $("#ddlCategory").change(function () {
+                $("#ddlFilter").val('');
+                $.get("/Product/GetSubcategoryDropList?categoryId=" + $("#ddlCategory").val(), function (data) {
+                    $("#ddlFilter").empty();
+                    $("#ddlFilter").append("<option value=''>select</option>")
+                    $.each(data, function (index, row) {
+                        $("#ddlFilter").append("<option value='" + row.id + "'>" + row.name + "</option>")
+                    })
+                })
+            })
+        });
+
+
+
+
     // this is called form main method to hide or show filters
-    showHideFilters("filterRow");
+        showHideFilters("filterRow");
+
+
     </script>
 
 }

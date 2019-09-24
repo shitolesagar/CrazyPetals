@@ -1,6 +1,7 @@
 ﻿using CrazyPetals.Abstraction;
 using CrazyPetals.Abstraction.Repositories;
 using CrazyPetals.Abstraction.Service;
+using CrazyPetals.Entities;
 using CrazyPetals.Entities.Constant;
 using CrazyPetals.Entities.Database;
 using CrazyPetals.Entities.Filters;
@@ -8,6 +9,7 @@ using CrazyPetals.Entities.Resources;
 using CrazyPetals.Entities.WebViewModels;
 using CrazyPetals.Service.ExtensionMethods;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ namespace CrazyPetals.Service
 {
     public class UserService : IUserService
     {
+        private readonly AppSettings _appSettings;
         private ICategoryRepository _categoryRepository;
         private IUnitOfWork _unitOfWork;
         private IEmailService _emailService;
@@ -34,9 +37,10 @@ namespace CrazyPetals.Service
         private IForgotPasswordRepository _forgotPasswordRepository;
 
 
-        public UserService(ICategoryRepository categoryRepository, IFileServices fileServices, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
+        public UserService(IOptions<AppSettings> option, ICategoryRepository categoryRepository, IFileServices fileServices, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            _appSettings = option.Value;
             _categoryRepository = categoryRepository;
             _productImagesRepository = productImagesRepository;
             _userAddressRepository = userAddressRepository;
@@ -282,7 +286,7 @@ namespace CrazyPetals.Service
             model = new CustomerDetailsViewModel()
             {
                 Email = user.Email,
-                ImagePath = StringConstants.CPAPIImageUrl + user.ProfilePicture,
+                ImagePath = _appSettings.WebApiBaseUrl + user.ProfilePicture,
                 MobileNumber = user.MobileNumber,
                 Id = user.Id,
                 Name = user.Name,

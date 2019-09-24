@@ -313,7 +313,6 @@
             $("#CategoryId").change(function () {
                 $.get("/Product/GetSubcategoryDropList?categoryId=" + $("#CategoryId").val(), function (data) {
                     $("#FilterId").empty();
-                    console.log(data);
                     $("#FilterId").append("<option value=''>Select</option>")
                     $.each(data, function (index, row) {
                         $("#FilterId").append("<option value='" + row.id + "'>" + row.name + "</option>")

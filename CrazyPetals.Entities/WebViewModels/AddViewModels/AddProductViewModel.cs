@@ -8,6 +8,7 @@ namespace CrazyPetals.Entities.WebViewModels
 {
     public class AddProductViewModel
     {
+        public int Id { get; set; }
         public IFormFile Image { get; set; }
         [Required(ErrorMessage = "Main image is required.")]
         public string MainImageText { get; set; }
@@ -31,7 +32,7 @@ namespace CrazyPetals.Entities.WebViewModels
         public string LongDescription { get; set; }
 
         [Required(ErrorMessage = "Category is required")]
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
         public int? FilterId { get; set; }
 

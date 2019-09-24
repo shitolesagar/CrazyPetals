@@ -72,7 +72,7 @@ namespace CrazyPetals.Web.Controllers
         {
             await GetDropdownData();
             AddProductViewModel model = await _productService.GetForEditAsync(id);
-            List<IdNameViewModel> FilterList = await _productService.GetFilterListForProductEditAsync(model.CategoryId);
+            List<IdNameViewModel> FilterList = await _productService.GetFilterListForProductEditAsync(model.CategoryId.Value);
             ViewBag.FiltersList = FilterList.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name });
             return View(model);
         }
@@ -92,7 +92,7 @@ namespace CrazyPetals.Web.Controllers
             if (model.Image4 != null)
                 model.Image4RelativePath = await _fileServices.SaveImageAndReturnRelativePath(model.Image4, FolderConstants.ProductsFolder);
             await _productService.EditProductSaveAsync(id, model);
-            return RedirectToAction("Index");
+            return RedirectToAction("details", new { id  });
         }
        
 

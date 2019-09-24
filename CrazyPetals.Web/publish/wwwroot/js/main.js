@@ -13,14 +13,14 @@
 $('#menu-btn').click(function () {
     if ($(this).prop("checked") == true) {
         $('.left_col').css('margin-left', '0px');
-        $('.top_nav,.right_col').css({ 'margin-left': '300px', 'width': 'calc(100% - 300px)' });
+        $('.top_nav,.right_col').css({ 'margin-left': '200px', 'width': 'calc(100% - 200px)' });
         $('.hamburger-menu-icon').css({ 'position': 'relative', 'right': '0' });
         $('.hideMobile-txt').css('display', 'inline-block');
         $('.signOut-section').css({ 'left': '20px', 'right': 'auto' });
         $('.dashboard-logo').css('visibility', 'visible');
     }
     else if ($(this).prop("checked") == false) {
-        $('.left_col').css('margin-left', '-250px');
+        $('.left_col').css('margin-left', '-150px');
         $('.top_nav,.right_col').css({ 'margin-left': '50px', 'width': 'calc(100% - 50px)' });
         $('.hamburger-menu-icon').css({ 'position': 'absolute', 'right': '0' });
         $('.signOut-section').css({ 'left': 'auto', 'right': '5px' });
@@ -78,3 +78,26 @@ function OpenDeleteConfirmBox(id) {
 function goToPreviousPage() {
     window.history.back();
 }
+
+
+// show or hide filters 
+function showHideFilters(elementId) {
+    if ($("#indexPartialContent > table").length <= 0) {
+        hideElement(elementId);
+    } else {
+        showElement(elementId);
+    }
+}
+
+function showElement(elementId) {
+    if ($("#" + elementId).not(":visible")) {
+        $("#" + elementId).show();
+    }
+}
+
+function hideElement(elementId) {
+    if ($("#" + elementId).is(":visible")) {
+        $("#" + elementId).hide();
+    }
+}
+// show or hide filters end

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrazyPetals.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190918064037_DataSedding")]
-    partial class DataSedding
+    [Migration("20190924104028_product category column optional")]
+    partial class productcategorycolumnoptional
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,6 +80,8 @@ namespace CrazyPetals.Repository.Migrations
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Email");
+
+                    b.Property<bool>("IsOTPVerified");
 
                     b.Property<string>("MobileNumber");
 
@@ -398,7 +400,7 @@ namespace CrazyPetals.Repository.Migrations
                     b.Property<string>("AppId")
                         .HasMaxLength(30);
 
-                    b.Property<int>("CategoryId");
+                    b.Property<int?>("CategoryId");
 
                     b.Property<DateTime>("CreatedDate");
 

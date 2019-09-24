@@ -29,7 +29,7 @@ namespace CrazyPetals.Entities.Database
         public string Precautions { get; set; }
         public string DeliveryTime { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         public Category Category { get; set; }
 
         public int? FilterId { get; set; }
