@@ -6,7 +6,7 @@ namespace CrazyPetals.Entities.Constant
 {
     public static class StringConstants
     {
-        public static string LoginError { get; } = "Email or Password is not valid.";
+        public static string LoginError { get; } = "Please enter valid email address or password";
         public static string AppId { get; } = "CrazyPetals";
         public static string DatabaseName { get; } = "CrazyPetalsDB_testing";
 
@@ -49,7 +49,7 @@ namespace CrazyPetals.Entities.Constant
         public static readonly string AddressAdded = "Address Added Successfully.";
         public static readonly string AddressUpdated = "Address Updated Successfully.";
         public static readonly string AddressDeleted = "Address Deleted Successfully.";
-        public static readonly string UserExist = "User with this EmailId already exist";
+        public static readonly string UserExist = "User with this Email Id already exist";
         public static readonly string UserSaved = "User saved Successfully.";
         public static readonly string UserVerified = "User verified successfully.";
         public static readonly string NoUser = "User not found";
@@ -65,5 +65,6 @@ namespace CrazyPetals.Entities.Constant
         public static readonly string Message = "Successfull";
         public static readonly string CPImageUrl = "http://165.22.60.17:9292";
         public static readonly string CPAPIImageUrl =  "http://165.22.60.17:9293";
+        public static readonly string OTPNotVerified = "Users OTP is not verified.";
     }
 }

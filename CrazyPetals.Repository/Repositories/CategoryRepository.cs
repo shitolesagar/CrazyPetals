@@ -22,7 +22,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public Task<List<Category>> GetCategoryList(int skip, int take, string AppId)
         {
-            return Set.Where(x => x.AppId == AppId).Skip(skip).Take(take).ToListAsync();
+            return Set.Where(x => x.AppId == AppId && x.Products.Where(y=>y.IsPublish == true && y.IsDeleted == false).Count() > 0).Skip(skip).Take(take).ToListAsync();
         }
 
         public Task<List<Category>> GetIndexViewRecordsAsync(FilterBase filter, int skip, int pageSize)
