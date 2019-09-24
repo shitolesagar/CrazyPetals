@@ -7,7 +7,7 @@
 }
 <div class="row">
     <div class="col-md-6 detail-container">
-        <form asp-controller="category" asp-action="edit" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
+        <form asp-controller="category" id="form" asp-action="edit" autocomplete="off" spellcheck="false" enctype="multipart/form-data">
             <div class="detail-container">
                 <img src="@Model.ImageUrl" id="tempImg" class="img-responsive detailView-img display-inline m-r-25" />
                 <label for="file-input" class="btn btn-primary">Change Image</label>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="detailBtn-group">
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" id="btnSubmit" class="btn btn-primary">Update</button>
                     <a asp-controller="category" asp-action="index" class="btn btn-secondary">Cancel</a>
                 </div>
             </div>
@@ -66,6 +66,15 @@
         });
         $.validator.setDefaults({
             ignore: [],
+        });
+
+        $(document).ready(function () {
+            $("#btnSubmit").click(function () {
+                if ($("#form").valid()) {
+                    $("#btnSubmit").prop("disabled", "true")
+                    $("#form").submit();
+                }
+            });
         });
     </script>
 }
