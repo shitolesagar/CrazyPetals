@@ -271,7 +271,7 @@ namespace CrazyPetals.WebApi.Controllers
         /// <param name="take"></param>
         /// <returns></returns>
         [Route("api/category/ApplyAllFilters")]
-        [HttpGet]
+        [HttpPost]
         public IActionResult ApplyAllFilters([FromBody]ApplyFiltersResource request)
         {
             var response = _categoryService.ApplyAllFilters(request);
