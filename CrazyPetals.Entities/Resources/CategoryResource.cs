@@ -10,7 +10,7 @@ namespace CrazyPetals.Entities.Resources
         public string PrimaryColor { get; set; }
         public string SecondryColor { get; set; }
         public string StatusBarColor { get; set; }
-        public string ToolBarColor { get; set; }
+        public string TertiaryColor { get; set; }
         public string TextColor { get; set; }
         public string CurrencySymbol { get; set; }
         public string AppName { get; set; }
