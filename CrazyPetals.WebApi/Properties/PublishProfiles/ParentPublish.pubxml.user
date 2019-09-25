@@ -6,6 +6,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
+<<<<<<< HEAD
     <_PublishTargetUrl>E:\NewCrazyPetals\webcrazypetals\CrazyPetals.WebApi\publish\</_PublishTargetUrl>
+=======
+    <_PublishTargetUrl>E:\CrazzyPettels\CrazyPetals.WebApi\publish\</_PublishTargetUrl>
+>>>>>>> 92ef50e9d947b1a8ac548d561cb47d1e7f518227
   </PropertyGroup>
 </Project>
