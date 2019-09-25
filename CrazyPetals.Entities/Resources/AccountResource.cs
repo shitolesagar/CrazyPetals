@@ -10,6 +10,7 @@ namespace CrazyPetals.Entities.Resources
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string AppId { get; set; }
+        public string Subject { get; set; }
     }
     public class LoginRequest : BaseRequest
     {

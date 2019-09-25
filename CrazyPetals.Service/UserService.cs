@@ -139,7 +139,7 @@ namespace CrazyPetals.Service
             var user = _applicationUserRepository.FindByEmail(request.EmailId);
             if (user != null && user.AppId == request.AppId)
             {
-                if(user.IsOTPVerified == false)
+                if (user.IsOTPVerified == false)
                 {
                     res.error = true;
                     res.Message = StringConstants.OTPNotVerified;
@@ -159,7 +159,7 @@ namespace CrazyPetals.Service
             return res;
         }
 
-        
+
         public ApplicationUser LoginAdmin(string email)
         {
             var user = _applicationUserRepository.FindByEmail(email);
@@ -193,8 +193,17 @@ namespace CrazyPetals.Service
                     };
                     _forgotPasswordRepository.Add(record);
                     _unitOfWork.SaveChanges();
-                    _emailService.SendEmail(user.Email, ForgotPasswordOtpMailBody(code), "Reset Password");
-                    res.Message = StringConstants.OTPSent;
+                    if (request.Subject == StringConstants.ResetPasswordOTP)
+                    {
+                        _emailService.SendEmail(user.Email, ForgotPasswordOtpMailBody(code), request.Subject);
+                        res.Message = StringConstants.ResetPasswordOTPSent;
+                    }
+                    else
+                    {
+                        _emailService.SendEmail(user.Email, RegistrationOtpMailBody(code), request.Subject);
+                        res.Message = StringConstants.RegistrationOTPSent;
+                    }
+                    
                     return res;
                 }
                 else
@@ -222,7 +231,7 @@ namespace CrazyPetals.Service
             var userData = _forgotPasswordRepository.FindByEmailOtp(request.Email, request.OTP);
             if (userData != null)
             {
-                if(userData.OTP == request.OTP)
+                if (userData.OTP == request.OTP)
                 {
                     var user = _applicationUserRepository.FindByEmail(request.Email);
                     user.IsOTPVerified = true;
@@ -388,7 +397,13 @@ namespace CrazyPetals.Service
 
         private string ForgotPasswordOtpMailBody(string otp)
         {
-            string msg = "<p>Hi User,</p>\r\n<p>&nbsp; &nbsp; &nbsp; To reset your password, OTP is " + otp + ". This OTP is valid for 30 min.</p>\r\n<p>Thanks &amp; Regards <br /> Crazy Petals</p>";
+            string msg = "<p>Dear Customer,</p>\r\n<p>&nbsp; &nbsp; &nbsp; To reset your password, OTP is " + otp + ". This OTP is valid for 30 min. Do not share it with anyone.</p>\r\n<p>Thanks &amp; Regards <br /> Crazy Petals Team</p>";
+            return msg;
+        }
+
+        private string RegistrationOtpMailBody(string otp)
+        {
+            string msg = "<p>Dear Customer,</p>\r\n<p>&nbsp; &nbsp; &nbsp; To register your account, please verify OTP as " + otp + ". This OTP is valid for 30 min. Do not share it with anyone.</p>\r\n<p>Thanks &amp; Regards <br /> Crazy Petals Team</p>";
             return msg;
         }
 
@@ -430,7 +445,7 @@ namespace CrazyPetals.Service
             return ResponseModel;
         }
 
-       
+
 
 
 
