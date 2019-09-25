@@ -66,7 +66,7 @@ namespace CrazyPetals.Service
                 PrimaryColor = appConfig.PrimaryColor,
                 SecondryColor = appConfig.SecondryColor,
                 StatusBarColor = appConfig.StatusBarColor,
-                ToolBarColor = appConfig.ToolBarColor,
+                TertiaryColor = appConfig.TertiaryColor,
                 TextColor = appConfig.TextColor,
                 AppName = appConfig.AppName,
                 AppLogoURL = StringConstants.CPImageUrl + appConfig.AppLogo,

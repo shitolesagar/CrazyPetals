@@ -155,7 +155,7 @@ namespace CrazyPetals.Service
                 return res;
             }
             res.error = true;
-            res.Message = StringConstants.ServerError;
+            res.Message = StringConstants.LoginError;
             return res;
         }
 
