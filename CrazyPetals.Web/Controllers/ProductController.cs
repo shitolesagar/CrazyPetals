@@ -31,6 +31,11 @@ namespace CrazyPetals.Web.Controllers
             return View();
         }
 
+        public IActionResult IndexPartial(ProductFilter filter)
+        {
+            return ViewComponent("Product", new { filter, IsPartial = true });
+        }
+
         public async Task<IActionResult> Add()
         {
             await GetDropdownData();

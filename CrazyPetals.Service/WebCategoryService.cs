@@ -39,7 +39,8 @@ namespace CrazyPetals.Service
         public async Task<int> DeleteCategory(int id)
         {
             Category category = _categoryRepository.FindCategoryWithoutProducts(id);
-            if (category == null)
+            int ProductNotDeletedCount = category.Products.Where(x => x.IsDeleted == false).Count();
+            if (ProductNotDeletedCount > 0)
                 return 0;
             else
             {

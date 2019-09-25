@@ -17,7 +17,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public Category FindCategoryWithoutProducts(int id)
         {
-            return Set.FirstOrDefault(x => x.Id == id && x.Products.Count <= 0);
+            return Set.Include(x=>x.Products).FirstOrDefault(x => x.Id == id);
         }
 
         public Task<List<Category>> GetCategoryList(int skip, int take, string AppId)

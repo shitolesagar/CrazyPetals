@@ -12,72 +12,73 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/css/bootstrap-select.min.css">
 }
 <form asp-controller="product" asp-action="add" autocomplete="off" id="productForm" enctype="multipart/form-data">
-    <div class="row block-container m-1">
-        <div class="col-lg-3 col-md-4 col-sm-5">
-            <div id="mainImgDiv" class="img-wrapper m-b-20">
-                <img src="~/images/icons/ic_camera.png" class="img-responsive display-inline m-r-25 detailMain-img" />
-                <label class="file-wrapper text-center cursor-pointer" for="Image">Choose file</label>
+    <div class="block-container mt-2">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-5">
+                <div id="mainImgDiv" class="img-wrapper m-b-20">
+                    <img src="~/images/icons/ic_camera.png" class="img-responsive display-inline m-r-25 detailMain-img" />
+                    <label class="file-wrapper text-center cursor-pointer" for="Image">Choose file</label>
+                </div>
+                <input type="file" class="display-none" onchange="ValidateAndSetImage('mainImgDiv', this, true, 'Image')" asp-for="Image" accept="image">
+                <input type="text" class="display-none" asp-for="MainImageText" />
+                <span asp-validation-for="MainImageText" id="MainImageError" class="text-danger"></span>
             </div>
-            <input type="file" class="display-none" onchange="ValidateAndSetImage('mainImgDiv', this, true, 'Image')" asp-for="Image" accept="image">
-            <input type="text" class="display-none" asp-for="MainImageText" />
-            <span asp-validation-for="MainImageText" id="MainImageError" class="text-danger"></span>
-        </div>
-        <div class="col-lg-9 col-md-8 col-sm-7">
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div id="imgDiv1" class="img-wrapper m-t-25">
-                        <img src="~/images/icons/ic_camera.png" class="img-responsive  display-inline m-r-25 mainSub-img" />
-                        <label class="file-wrapper text-center cursor-pointer" for="Image1">Choose file</label>
-                    </div>
-                    <input type="file" class="display-none" onchange="ValidateAndSetImage('imgDiv1', this, false,'Image1')" asp-for="Image1" accept="image">
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div id="imgDiv2" class="img-wrapper m-t-25">
-                        <img src="~/images/icons/ic_camera.png" class="img-responsive  display-inline m-r-25 mainSub-img" />
-                        <label class="file-wrapper text-center cursor-pointer" for="Image2">Choose file</label>
-                    </div>
-                    <input type="file" class="display-none" onchange="ValidateAndSetImage('imgDiv2', this, false,'Image2')" asp-for="Image2" accept="image">
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div id="imgDiv3" class="img-wrapper m-t-25">
-                        <img src="~/images/icons/ic_camera.png" class="img-responsive  display-inline m-r-25 mainSub-img" />
-                        <label class="file-wrapper text-center cursor-pointer" for="Image3">Choose file</label>
-                    </div>
-                    <input type="file" class="display-none" onchange="ValidateAndSetImage('imgDiv3', this, false,'Image3')" asp-for="Image3" accept="image">
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div id="imgDiv4" class="img-wrapper m-t-25">
-                        <img src="~/images/icons/ic_camera.png" class="img-responsive  display-inline m-r-25 mainSub-img" />
-                        <label class="file-wrapper text-center cursor-pointer" for="Image4">Choose file</label>
-                    </div>
-                    <input type="file" class="display-none" onchange="ValidateAndSetImage('imgDiv4', this, false,'Image4')" asp-for="Image4" accept="image">
-                </div>
-            </div>
-        </div>
-        <div class="col-12">
-            <a class="f-bold cursor-pointer m-t-10 display-inline" data-toggle="collapse" data-target="#description">Product image requirements</a>
-            <div id="description" class="collapse">
+            <div class="col-lg-9 col-md-8 col-sm-7">
                 <div class="row">
-                    <div class="col-md-12 ">
-                        <p class=""> </p>
-                        <p class="m-t-10">
-                            Listings that are missing a main image will not appear in search or browse until you fix the listing.
-                            Choose images that are clear, information-rich, and attractive.
-                            Images must meet the following requirements:
-                        </p>
-                        <ul class="m-t-20 m-l-20">
-                            <li>Products must fill at least 85% of the image. Images must show only the product that is for sale, with few or no props and with no logos, watermarks, or inset images. Images may only contain text that is a part of the product.</li>
-                            <li>Main images must have a pure white background, must be a photo (not a drawing), and must not contain excluded accessories.</li>
-                            <li>Images must be at least 1000 pixels on the longest side and at least 500 pixels on the shortest side to be zoom-able.</li>
-                            <li>Images must not exceed 1000 pixels on the longest side.</li>
-                            <li>JPEG, PNG & JPG is the preferred image format.</li>
-                        </ul>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div id="imgDiv1" class="img-wrapper m-t-25">
+                            <img src="~/images/icons/ic_camera.png" class="img-responsive  display-inline m-r-25 mainSub-img" />
+                            <label class="file-wrapper text-center cursor-pointer" for="Image1">Choose file</label>
+                        </div>
+                        <input type="file" class="display-none" onchange="ValidateAndSetImage('imgDiv1', this, false,'Image1')" asp-for="Image1" accept="image">
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div id="imgDiv2" class="img-wrapper m-t-25">
+                            <img src="~/images/icons/ic_camera.png" class="img-responsive  display-inline m-r-25 mainSub-img" />
+                            <label class="file-wrapper text-center cursor-pointer" for="Image2">Choose file</label>
+                        </div>
+                        <input type="file" class="display-none" onchange="ValidateAndSetImage('imgDiv2', this, false,'Image2')" asp-for="Image2" accept="image">
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div id="imgDiv3" class="img-wrapper m-t-25">
+                            <img src="~/images/icons/ic_camera.png" class="img-responsive  display-inline m-r-25 mainSub-img" />
+                            <label class="file-wrapper text-center cursor-pointer" for="Image3">Choose file</label>
+                        </div>
+                        <input type="file" class="display-none" onchange="ValidateAndSetImage('imgDiv3', this, false,'Image3')" asp-for="Image3" accept="image">
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div id="imgDiv4" class="img-wrapper m-t-25">
+                            <img src="~/images/icons/ic_camera.png" class="img-responsive  display-inline m-r-25 mainSub-img" />
+                            <label class="file-wrapper text-center cursor-pointer" for="Image4">Choose file</label>
+                        </div>
+                        <input type="file" class="display-none" onchange="ValidateAndSetImage('imgDiv4', this, false,'Image4')" asp-for="Image4" accept="image">
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <a class="f-bold cursor-pointer m-t-10 display-inline" data-toggle="collapse" data-target="#description">Product image requirements</a>
+                <div id="description" class="collapse">
+                    <div class="row">
+                        <div class="col-md-12 ">
+                            <p class=""> </p>
+                            <p class="m-t-10">
+                                Listings that are missing a main image will not appear in search or browse until you fix the listing.
+                                Choose images that are clear, information-rich, and attractive.
+                                Images must meet the following requirements:
+                            </p>
+                            <ul class="m-t-20 m-l-20">
+                                <li>Products must fill at least 85% of the image. Images must show only the product that is for sale, with few or no props and with no logos, watermarks, or inset images. Images may only contain text that is a part of the product.</li>
+                                <li>Main images must have a pure white background, must be a photo (not a drawing), and must not contain excluded accessories.</li>
+                                <li>Images must be at least 1000 pixels on the longest side and at least 500 pixels on the shortest side to be zoom-able.</li>
+                                <li>Images must not exceed 1000 pixels on the longest side.</li>
+                                <li>JPEG, PNG & JPG is the preferred image format.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="block-container mt-3">
         <div class="row ">
             <div class="col-4">
@@ -124,7 +125,7 @@
                     <span asp-validation-for="FilterId" class="text-danger"></span>
                 </div>
             </div>
-            
+
             <div class="col-md-4">
                 <label class="float-label">Publish in mobile app?<span class="f-red">*</span></label>
                 <div class="my-custom-select width-100">
@@ -313,7 +314,7 @@
             $("#CategoryId").change(function () {
                 $.get("/Product/GetSubcategoryDropList?categoryId=" + $("#CategoryId").val(), function (data) {
                     $("#FilterId").empty();
-                    $("#FilterId").append("<option value=''>Select</option>")
+                    $("#FilterId").append("<option value=''>select</option>")
                     $.each(data, function (index, row) {
                         $("#FilterId").append("<option value='" + row.id + "'>" + row.name + "</option>")
                     })
@@ -323,7 +324,7 @@
             // following is used to initilize select picler
             $('.selectpicker').selectpicker({
                 selectedTextFormat: 'count > 5',
-                noneSelectedText: 'Select'
+                noneSelectedText: 'select'
             });
         })
         // This function execute when we click on (x) close icon

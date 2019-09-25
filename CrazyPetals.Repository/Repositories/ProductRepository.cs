@@ -37,15 +37,35 @@ namespace CrazyPetals.Repository.Repositories
 
         public int GetIndexViewTotalCount(ProductFilter filter)
         {
-            var query = Set.AsQueryable();
-            query = query.Where(x => x.IsDeleted == false);
+            var query = Set.Where(x => x.IsDeleted == false).AsQueryable();
+            if (!string.IsNullOrEmpty(filter.search))
+                query = query.Where(x => x.Name.ToLower().Contains(filter.search.ToLower()));
+            if (!string.IsNullOrEmpty(filter.PublishStatus))
+            {
+                bool status = filter.PublishStatus.ToLower() == "published";
+                query = query.Where(x => x.IsPublish == status);
+            }
+            if (filter.CategoryId != 0)
+                query = query.Where(x => x.CategoryId == filter.CategoryId);
+            if (filter.FilterId != 0)
+                query = query.Where(x => x.FilterId == filter.FilterId);
             return query.Count();
         }
 
         public Task<List<Product>> GetIndexViewRecordsAsync(ProductFilter filter, int skip, int pageSize)
         {
-            var query = Set.AsQueryable();
-            query = query.Where(x => x.IsDeleted == false);
+            var query = Set.Where(x => x.IsDeleted == false).AsQueryable();
+            if (!string.IsNullOrEmpty(filter.search))
+                query = query.Where(x => x.Name.ToLower().Contains(filter.search.ToLower()));
+            if(!string.IsNullOrEmpty(filter.PublishStatus))
+            {
+                bool status = filter.PublishStatus.ToLower() == "published";
+                query = query.Where(x => x.IsPublish == status);
+            }
+            if (filter.CategoryId != 0)
+                query = query.Where(x => x.CategoryId == filter.CategoryId);
+            if (filter.FilterId != 0)
+                query = query.Where(x => x.FilterId == filter.FilterId);
             return query.Include(x => x.Filter).Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
         }
         public List<Product> GetAllProductForCategory(int CategoryId, string AppId, int skip, int take)

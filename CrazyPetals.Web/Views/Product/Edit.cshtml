@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/css/bootstrap-select.min.css">
 }
 <form asp-controller="product" asp-action="edit" autocomplete="off" id="productForm" enctype="multipart/form-data">
-    <div class="row block-container m-1">
+    <div class="block-container mt-2">
+    <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-5">
             <div id="mainImgDiv" class="img-wrapper m-b-20">
                 <img src="~/images/icons/close.png" onclick="onRemoveImageClick('mainImgDiv',true,'Image','@Model.MainImageId')" class="close-icon iconWidth-25 cursor-pointer">
@@ -110,6 +111,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <div class="block-container mt-3">
@@ -348,7 +350,7 @@
                 $.get("/Product/GetSubcategoryDropList?categoryId=" + $("#CategoryId").val(), function (data) {
                     $("#FilterId").empty();
                     console.log(data);
-                    $("#FilterId").append("<option value=''>Select</option>")
+                    $("#FilterId").append("<option value=''>select</option>")
                     $.each(data, function (index, row) {
                         $("#FilterId").append("<option value='" + row.id + "'>" + row.name + "</option>")
                     })
@@ -358,7 +360,7 @@
             // following is used to initilize select picler
             $('.selectpicker').selectpicker({
                 selectedTextFormat: 'count > 5',
-                noneSelectedText: 'Select'
+                noneSelectedText: 'select'
             });
         })
         var deleteIds = ''

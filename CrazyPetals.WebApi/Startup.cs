@@ -76,9 +76,7 @@ namespace CrazyPetals.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            
-
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }
