@@ -11,6 +11,7 @@ namespace CrazyPetals.Entities.Database
         public string PrimaryColor { get; set; }
         public string SecondryColor { get; set; }
         public string StatusBarColor { get; set; }
+        public string ToolBarColor { get; set; }
         public string TextColor { get; set; }
         public string CurrencySymbols { get; set; }
         public string AppName { get; set; }

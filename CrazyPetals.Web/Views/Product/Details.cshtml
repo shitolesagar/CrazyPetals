@@ -6,6 +6,7 @@
 
     ViewData["TabHeading"] = stringHtml;
     ViewData["ActiveTab"] = "product";
+    var message = TempData["Message"] ?? string.Empty;
 }
 
 
@@ -190,4 +191,13 @@
 </div>
 
 <partial name="_deletePopup" />
+
+@section Scripts{
+    <script>
+        var message = "@message";
+        if (message) {
+            ShowSlackbarSucessMessage(message);
+    }
+    </script>
+}
 
