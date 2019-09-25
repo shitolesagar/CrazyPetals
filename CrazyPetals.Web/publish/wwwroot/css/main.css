@@ -1816,7 +1816,7 @@ input[type=file] {
     .table > tbody > tr > td {
         border: none;
         font-size: 14px;
-        font-weight: 500;
+        /*font-weight: 500;*/
         vertical-align: middle;
         color: #000;
     }
