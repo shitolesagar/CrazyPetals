@@ -32,14 +32,14 @@ namespace CrazyPetals.Web.Controllers
         }
          
         [HttpPost]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync(int id, BannerFilter filter)
         {
             int deletedRows = await _bannerService.DeleteBanner(id);
             if (deletedRows > 0)
                 TempData["Message"] = MessageConstants.BannerDeleteSuccessMessage;
             else
                 TempData["Message"] = MessageConstants.BannerDeleteFailedMessage;
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { filter.showExpired, filter.showInActive });
         }
 
         public IActionResult Add()
