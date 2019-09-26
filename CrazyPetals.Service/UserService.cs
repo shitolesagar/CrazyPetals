@@ -307,7 +307,7 @@ namespace CrazyPetals.Service
             model = new CustomerDetailsViewModel()
             {
                 Email = user.Email,
-                ImagePath = _appSettings.WebApiBaseUrl + user.ProfilePicture,
+                ImagePath = string.IsNullOrEmpty(user.ProfilePicture)? null : _appSettings.WebApiBaseUrl + user.ProfilePicture,
                 MobileNumber = user.MobileNumber,
                 Id = user.Id,
                 Name = user.Name,
