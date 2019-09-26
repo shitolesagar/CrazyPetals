@@ -67,7 +67,7 @@ body {
     overflow-x: hidden;
     background: #fff;
     font-size: 14px;
-    font-weight: 300;
+    /*font-weight: 300;*/
     color: #000018;
     padding: 0px;
     margin: 0;
@@ -1523,14 +1523,23 @@ input[type=file] {
     width: 100%;
 }
 
-    .nav.side-menu > li.active > a {
+    /*.nav.side-menu > li.active > a {
         background: #005389;
-        /* background: linear-gradient(to right, #3b29b3,#bb68d4); */
         color: #fff;
         font-weight: 400;
         border-left: 0px;
         border: 1px solid #fff;
         box-shadow: inset 0px 11px 8px -10px #fff, inset 0px -8px 8px -10px #fff;
+    }*/
+
+    .nav.side-menu > li.active > a {
+        background: #005389;
+        background: linear-gradient(to right, #005389,#C65589);
+        color: #fff;
+        font-weight: 400;
+        border-left: 0px;
+        /* border: 1px solid #fff; */
+        box-shadow: inset 0px 11px 8px -10px #80808087, inset 0px -8px 8px -10px #80808087;
     }
 
     /*.nav.side-menu > li > a:hover,
@@ -1859,7 +1868,7 @@ input[type=file] {
 }
 
 .table > tbody > tr td:first-child {
-    border-radius: 5px 0 0 10px;
+    border-radius: 5px 0 0 5px;
 }
 
 .table > tbody > tr td:last-child {
@@ -3066,13 +3075,13 @@ img.profile-details {
 }
 
 .table-hover tbody tr:hover {
-    background-color: #005389;
+    background-color: #8080802e;
     cursor: pointer;
     color: #fff;
 }
 
     .table-hover tbody tr:hover > td {
-        color: #fff;
+        font-weight:500;
     }
 
 my-nav-item, my-nav-item > a {

@@ -22,7 +22,17 @@ namespace CrazyPetals.Web.Controllers
         }
         public IActionResult Index(BannerFilter filter)
         {
+            if (filter.showExpired || filter.showInActive)
+                ViewBag.IsPartial = true;
+            else
+                ViewBag.IsPartial = false;
             ViewBag.Filters = filter;
+            if (filter.showInActive)
+                ViewBag.ddlStausSelected = "InActive";
+            else if (filter.showExpired)
+                ViewBag.ddlStausSelected = "Expired";
+            else
+                ViewBag.ddlStausSelected = "Active";
             return View();
         }
 

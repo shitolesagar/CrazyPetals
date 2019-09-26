@@ -23,7 +23,7 @@ namespace CrazyPetals.Repository.Repositories
             }
             if (filter.StatusId != 0)
             {
-                query = query.Where(x => x.PaymentStatus.Id == filter.StatusId).OrderByDescending(x => x.Id);
+                query = query.Where(x => x.DeliveryStatusId == filter.StatusId).OrderByDescending(x => x.Id);
             }
             return query.OrderByDescending(x => x.CreatedDate).Skip(skip).Take(pageSize).ToListAsync();
         }
@@ -37,7 +37,7 @@ namespace CrazyPetals.Repository.Repositories
             }
             if (filter.StatusId != 0)
             {
-                query = query.Where(x => x.PaymentStatus.Id == filter.StatusId).OrderByDescending(x => x.Id);
+                query = query.Where(x => x.DeliveryStatusId == filter.StatusId).OrderByDescending(x => x.Id);
             }
             return query.Count();
         }

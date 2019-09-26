@@ -116,11 +116,11 @@
 
     <div class="block-container mt-3">
         <div class="row ">
-            <div class="col-4">
+            <div class="col-12">
                 <p class="f-bold f-16">Basic Details</p>
                 <div class="form-group m-t-10 float-container position-relative">
                     <a href="~/Views/Product/Add.cshtml"></a>
-                    <label class="control-label float-label">Product Name <span class="f-red">*</span></label>
+                    <label class="control-label float-label">Product Name<span class="f-red"> *</span></label>
                     <input type="text" asp-for="ProductName" class="form-control" maxlength="40" required placeholder="Product Name" />
                     <span asp-validation-for="ProductName" class="text-danger"></span>
                 </div>
@@ -129,7 +129,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group custom-textEditor">
-                    <label class="control-label float-label">Description<span class="f-red">*</span></label>
+                    <label class="control-label float-label">Description<span class="f-red"> *</span></label>
                     <textarea id="txtSummernote" asp-for="LongDescription"></textarea>
                     <span asp-validation-for="LongDescription" class="text-danger"></span>
                 </div>
@@ -138,7 +138,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group  position-relative ">
-                    <label class="float-label">Product has a category?<span class="f-red">*</span> </label>
+                    <label class="float-label">Product has a category?<span class="f-red"> *</span> </label>
                     <div class="my-custom-select width-100">
                         <select class="form-control select-dropDown" asp-for="CategoryId" value="" asp-items="ViewBag.CategoryList">
                             <option value="">select</option>
@@ -162,7 +162,7 @@
             </div>
 
             <div class="col-md-4">
-                <label class="float-label">Publish in mobile app?<span class="f-red">*</span></label>
+                <label class="float-label">Publish in mobile app?<span class="f-red"> *</span></label>
                 <div class="my-custom-select width-100">
                     <select class="form-control select-dropDown" asp-for="Status" value="">
                         <option value="">select</option>
@@ -236,7 +236,7 @@
             </div>
             <div class="col-2">
                 <div class="form-group m-t-10 float-container position-relative">
-                    <label class="control-label float-label">Offer Price <span class="f-red">*</span></label>
+                    <label class="control-label float-label">Offer Price <span class="f-red"> *</span></label>
                     <input type="text" asp-for="DiscountedPrice" class="form-control" placeholder="Offer Price" required />
                     <span asp-validation-for="DiscountedPrice" class="text-danger"></span>
                 </div>
@@ -427,7 +427,7 @@
             if (isMain) {
                 divString = '<img src="/images/icons/ic_camera.png" class="img-responsive display-inline m-r-25 detailMain-img" />';
                 //  divString = divString + '<input type="file" class="display-none" onchange="ValidateAndSetImage(\'' + parentDivId + '\', this, ' + isMain + ',\'' + fileControlName + '\')" id="' + fileControlName + '" name="' + fileControlName + '" accept="image">';
-                divString = divString + '<label class="file-wrapper text-center cursor-pointer" for="' + fileControlName + '">Choose file</label>';
+                divString = divString + '<label class="file-wrapper text-center cursor-pointer" for="' + fileControlName + '">Choose file <span class="f-red"> *</span></label>';
             } else {
                 divString = '<img src="/images/icons/ic_camera.png" class="img-responsive display-inline m-r-25 mainSub-img" />';
                 //   divString = divString + '<input type="file" class="display-none" onchange="ValidateAndSetImage(\'' + parentDivId + '\', this, ' + isMain + ',\'' + fileControlName + '\')" name="' + fileControlName + '" id="' + fileControlName + '" accept="image">';

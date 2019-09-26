@@ -18,7 +18,7 @@
             <div class="col-lg-3 col-md-4 col-sm-5">
                 <div id="mainImgDiv" class="img-wrapper m-b-20">
                     <img src="~/images/icons/ic_camera.png" class="img-responsive display-inline m-r-25 detailMain-img" />
-                    <label class="file-wrapper text-center cursor-pointer" for="Image">Choose file</label>
+                    <label class="file-wrapper text-center cursor-pointer" for="Image">Choose file <span class="f-red"> *</span></label>
                 </div>
                 <input type="file" class="display-none" onchange="ValidateAndSetImage('mainImgDiv', this, true, 'Image')" asp-for="Image" accept="image">
                 <input type="text" class="display-none" asp-for="MainImageText" />
@@ -29,7 +29,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div id="imgDiv1" class="img-wrapper m-t-25">
                             <img src="~/images/icons/ic_camera.png" class="img-responsive  display-inline m-r-25 mainSub-img" />
-                            <label class="file-wrapper text-center cursor-pointer" for="Image1">Choose file</label>
+                            <label class="file-wrapper text-center cursor-pointer" for="Image1">Choose file </label>
                         </div>
                         <input type="file" class="display-none" onchange="ValidateAndSetImage('imgDiv1', this, false,'Image1')" asp-for="Image1" accept="image">
                     </div>
@@ -86,7 +86,7 @@
                 <p class="f-bold f-16">Basic Details</p>
                 <div class="form-group m-t-10 float-container position-relative">
                     <a href="~/Views/Product/Add.cshtml"></a>
-                    <label class="control-label float-label">Product Name <span class="f-red">*</span></label>
+                    <label class="control-label float-label">Product Name<span class="f-red"> *</span></label>
                     <input type="text" asp-for="ProductName" class="form-control" maxlength="40" required placeholder="Product Name" />
                     <span asp-validation-for="ProductName" class="text-danger"></span>
                 </div>
@@ -95,7 +95,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group custom-textEditor">
-                    <label class="control-label float-label">Description<span class="f-red">*</span></label>
+                    <label class="control-label float-label">Description<span class="f-red"> *</span></label>
                     <textarea id="txtSummernote" asp-for="LongDescription"></textarea>
                     <span asp-validation-for="LongDescription" class="text-danger"></span>
                 </div>
@@ -104,7 +104,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group  position-relative ">
-                    <label class="float-label">Product has a category?<span class="f-red">*</span> </label>
+                    <label class="float-label">Product has a category?<span class="f-red"> *</span> </label>
                     <div class="my-custom-select width-100">
                         <select class="form-control select-dropDown" asp-for="CategoryId" value="" asp-items="ViewBag.CategoryList">
                             <option value="">select</option>
@@ -128,7 +128,7 @@
             </div>
 
             <div class="col-md-4">
-                <label class="float-label">Publish in mobile app?<span class="f-red">*</span></label>
+                <label class="float-label">Publish in mobile app?<span class="f-red"> *</span></label>
                 <div class="my-custom-select width-100">
                     <select class="form-control select-dropDown" asp-for="Status" value="">
                         <option value="">select</option>
@@ -202,7 +202,7 @@
             </div>
             <div class="col-2">
                 <div class="form-group m-t-10 float-container position-relative">
-                    <label class="control-label float-label">Offer Price <span class="f-red">*</span></label>
+                    <label class="control-label float-label">Offer Price<span class="f-red"> *</span></label>
                     <input type="text" asp-for="DiscountedPrice" class="form-control" placeholder="Offer Price" required />
                     <span asp-validation-for="DiscountedPrice" class="text-danger"></span>
                 </div>
@@ -383,7 +383,7 @@
             if (isMain) {
                 divString = '<img src="/images/icons/ic_camera.png" class="img-responsive display-inline m-r-25 detailMain-img" />';
                 //  divString = divString + '<input type="file" class="display-none" onchange="ValidateAndSetImage(\'' + parentDivId + '\', this, ' + isMain + ',\'' + fileControlName + '\')" id="' + fileControlName + '" name="' + fileControlName + '" accept="image">';
-                divString = divString + '<label class="file-wrapper text-center cursor-pointer" for="' + fileControlName + '">Choose file</label>';
+                divString = divString + '<label class="file-wrapper text-center cursor-pointer" for="' + fileControlName + '">Choose file <span class="f-red"> *</span></label>';
             } else {
                 divString = '<img src="/images/icons/ic_camera.png" class="img-responsive display-inline m-r-25 mainSub-img" />';
                 //   divString = divString + '<input type="file" class="display-none" onchange="ValidateAndSetImage(\'' + parentDivId + '\', this, ' + isMain + ',\'' + fileControlName + '\')" name="' + fileControlName + '" id="' + fileControlName + '" accept="image">';
