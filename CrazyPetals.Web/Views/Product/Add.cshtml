@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="col-12">
-                <a class="f-bold cursor-pointer m-t-10 display-inline" data-toggle="collapse" data-target="#description">Product image requirements</a>
+                <a class="f-bold cursor-pointer text-primary m-t-10 display-inline" data-toggle="collapse" data-target="#description">Product image requirements</a>
                 <div id="description" class="collapse">
                     <div class="row">
                         <div class="col-md-12 ">
@@ -70,8 +70,7 @@
                             <ul class="m-t-20 m-l-20">
                                 <li>Products must fill at least 85% of the image. Images must show only the product that is for sale, with few or no props and with no logos, watermarks, or inset images. Images may only contain text that is a part of the product.</li>
                                 <li>Main images must have a pure white background, must be a photo (not a drawing), and must not contain excluded accessories.</li>
-                                <li>Images must be at least 1000 pixels on the longest side and at least 500 pixels on the shortest side to be zoom-able.</li>
-                                <li>Images must not exceed 1000 pixels on the longest side.</li>
+                                <li>Images must not be more than 1MB size</li>
                                 <li>JPEG, PNG & JPG is the preferred image format.</li>
                             </ul>
                         </div>
@@ -152,6 +151,13 @@
                 </div>
                 <span asp-validation-for="SelectedColorIds" class="text-danger"></span>
             </div>
+            <div class="col-md-4">
+                <div class="form-group float-container position-relative">
+                    <label class="control-label float-label">Material Type</label>
+                    <input type="text" asp-for="MaterialType" class="form-control" placeholder="Material Type" />
+                    <span asp-validation-for="MaterialType" class="text-danger"></span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -213,13 +219,7 @@
     <div class="block-container m-t-20">
         <p class="f-bold f-16">Other details</p>
         <div class="row">
-            <div class="col-md-6">
-                <div class="form-group m-t-10  float-container position-relative">
-                    <label class="control-label float-label">Material Type</label>
-                    <input type="text" asp-for="MaterialType" class="form-control" placeholder="Material Type" />
-                    <span asp-validation-for="MaterialType" class="text-danger"></span>
-                </div>
-            </div>
+            
             <div class="col-md-6">
                 <div class="form-group m-t-10  float-container position-relative">
                     <label class="control-label float-label">Approx. Delivery Time</label>

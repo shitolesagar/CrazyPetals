@@ -3123,3 +3123,7 @@ my-nav-item, my-nav-item > a {
     background: #fff;
     padding: 8px;
 }
+
+.bootstrap-select .bs-ok-default:after {
+    border-width: 0 0.12em .12em 0;
+}
