@@ -59,12 +59,15 @@ namespace CrazyPetals.Entities.Constant
         public static readonly string LibNotFound = "Library not found.";
         public static readonly string OrderPlaced = "Order Placed Successfully.";
         public static readonly string UserNotAuthorised = "You are not Authorize. Please contact Support team";
-        public static readonly string OTPSent = "Reset password Code is sent on your registered mail";
+        public static readonly string ResetPasswordOTPSent = "Reset password Code is sent on your registered mail";
+        public static readonly string RegistrationOTPSent = "Registration Code is sent on your registered mail";
         public static readonly string OTPNotMatch = "Could not verify OTP";
         public static readonly string OTPMatch = "OTP verified successfully";
         public static readonly string Message = "Successfull";
         public static readonly string CPImageUrl = "http://165.22.60.17:9292";
         public static readonly string CPAPIImageUrl =  "http://165.22.60.17:9293";
         public static readonly string OTPNotVerified = "Users OTP is not verified.";
+        public static readonly string OTPConfirmation = "Crazypetals OTP Confirmation";
+        public static readonly string ResetPasswordOTP = "Crazypetals Reset Password";
     }
 }
