@@ -124,6 +124,7 @@
 }
 @section Scripts {
     <script>
+       
         var orderId = '@Model.Id';
 
         function filter(obj) {
@@ -140,10 +141,12 @@
             $.get(url, function (data) {
                 $(".loader-wrapper").hide();
             });
-            var message = "Status Updated Successfully";
-        if (message) {
-            ShowSlackbarSucessMessage(message);
+            showMessage();
         }
+
+        function showMessage() {
+            var message = "Status Updated Successfully";
+            ShowSlackbarSucessMessage(message);
         }
          var message = '@message';
         if (message)

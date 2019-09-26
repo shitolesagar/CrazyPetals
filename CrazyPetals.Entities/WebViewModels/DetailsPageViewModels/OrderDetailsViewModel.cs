@@ -30,7 +30,7 @@ namespace CrazyPetals.Entities.WebViewModels.DetailsPageViewModels
     public class OrderDetailsModel
     {
         public string ProductName { get; set; }
-        public int OriginalPrice { get; set; }
+        public string OriginalPrice { get; set; }
         public int DiscountedPrice { get; set; }
         public int Quantity { get; set; }
         public int TotalPrice { get; set; }
