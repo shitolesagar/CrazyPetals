@@ -1,7 +1,8 @@
 ﻿@model CrazyPetals.Entities.WebViewModels.AddFilterViewModel
 @{
     ViewData["Title"] = "Edit Filter";
-    string stringHtml = "<span class=\"display-inline\">Edit Filter</span>";
+    string stringHtml = "<span onclick=\"goToPreviousPage()\"><img src=\"/images/icons/arrow-left.png\" class=\"vertical-middle iconWidth-25 cursor-pointer m-r-20\"></span>";
+    stringHtml = stringHtml + "<span class=\"display-inline\">Edit Filter</span>";
     ViewData["TabHeading"] = stringHtml;
     ViewData["ActiveTab"] = "filter";
 }
