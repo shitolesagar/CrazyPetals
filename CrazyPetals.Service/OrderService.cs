@@ -75,7 +75,7 @@ namespace CrazyPetals.Service
                 GSTPrice = Math.Round(order.GSTPrice, 2) ,
                 DeliveryCharges = Math.Round(order.DeliveryCharges, 2),
                 OrderNumber = order.OrderNumber,
-                CreatedDate = DateExtension.ToCrazyPattelsPattern(order.CreatedDate),
+                CreatedDate = order.CreatedDate.ToString("dd-MM-yyyy, hh:mm tt"),
                 ApplicationUser = order.ApplicationUser.Name,
                 DeliveryStatusId = order.DeliveryStatusId,
                 PaymentStatus = order.PaymentStatus.Status,
@@ -91,7 +91,7 @@ namespace CrazyPetals.Service
             List<OrderDetails> Orders = _orderDetailsRepository.GetAllItemsForOrder(id);
             model.OrderDetails = Orders.Select((x, index) => new OrderDetailsModel()
             {
-                OriginalPrice = x.OriginalPrice,
+                OriginalPrice = x.OriginalPrice == 0 ? "NA": x.OriginalPrice.ToString(),
                 DiscountedPrice = x.DiscountedPrice,
                 Quantity = x.Quantity,
                 ProductName = x.Product.Name,
