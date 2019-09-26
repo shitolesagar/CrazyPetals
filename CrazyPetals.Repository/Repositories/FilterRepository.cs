@@ -24,7 +24,7 @@ namespace CrazyPetals.Repository.Repositories
             var query = Set.AsQueryable();
             if (filter.CategoryId != 0)
                 query = query.Where(x => x.CategoryId == filter.CategoryId);
-            return query.Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
+            return query.Include(x => x.Category).OrderByDescending(x => x.Id).Skip(skip).Take(pageSize).ToListAsync();
         }
 
         public int GetIndexViewTotalCount(FilterForFilterModule filter)

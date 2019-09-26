@@ -16,16 +16,16 @@
         <div id="sidebar-menu" class="main_menu_side main_menu ">
             <div class="menu_section">
                 <ul class="nav side-menu">
-                    <li class="nav-item @(activetab == "product" ? "active" :"" )">
-                        <a title="Products" asp-controller="product" asp-action="index" data-toggle="tooltip" data-placement="right">
-                            <img src="~/images/icons/ic_products.png" class="ml-1 mr-3 vertical-middle hamburger-menu-icon" />
-                            <span class="vertical-middle display-inline">Products</span>
-                        </a>
-                    </li>
                     <li class="nav-item @(activetab == "order" ? "active" :"" )">
                         <a title="Orders" asp-controller="orders" asp-action="index" data-toggle="tooltip" data-placement="right">
                             <img src="~/images/icons/ic_orders.png" class="ml-1 mr-3 vertical-middle hamburger-menu-icon" />
                             <span class="vertical-middle display-inline">Orders</span>
+                        </a>
+                    </li>
+                    <li class="nav-item @(activetab == "product" ? "active" :"" )">
+                        <a title="Products" asp-controller="product" asp-action="index" data-toggle="tooltip" data-placement="right">
+                            <img src="~/images/icons/ic_products.png" class="ml-1 mr-3 vertical-middle hamburger-menu-icon" />
+                            <span class="vertical-middle display-inline">Products</span>
                         </a>
                     </li>
                     <li class="nav-item @(activetab == "customer" ? "active" :"" )">

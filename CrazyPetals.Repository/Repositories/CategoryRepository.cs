@@ -27,7 +27,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public Task<List<Category>> GetIndexViewRecordsAsync(FilterBase filter, int skip, int pageSize)
         {
-            return Set.Skip(skip).Take(pageSize).ToListAsync();
+            return Set.OrderByDescending(x => x.Id).Skip(skip).Take(pageSize).ToListAsync();
         }
 
         public int GetIndexViewTotalCount(FilterBase filter)

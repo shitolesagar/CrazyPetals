@@ -19,11 +19,12 @@ namespace CrazyPetals.Repository.Repositories
             var query = Set.Include(x => x.DeliveryStatus).Include(x => x.ApplicationUser).AsQueryable();
             if (!string.IsNullOrEmpty(filter.search))
             {
-                query = query.Where(x => x.OrderNumber.ToLower().Contains(filter.search.ToLower()) );
+                filter.search = filter.search.ToLower();
+                query = query.Where(x => x.OrderNumber.ToLower().Contains(filter.search) || x.ApplicationUser.Email.ToLower().Contains(filter.search) );
             }
             if (filter.StatusId != 0)
             {
-                query = query.Where(x => x.DeliveryStatusId == filter.StatusId).OrderByDescending(x => x.Id);
+                query = query.Where(x => x.DeliveryStatusId == filter.StatusId);
             }
             return query.OrderByDescending(x => x.CreatedDate).Skip(skip).Take(pageSize).ToListAsync();
         }
@@ -33,7 +34,8 @@ namespace CrazyPetals.Repository.Repositories
             var query = Set.Include(x => x.DeliveryStatus).AsQueryable();
             if (!string.IsNullOrEmpty(filter.search))
             {
-                query = query.Where(x => x.OrderNumber.ToLower().Contains(filter.search.ToLower()));
+                filter.search = filter.search.ToLower();
+                query = query.Where(x => x.OrderNumber.ToLower().Contains(filter.search) || x.ApplicationUser.Email.ToLower().Contains(filter.search));
             }
             if (filter.StatusId != 0)
             {

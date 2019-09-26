@@ -2890,7 +2890,7 @@ img.profile-details {
     }
 
     .left_col {
-        margin-left: -250px;
+        margin-left: -150px;
     }
 
     .main_container .top_nav {
@@ -3079,10 +3079,6 @@ img.profile-details {
     cursor: pointer;
     color: #fff;
 }
-
-    .table-hover tbody tr:hover > td {
-        font-weight:500;
-    }
 
 my-nav-item, my-nav-item > a {
     border: none;

@@ -33,7 +33,7 @@ namespace CrazyPetals.Web.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "product");
+                return RedirectToAction("Index", "orders");
             }
             return View();
         }
@@ -54,7 +54,7 @@ namespace CrazyPetals.Web.Controllers
                     if(user.RoleId == 1)
                     {
                         await SignInAsync(user);
-                        return RedirectToAction("Index", "Product");
+                        return RedirectToAction("Index", "Orders");
                     }
                 }
                 ModelState.AddModelError("Password", StringConstants.LoginError);

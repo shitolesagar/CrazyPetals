@@ -66,7 +66,7 @@ namespace CrazyPetals.Repository.Repositories
                 query = query.Where(x => x.CategoryId == filter.CategoryId);
             if (filter.FilterId != 0)
                 query = query.Where(x => x.FilterId == filter.FilterId);
-            return query.Include(x => x.Filter).Include(x => x.Category).Skip(skip).Take(pageSize).ToListAsync();
+            return query.Include(x => x.Filter).Include(x => x.Category).OrderByDescending(x => x.CreatedDate).Skip(skip).Take(pageSize).ToListAsync();
         }
         public List<Product> GetAllProductForCategory(int CategoryId, string AppId, int skip, int take)
         {

@@ -29,7 +29,7 @@ namespace CrazyPetals.Repository.Repositories
                 query = query.Where(x => x.StartDate != null && x.StartDate.Value.Date >= DateTime.Now.Date);
             else
                 query = query.Where(x => (x.StartDate != null && x.StartDate.Value.Date <= DateTime.Now.Date) || (x.ExpiryDate != null && x.ExpiryDate.Value.Date > DateTime.Now.Date && (x.StartDate <= DateTime.Now.Date || x.StartDate==null)) || (x.ExpiryDate == null && x.StartDate <= DateTime.Now.Date) || (x.StartDate == null && x.ExpiryDate >= DateTime.Now.Date) || (x.ExpiryDate == null && x.StartDate == null));
-            return query.Skip(skip).Take(pageSize).ToListAsync();
+            return query.OrderByDescending(x => x.CreatedDate).Skip(skip).Take(pageSize).ToListAsync();
         }
 
         public int GetIndexViewTotalCount(BannerFilter filter)
