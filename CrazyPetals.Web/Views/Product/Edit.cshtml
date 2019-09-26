@@ -316,7 +316,7 @@
     </div>
     <div class="m-t-30">
         <button type="button" id="btnSubmit" class="btn btn-primary m-r-10">Update</button>
-        <a asp-controller="product" asp-action="index" class="btn btn-secondary">Cancel</a>
+        <a asp-controller="product" asp-action="details" asp-route-id="@Model.Id" class="btn btn-secondary">Cancel</a>
     </div>
     <input type="text" class="display-none" asp-for="DeleteIds" />
 </form>
