@@ -7,9 +7,10 @@
     ViewData["TabHeading"] = stringHtml;
     ViewData["ActiveTab"] = "banner";
     var message = TempData["Message"] ?? string.Empty;
+    string ddlSelectedValue = ViewBag.ddlStausSelected;
 }
 
-<div class="row" id="filterRow" style="display:none">
+<div class="row" id="filterRow">
     <div class="col-lg-4 col-sm-4">
         <div class="form-group  position-relative">
             <div class="my-custom-select">
@@ -23,7 +24,7 @@
     </div>
 </div>
 
-@await Component.InvokeAsync("Banner", new { isPartial = false, filter = ViewBag.Filters })
+@await Component.InvokeAsync("Banner", new { isPartial = ViewBag.IsPartial, filter = ViewBag.Filters })
 
 <partial name="_deletePopup" />
 
@@ -46,10 +47,11 @@
         function CreateUrlString() {
             var url = "/advertisementbanner/indexpartial?";
             var selectedValue = $("#ddlStatus").val();
-            if (selectedValue == "Expired")
+            if (selectedValue == "Expired") 
                 url = url + "showExpired=" + encodeURIComponent("true") + "&";
-            else if (selectedValue == "InActive")
+            else if (selectedValue == "InActive") 
                 url = url + "showInActive=" + encodeURIComponent("true") + "&";
+
             return url;
         }
 
@@ -64,8 +66,21 @@
             }
         }
 
+        function OpenConfirmBox(id) {
+            event.stopPropagation();
+            $('#myModal').modal('show');
+            $("#delete-id").val(id);
+            var selectedValue = $("#ddlStatus").val();
+            if (selectedValue == "Expired") 
+                $("#showExpired").val("True");
+            else if (selectedValue == "InActive") 
+                $("#showInActive").val("True");
+        }
+
+        $("#ddlStatus").val("@ddlSelectedValue");
+
 
         // this is called form main method to hide or show filters
-        showHideFilters("filterRow");
+       // showHideFilters("filterRow");
     </script>
 }
