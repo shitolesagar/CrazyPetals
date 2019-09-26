@@ -58,6 +58,10 @@
                         $("#ImageName-error").text("Image size should be less than 1 MB.");
                     }
                 }
+                else {
+                    $("#ImageUrl").val("")
+                    $("#ImageName-error").text('File is not a valid image.');
+                }
             }
         });
         $.validator.setDefaults({
