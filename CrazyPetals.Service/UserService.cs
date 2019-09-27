@@ -283,7 +283,7 @@ namespace CrazyPetals.Service
                     Name = profile.Name,
                     MobileNumber = profile.MobileNumber,
                     EmailId = profile.Email,
-                    ProfilePicture = StringConstants.CPAPIImageUrl + profile.ProfilePicture
+                    ProfilePicture = EnvironmentConstants.CPAPIImageUrl + profile.ProfilePicture
                 };
                 res.Message = StringConstants.Success;
                 res.data = obj;

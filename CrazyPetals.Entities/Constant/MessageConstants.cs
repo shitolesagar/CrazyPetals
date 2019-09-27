@@ -20,10 +20,11 @@ namespace CrazyPetals.Entities.Constant
         public static string BannerDeleteFailedMessage { get; } = "Something went wrong.";
         public static string NotificationDeleteSuccessMessage { get; } = "Notification deleted sucessfully";
         public static string NotificationDeleteFailedMessage { get; } = "Something went wrong.";
-        public static object ProductAddSuccessMessage { get; set; } = "Product added sucessfully.";
-        public static object ProductUpdateSuccessMessage { get; set; } = "Product updated sucessfully.";
-        public static object ProductDeletedSuccessMessage { get; set; } = "Product deleted sucessfully.";
-        public static object ProductDeletionFailedMessage { get; set; } = "Something went wrong.";
-        public static object DeliveryStatusUpdated { get; set; } = "Delivery status updated successfully.";
+        public static object ProductAddSuccessMessage { get; } = "Product added sucessfully.";
+        public static object ProductUpdateSuccessMessage { get; } = "Product updated sucessfully.";
+        public static object ProductDeletedSuccessMessage { get; } = "Product deleted sucessfully.";
+        public static object ProductDeletionFailedMessage { get; } = "Something went wrong.";
+        public static object DeliveryStatusUpdated { get; } = "Delivery status updated successfully.";
+        public static string LoginError { get; } = "Email or Password is not valid.";
     }
 }

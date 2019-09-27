@@ -7,13 +7,13 @@ using System.Text;
 
 namespace CrazyPetals.Repository.Repositories
 {
-    public class Delivery_chargeRepository : Repository<Delivery_charge>, IDelivery_chargeRepository
+    public class Delivery_chargeRepository : Repository<DeliveryCharge>, IDelivery_chargeRepository
     {
         public Delivery_chargeRepository(ApplicationDbContext context) : base(context)
         {
         }
 
-        public Delivery_charge findByMin(int min, string AppId)
+        public DeliveryCharge findByMin(int min, string AppId)
         {
             return Set.Where(x => x.AppId == AppId && x.Min == min).FirstOrDefault();
         }

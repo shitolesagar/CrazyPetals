@@ -153,7 +153,7 @@ namespace CrazyPetals.Service
                 {
                     var pro =await  _productRepository.GetProductDetailAsync(rec.ProductId, AppId);
                     rec.ProductName = pro.Name;
-                    rec.ProductImageURL = StringConstants.CPImageUrl + pro.ProductImages.Where(y => y.IsMain == true).FirstOrDefault().Image;
+                    rec.ProductImageURL = EnvironmentConstants.CPImageUrl + pro.ProductImages.Where(y => y.IsMain == true).FirstOrDefault().Image;
                     rec.OriginalPrice = pro.OriginalPrice;
                     rec.DiscountedPrice = pro.DiscountedPrice;
                     rec.ShortDescription = pro.Description;
@@ -365,17 +365,17 @@ namespace CrazyPetals.Service
                 if (total >= 301)
                 {
                     var rec = _delivery_chargeRepository.findByMin(301, AppId);
-                    obj.DeliveryCharges = rec.DeliveryCharge;
+                    obj.DeliveryCharges = rec.Charge;
                 }
                 else if (total >= 101 && total <= 300)
                 {
                     var rec = _delivery_chargeRepository.findByMin(101, AppId);
-                    obj.DeliveryCharges = rec.DeliveryCharge;
+                    obj.DeliveryCharges = rec.Charge;
                 }
                 else if (total >= 1 && total <= 100)
                 {
                     var rec = _delivery_chargeRepository.findByMin(1, AppId);
-                    obj.DeliveryCharges = rec.DeliveryCharge;
+                    obj.DeliveryCharges = rec.Charge;
                 }
                 obj.SubTotal = total + obj.DeliveryCharges;
                 res.Message = StringConstants.Success;

@@ -5,8 +5,8 @@ using System.Text;
 
 namespace CrazyPetals.Abstraction.Repositories
 {
-    public interface IDelivery_chargeRepository : IRepository<Delivery_charge>
+    public interface IDelivery_chargeRepository : IRepository<DeliveryCharge>
     {
-        Delivery_charge findByMin(int min, string AppId);
+        DeliveryCharge findByMin(int min, string AppId);
     }
 }

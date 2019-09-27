@@ -6,7 +6,6 @@ namespace CrazyPetals.Entities.Constant
 {
     public static class FolderConstants
     {
-        public static string LoginError { get; } = "Email or Password is not valid.";
         public static string WWWRootFolder { get; } = "wwwroot";
         public static string ImagesFolder { get; } = "images";
         public static string CategoriesFolder { get; } = "categories";
