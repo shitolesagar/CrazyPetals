@@ -16,7 +16,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public Task<List<Subcategory>> GetSubcategoryAsync(int CategoryId, string AppId)
         {
-            return Set.Where(x => x.AppId == AppId && x.CategoryId == CategoryId).ToListAsync();
+            return Set.Where(x => x.AppId == AppId && x.CategoryId == CategoryId).Where(x => x.Products.Count() > 0).ToListAsync();
         }
 
         public Task<List<Subcategory>> GetIndexViewRecordsAsync(SubcategoryFilter filter, int skip, int pageSize)

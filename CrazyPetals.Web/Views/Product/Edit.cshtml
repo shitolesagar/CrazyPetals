@@ -188,7 +188,7 @@
             <div class="col-md-4">
                 <div class="form-group float-container position-relative">
                     <label class="control-label float-label">Material Type</label>
-                    <input type="text" asp-for="MaterialType" class="form-control" placeholder="eg : Silk, Fabric" />
+                    <input type="text" asp-for="MaterialType" class="form-control" placeholder="eg : Silk, Cotton" />
                     <span asp-validation-for="MaterialType" class="text-danger"></span>
                 </div>
             </div>
@@ -236,14 +236,14 @@
             <div class="col-2">
                 <div class="form-group m-t-10  float-container position-relative">
                     <label class="control-label float-label">Original Price</label>
-                    <input type="text" asp-for="OriginalPrice" class="form-control" placeholder="eg : 100 Rs" />
+                    <input type="text" asp-for="OriginalPrice" class="form-control" placeholder="eg : 100" />
                     <span asp-validation-for="OriginalPrice" class="text-danger"></span>
                 </div>
             </div>
             <div class="col-2">
                 <div class="form-group m-t-10 float-container position-relative">
                     <label class="control-label float-label">Offer Price <span class="f-red"> *</span></label>
-                    <input type="text" asp-for="DiscountedPrice" class="form-control" placeholder="eg : 80 Rs" required />
+                    <input type="text" asp-for="DiscountedPrice" class="form-control" placeholder="eg : 80" required />
                     <span asp-validation-for="DiscountedPrice" class="text-danger"></span>
                 </div>
             </div>
