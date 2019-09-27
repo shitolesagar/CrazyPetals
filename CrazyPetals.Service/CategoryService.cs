@@ -297,6 +297,8 @@ namespace CrazyPetals.Service
                     MaterialType = product.MaterialType,
                     IncludedAccesories = product.IncludedAccessories,
                     Precautions = product.Precautions,
+                    IsAvailable = product.IsAvailable,
+                    DeliveryTime = product.DeliveryTime,
 
                     Images = product.ProductImages.Where(y => y.ProductId == product.Id).Select(y => new ProductImagesResource()
                     {

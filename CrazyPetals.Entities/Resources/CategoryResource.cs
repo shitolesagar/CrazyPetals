@@ -152,6 +152,8 @@ namespace CrazyPetals.Entities.Resources
         public string MaterialType { get; set; }
         public string IncludedAccesories { get; set; }
         public string Precautions { get; set; }
+        public bool IsAvailable { get; set; }
+        public string DeliveryTime { get; set; }
         public ICollection<ProductImagesResource> Images { get; set; }
         public ICollection<ProductColorsResource> ColorList { get; set; }
         public ICollection<ProductSizeResource> SizeList { get; set; }
