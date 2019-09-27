@@ -1,0 +1,155 @@
+﻿@model CrazyPetals.Entities.WebViewModels.DetailsPageViewModels.OrderDetailsViewModel
+@{
+    ViewData["Title"] = "Order Details";
+    string stringHtml = "<span onclick=\"goToPreviousPage()\"><img src=\"/images/icons/arrow-left.png\" class=\"vertical-middle iconWidth-25 cursor-pointer m-r-20\"></span>";
+    stringHtml = stringHtml + "<span class=\"display-inline\">Order Details</span>";
+
+    ViewData["TabHeading"] = stringHtml;
+    ViewData["ActiveTab"] = "order";
+}
+
+<p>@ViewBag.result</p>
+<div class="block-container">
+    <span class="h4">Order Number : @Model.OrderNumber</span>
+    <span class="h6 ml-2">
+        by <a asp-controller="customer" asp-action="details" asp-route-id="@Model.UserId">
+            @Model.ApplicationUser
+        </a>
+        <span class="ml-2"> on:  @Model.CreatedDate</span>
+    </span>
+    <div class="row py-3">
+        <div class="col-7">
+            <div class="row">
+                <div class="col-4">
+                    <p class="f-gray mt-3">Discounted Price</p>
+                    <p class="">@Model.DiscountedPrice</p>
+                </div>
+                <div class="col-4">
+                    <p class="f-gray mt-3">GST</p>
+                    <p class="">@Model.GSTPrice</p>
+                </div>
+                <div class="col-4">
+                    <p class="f-gray mt-3">Delivery Charges</p>
+                    <p class="">@Model.DeliveryCharges</p>
+                </div>
+                <div class="col-4">
+                    <p class="f-gray mt-3">Subtotal</p>
+                    <p class="">@Model.SubTotal</p>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <p class="f-gray mt-5">Payment Status</p>
+                    <p class="">@Model.PaymentStatus</p>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group  position-relative mt-5">
+                        <label class="float-label">Delivery Status</label>
+                        <div class="my-custom-select width-100">
+                            <select onchange="filter(this)" class="form-control select-dropDown" asp-for="DeliveryStatusId" value="" id="status" asp-items="ViewBag.DeliveryStatusList">
+                                <option value="">select</option>
+                            </select>
+                        </div>
+                        <span asp-validation-for="DeliveryStatusId" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="row">
+                <div class="col-12 p-2 d-flex align-items-stretch">
+                    <div class="card mb-3 w-100" style="max-width: 18rem;">
+                        <div class="card-header">Shipping Address</div>
+                        <div class="card-body">
+                            <p class="card-text" title="Address">@Model.ShippingAddress.Address</p>
+                            <p class="card-text" title="Locality">@Model.ShippingAddress.Locality</p>
+                            <p class="card-text" title="Pincode">@Model.ShippingAddress.Pincode</p>
+                            <p class="text-right" title="Mobile Number">@Model.ShippingAddress.MobileNumber</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="block-container m-t-20">
+    <span class="h5">Order Details</span>
+    <div class="mt-3 bg-dark">
+        @if (Model.OrderDetails.Count > 0)
+        {
+            <table class="table p-3" style="background-color:#f2f2f2;">
+                <thead>
+                    <tr>
+                        <th style="width:20%">Product Name</th>
+                        <th style="width:20%">Original Price</th>
+                        <th style="width:20%">Discounted Price</th>
+                        <th style="width:20%">Quantity</th>
+                        <th style="width:20%">Total Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model.OrderDetails)
+                    {
+                        <tr>
+                            <td>@order.ProductName</td>
+                            <td>@order.OriginalPrice</td>
+                            <td>@order.DiscountedPrice</td>
+                            <td>@order.Quantity</td>
+                            <td>@order.TotalPrice</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="text-center m-5 p-5">
+                <p class="f-22 f-bold">
+                    No order details found.
+                </p>
+            </div>
+        }
+    </div>
+</div>
+
+@{
+    var message = TempData["Message"] ?? string.Empty;
+}
+@section Scripts {
+    <script>
+
+        var orderId = '@Model.Id';
+
+        function filter(obj) {
+            ajaxCall(CreateUrlString())
+        }
+
+        function CreateUrlString() {
+            var url = "/orders/updatestatus?DeliveryStatusId=" + $("#status").val() + "&id=" + orderId;
+            return url;
+        }
+
+        function ajaxCall(url) {
+            $(".loader-wrapper").show();
+            $.get(url, function (data) {
+                $(".loader-wrapper").hide();
+            });
+            showMessage();
+        }
+
+        function showMessage() {
+            var message = "Status Updated Successfully";
+            ShowSlackbarSucessMessage(message);
+        }
+         var message = '@message';
+        if (message)
+        {
+            alert(message);
+        }
+    </script>
+}
+

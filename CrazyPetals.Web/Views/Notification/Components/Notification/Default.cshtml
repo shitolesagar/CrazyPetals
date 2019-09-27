@@ -1,0 +1,56 @@
+﻿@model CrazyPetals.Entities.WebViewModels.NotificationWrapperViewModel
+
+<div id="indexPartialContent" class="table-wrapper">
+    @if (Model.TotalCount <= 0)
+    {
+        <div class="list-empty-state">
+            @if (ViewBag.ShowEmptyState == true)
+            {
+                <a asp-action="add" asp-controller="notification" class="btn btn-primary mr-4 add-icon"> Add New Notification <img src="/images/icons/Plus.png"></a>
+                <p class="mt-4 f-22 f-bold">
+                    Start sending notification.
+                </p>
+                <p class="f-gray mt-2 f-14">Click on "Add New Notification" button to send new notificaiton.</p>
+            }
+            else
+            {
+                <img src="~/images/search@2x.png" alt="Sorry" />
+                <p class="m-t-25 f-22 f-bold">
+                    No Result Found!
+                </p>
+                <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
+            }
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="10%">Sr. no.</th>
+                    <th width="20%">Title</th>
+                    <th width="45%">Message</th>
+                    <th width="15%">Sent Date </th>
+                    <th width="10%" class="text-center">Manage</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var notificaiton in Model.NotificationList)
+                {
+                    <tr>
+                        <td>@notificaiton.Number</td>
+                        <td>@notificaiton.Title</td>
+                        <td>@notificaiton.Message</td>
+                        <td>@notificaiton.SentDate</td>
+                        <td class="text-center">
+                            <span title="Remove" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@notificaiton.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        <!--Pagination-->
+        <partial name="_pagination" model="Model.PagingData" />
+    }
+</div>

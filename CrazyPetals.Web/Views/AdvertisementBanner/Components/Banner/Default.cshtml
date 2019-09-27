@@ -1,0 +1,55 @@
+﻿@model CrazyPetals.Entities.WebViewModels.BannerWrapperViewModel
+
+<div id="indexPartialContent" class="table-wrapper">
+    @if (Model.TotalCount <= 0)
+    {
+        <div class="list-empty-state">
+            @if (ViewBag.ShowEmptyState == true)
+            {
+                <a asp-action="add" asp-controller="advertisementbanner" class="btn btn-primary mr-4 add-icon"> Add New Banner <img src="/images/icons/Plus.png"></a>
+                <p class="mt-4 f-22 f-bold">
+                    Start adding advertisement banner.
+                </p>
+                <p class="f-gray mt-2 f-14">Click on "Add New Banner" button to add advertisement banner.</p>
+            }
+            else
+            {
+                <p class="m-t-25 f-22 f-bold">
+                    No Result Found!
+                </p>
+                <p class="f-gray m-t-10 f-14">We couldn't find the item you were looking for. Please try again.</p>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="row m-auto">
+            @foreach (var banner in Model.BannerList)
+            {
+                <div class="col-md-3 p-2 d-flex align-items-stretch">
+                    <div class="card cp-manage-icon" style="width: 18rem;">
+                        <span class="cp-manage-button">
+                            <i onclick="OpenConfirmBox('@banner.Id')" class="fa fa-trash" title="remove" aria-hidden="true"></i>
+                        </span>
+                        <img src="@banner.ImagePath" class="card-img-top" alt="@banner.Caption">
+                        <div class="card-body">
+                            <p class="card-title f-16">@banner.Caption</p>
+                            @if (banner.IsExpired)
+                            {
+                                <p class="text-muted text-center">Expired on: @banner.ExpireDate</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!--Pagination-->
+        <partial name="_pagination" model="Model.PagingData" />
+        // following table helps in hiding or showing filter when we have empty state
+        <table class="display-none">
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    }
+</div>
