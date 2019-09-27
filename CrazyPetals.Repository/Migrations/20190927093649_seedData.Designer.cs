@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CrazyPetals.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190924105825_seeding data")]
-    partial class seedingdata
+    [Migration("20190927093649_seedData")]
+    partial class seedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,6 +60,8 @@ namespace CrazyPetals.Repository.Migrations
                     b.Property<string>("SecondryColor");
 
                     b.Property<string>("StatusBarColor");
+
+                    b.Property<string>("TertiaryColor");
 
                     b.Property<string>("TextColor");
 
@@ -188,7 +190,7 @@ namespace CrazyPetals.Repository.Migrations
                     b.ToTable("Colors");
                 });
 
-            modelBuilder.Entity("CrazyPetals.Entities.Database.Delivery_charge", b =>
+            modelBuilder.Entity("CrazyPetals.Entities.Database.DeliveryCharge", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -196,9 +198,9 @@ namespace CrazyPetals.Repository.Migrations
 
                     b.Property<string>("AppId");
 
-                    b.Property<string>("CreatedDate");
+                    b.Property<int>("Charge");
 
-                    b.Property<int>("DeliveryCharge");
+                    b.Property<string>("CreatedDate");
 
                     b.Property<int>("Max");
 
@@ -206,7 +208,7 @@ namespace CrazyPetals.Repository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("delivery_Charges");
+                    b.ToTable("DeliveryCharges");
                 });
 
             modelBuilder.Entity("CrazyPetals.Entities.Database.ExternalLogin", b =>
@@ -225,26 +227,6 @@ namespace CrazyPetals.Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ExternalLogin");
-                });
-
-            modelBuilder.Entity("CrazyPetals.Entities.Database.Filter", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AppId")
-                        .HasMaxLength(30);
-
-                    b.Property<int>("CategoryId");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Filter");
                 });
 
             modelBuilder.Entity("CrazyPetals.Entities.Database.ForgotPassword", b =>
@@ -412,8 +394,6 @@ namespace CrazyPetals.Repository.Migrations
 
                     b.Property<decimal>("DiscountedPrice");
 
-                    b.Property<int?>("FilterId");
-
                     b.Property<string>("Height");
 
                     b.Property<string>("IncludedAccessories");
@@ -438,6 +418,8 @@ namespace CrazyPetals.Repository.Migrations
 
                     b.Property<string>("StockKeepingUnit");
 
+                    b.Property<int?>("SubcategoryId");
+
                     b.Property<string>("Weight");
 
                     b.Property<string>("Width");
@@ -446,7 +428,7 @@ namespace CrazyPetals.Repository.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("FilterId");
+                    b.HasIndex("SubcategoryId");
 
                     b.ToTable("Product");
                 });
@@ -571,6 +553,26 @@ namespace CrazyPetals.Repository.Migrations
                     b.ToTable("SmtpMail");
                 });
 
+            modelBuilder.Entity("CrazyPetals.Entities.Database.Subcategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppId")
+                        .HasMaxLength(30);
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Subcategory");
+                });
+
             modelBuilder.Entity("CrazyPetals.Entities.Database.UserAddress", b =>
                 {
                     b.Property<int>("Id")
@@ -650,14 +652,6 @@ namespace CrazyPetals.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("CrazyPetals.Entities.Database.Filter", b =>
-                {
-                    b.HasOne("CrazyPetals.Entities.Database.Category", "Category")
-                        .WithMany("Filters")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("CrazyPetals.Entities.Database.ForgotPassword", b =>
                 {
                     b.HasOne("CrazyPetals.Entities.Database.ApplicationUser", "ApplicationUser")
@@ -707,11 +701,11 @@ namespace CrazyPetals.Repository.Migrations
                     b.HasOne("CrazyPetals.Entities.Database.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("CrazyPetals.Entities.Database.Filter", "Filter")
+                    b.HasOne("CrazyPetals.Entities.Database.Subcategory", "Subcategory")
                         .WithMany("Products")
-                        .HasForeignKey("FilterId")
+                        .HasForeignKey("SubcategoryId")
                         .OnDelete(DeleteBehavior.SetNull);
                 });
 
@@ -746,6 +740,14 @@ namespace CrazyPetals.Repository.Migrations
                     b.HasOne("CrazyPetals.Entities.Database.Size", "Size")
                         .WithMany("ProductSizes")
                         .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CrazyPetals.Entities.Database.Subcategory", b =>
+                {
+                    b.HasOne("CrazyPetals.Entities.Database.Category", "Category")
+                        .WithMany("Filters")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
