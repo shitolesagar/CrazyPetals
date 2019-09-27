@@ -115,6 +115,7 @@ namespace CrazyPetals.Web.Controllers
             var authProperties = new AuthenticationProperties
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddHours(10),
+                IsPersistent = true
             };
 
             await HttpContext.SignInAsync(

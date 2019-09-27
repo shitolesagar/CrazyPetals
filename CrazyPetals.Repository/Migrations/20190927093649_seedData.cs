@@ -3,21 +3,21 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CrazyPetals.Repository.Migrations
 {
-    public partial class seedingdata : Migration
+    public partial class seedData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`AppTheme` (`PrimaryColor`, `SecondryColor`, `StatusBarColor`, `TextColor`, `CurrencySymbols`, `AppName`, `AppLogo`, `AppId`) VALUES ('#FFFFFF', '#005389', '#123456', '#000000', 'r', '" + StringConstants.AppId+"', 'http://114.143.198.154:9001/AppLogo/f4a5e224-0231-45df-8d53-cb34375cf28a.png', 'CrazyPetals');");
+            migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`AppTheme` (`PrimaryColor`, `SecondryColor`, `StatusBarColor`, `TextColor`, `CurrencySymbols`, `AppName`, `AppLogo`, `AppId`) VALUES ('#FFFFFF', '#005389', '#123456', '#000000', 'r', '" + StringConstants.AppId + "', 'http://114.143.198.154:9001/AppLogo/f4a5e224-0231-45df-8d53-cb34375cf28a.png', 'CrazyPetals');");
 
-            migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`DeliveryCharges` (`AppId`, `Min`, `Max`, `DeliveryCharge`) VALUES ('" + StringConstants.AppId + "', '1', '100', '30');");
-            migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`DeliveryCharges` (`AppId`, `Min`, `Max`, `DeliveryCharge`) VALUES ('" + StringConstants.AppId + "', '101', '300', '20');");
-            migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`DeliveryCharges` (`AppId`, `Min`, `Max`, `DeliveryCharge`) VALUES ('" + StringConstants.AppId + "', '301', '0', '0');");
+            migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`DeliveryCharges` (`AppId`, `Min`, `Max`, `Charge`) VALUES ('" + StringConstants.AppId + "', '1', '100', '30');");
+            migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`DeliveryCharges` (`AppId`, `Min`, `Max`, `Charge`) VALUES ('" + StringConstants.AppId + "', '101', '300', '20');");
+            migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`DeliveryCharges` (`AppId`, `Min`, `Max`, `Charge`) VALUES ('" + StringConstants.AppId + "', '301', '0', '0');");
 
             migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`Role` (`Name`, `AppId`) VALUES ('Admin', '" + StringConstants.AppId + "');");
             migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`Role` (`Name`, `AppId`) VALUES ('Customer', '" + StringConstants.AppId + "');");
 
             migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`SmtpMail` (`FromMail`, `SmtpPassword`, `Host`, `Port`, `DisplayName`, `Description`, `AppId`) VALUES ('CrazypetalsHelp@gmail.com', 'Mrunalini@1234$', 'smtp.gmail.com', '587', 'gmail', 'This is CrazyPetals', '" + StringConstants.AppId + "');");
-            
+
             migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`Colors` (`Name`, `HashCode`, `AppId`) VALUES ('Black', '#000000', '" + StringConstants.AppId + "');");
             migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`Colors` (`Name`, `HashCode`, `AppId`) VALUES ('Brown', '#A52A2A', '" + StringConstants.AppId + "');");
             migrationBuilder.Sql("INSERT INTO `" + EnvironmentConstants.DatabaseName + "`.`Colors` (`Name`, `HashCode`, `AppId`) VALUES ('Blue', '#0000FF', '" + StringConstants.AppId + "');");
