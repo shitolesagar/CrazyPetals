@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace CrazyPetals.Abstraction.Service
 {
-    public interface IFilterService
+    public interface ISubcategoryService
     {
-        Task<int> AddFilterAsync(AddFilterViewModel model);
-        Task<FilterWrapperViewModel> GetWrapperForIndexView(FilterForFilterModule filter);
+        Task<int> AddSubcategoryAsync(AddSubcategoryViewModel model);
+        Task<SubcategoryWrapperViewModel> GetWrapperForIndexView(SubcategoryFilter filter);
         Task<List<IdNameViewModel>> GetCategoryList();
-        Task<int> Deletefilter(int id);
-        Task<AddFilterViewModel> getForEditAsync(int id);
-        Task EditFilterAsync(int id, AddFilterViewModel model);
-        Task<List<IdNameViewModel>> GetFilterListAsync(int categoryId);
+        Task<int> DeleteSubcategory(int id);
+        Task<AddSubcategoryViewModel> getForEditAsync(int id);
+        Task EditSubcategoryAsync(int id, AddSubcategoryViewModel model);
+        Task<List<IdNameViewModel>> GetSubcategoryListAsync(int categoryId);
     }
 }

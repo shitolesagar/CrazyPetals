@@ -19,7 +19,7 @@ namespace CrazyPetals.Service
         private readonly IProductRepository _productRepository;
         private IUnitOfWork _unitOfWork;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IFilterRepository _filterRepository;
+        private readonly ISubcategoryRepository _filterRepository;
         private readonly IColorsRepository _colorsRepository;
         private readonly ISizeRepository _sizeRepository;
         private readonly IProductColorRepository _productColorRepository;
@@ -29,7 +29,7 @@ namespace CrazyPetals.Service
         public ProductService(IProductRepository productRepository,
             IUnitOfWork unitOfWork,
             ICategoryRepository categoryRepository,
-            IFilterRepository filterRepository,
+            ISubcategoryRepository filterRepository,
             IColorsRepository colorsRepository,
             ISizeRepository sizeRepository,
             IProductColorRepository productColorRepository,
@@ -59,7 +59,7 @@ namespace CrazyPetals.Service
                 DeliveryTime = model.DeliveryTime,
                 Description = model.LongDescription,
                 DiscountedPrice = model.DiscountedPrice,
-                FilterId = model.FilterId,
+                SubcategoryId = model.FilterId,
                 IncludedAccessories = model.Accessories,
                 IsAvailable = model.IsAvailable,
                 MaterialType = model.MaterialType,
@@ -187,7 +187,7 @@ namespace CrazyPetals.Service
                 CategoryName = x.Category.Name,
                 PublishStatus = x.IsPublish ? "Published" : "Unpublished",
                 Number = ResponseModel.PagingData.FromRecord + index,
-                FilterName = x.Filter?.Name
+                FilterName = x.Subcategory?.Name
             }).ToList();
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
             return ResponseModel;
@@ -217,7 +217,7 @@ namespace CrazyPetals.Service
                     AddedOn = record.CreatedDate.ToCrazyPattelsPattern(),
                     CategoryName = record.Category.Name,
                     DeliveryTime = record.DeliveryTime,
-                    FilterName = record.Filter?.Name,
+                    FilterName = record.Subcategory?.Name,
                     IsAvailable = record.IsAvailable ? "Yes" : "No",
                     IsExclusive = record.IsExclusive ? "Yes" : "No",
                     LongDescription = record.Description,
@@ -272,7 +272,7 @@ namespace CrazyPetals.Service
                     Accessories = record.IncludedAccessories,
                     CategoryId = record.CategoryId,
                     DeliveryTime = record.DeliveryTime,
-                    FilterId = record.FilterId,
+                    FilterId = record.SubcategoryId,
                     IsAvailable = record.IsAvailable,
                     IsExclusive = record.IsExclusive,
                     LongDescription = record.Description,
@@ -325,7 +325,7 @@ namespace CrazyPetals.Service
                 databaseModel.DeliveryTime = model.DeliveryTime;
                 databaseModel.Description = model.LongDescription;
                 databaseModel.DiscountedPrice = model.DiscountedPrice;
-                databaseModel.FilterId = model.FilterId;
+                databaseModel.SubcategoryId = model.FilterId;
                 databaseModel.IncludedAccessories = model.Accessories;
                 databaseModel.IsAvailable = model.IsAvailable;
                 databaseModel.MaterialType = model.MaterialType;

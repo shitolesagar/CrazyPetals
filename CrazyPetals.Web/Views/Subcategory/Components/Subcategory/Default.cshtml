@@ -1,4 +1,4 @@
-﻿@model CrazyPetals.Entities.WebViewModels.FilterWrapperViewModel
+﻿@model CrazyPetals.Entities.WebViewModels.SubcategoryWrapperViewModel
 
 <div id="indexPartialContent">
     @if (Model.TotalCount <= 0)
@@ -6,11 +6,11 @@
         <div class="list-empty-state">
             @if (ViewBag.ShowEmptyState == true)
             {
-                <a asp-action="add" asp-controller="filter" class="btn btn-primary mr-4 add-icon"> Add New Filter <img src="/images/icons/Plus.png"></a>
+            <a asp-action="add" asp-controller="Subcategory" class="btn btn-primary mr-4 add-icon"> Add New Subcategory <img src="/images/icons/Plus.png"></a>
                 <p class="mt-4 f-22 f-bold">
                     Start adding filter for categories.
                 </p>
-                <p class="f-gray mt-2 f-14">Click on "Add New Filter" button to add filter for categories.</p>
+                <p class="f-gray mt-2 f-14">Click on "Add New Subcategory" button to add Subcategory for categories.</p>
             }
             else
             {
@@ -28,7 +28,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>No.</th>
+                    <th>Sr. no.</th>
                     <th>Name</th>
                     <th>Category</th>
                     <th class="text-center">Manage</th>
@@ -44,7 +44,7 @@
                             @Filter.Category
                         </td>
                         <td class="text-center">
-                            <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/filter/edit/@Filter.Id')"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                            <span title="Edit" class="cursor-pointer" onclick="redirectToEdit('/subcategory/edit/@Filter.Id')"><i class="fa fa-pencil" aria-hidden="true"></i></span>
                             <span title="Remove" class="cursor-pointer" onclick="OpenDeleteConfirmBox('@Filter.Id')"><i class="fa fa-trash ml-3" aria-hidden="true"></i></span>
                         </td>
                     </tr>

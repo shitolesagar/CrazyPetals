@@ -12,7 +12,7 @@ namespace CrazyPetals.Entities.Database
         public string Image { get; set; }
         public string AppId { get; set; }
 
-        public ICollection<Filter> Filters { get; set; }
+        public ICollection<Subcategory> Filters { get; set; }
         public ICollection<Product> Products { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CrazyPetals.Entities.Database
 {
-    public class Filter
+    public class Subcategory
     {
         public int Id { get; set; }
         public string Name { get; set; }

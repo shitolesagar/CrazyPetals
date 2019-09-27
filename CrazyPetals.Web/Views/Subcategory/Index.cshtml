@@ -1,11 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Filters";
-    string stringHtml = "<span class=\"display-inline\">Filters</span>";
-    string AddButton = string.Format("<span class=\"nav-item\"><a class=\"btn nav-link btn-primary m-r-20 add-icon\" href=\"/filter/add\"  ><span class=\"addIcon-txt\">Add New Filter</span><img src=\"/images/icons/Plus.png\" /> </a></span>");
+    ViewData["Title"] = "Subcategories";
+    string stringHtml = "<span class=\"display-inline\">Subcategories</span>";
+    string AddButton = string.Format("<span class=\"nav-item\"><a class=\"btn nav-link btn-primary m-r-20 add-icon\" href=\"/subcategory/add\"  ><span class=\"addIcon-txt\">Add New Subcategory</span><img src=\"/images/icons/Plus.png\" /> </a></span>");
 
     ViewData["TabButton"] = AddButton;
     ViewData["TabHeading"] = stringHtml;
-    ViewData["ActiveTab"] = "filter";
+    ViewData["ActiveTab"] = "subcategory";
     var message = TempData["Message"] ?? string.Empty;
 }
 
@@ -22,7 +22,7 @@
     </div>
 </div>
 
-@await Component.InvokeAsync("Filter", new { isPartial = false, filter = ViewBag.Filters })
+@await Component.InvokeAsync("Subcategory", new { isPartial = false, filter = ViewBag.Filters })
 
 
 <partial name="_deletePopup" />
@@ -48,7 +48,7 @@
         }
 
         function CreateUrlString() {
-            var url = "/filter/indexpartial?";
+            var url = "/subcategory/indexpartial?";
             var category = $("#ddlCategory").val();
             if (category !== "")
                 url = url + "CategoryId=" + encodeURIComponent(category) + "&";

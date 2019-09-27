@@ -10,7 +10,7 @@ namespace CrazyPetals.Entities.Database
         public int Id { get; set; }
 
         public int FilterId { get; set; }
-        public Filter Filter { get; set; }
+        public Subcategory Filter { get; set; }
 
         public int ProductId { get; set; }
         public Product Product { get; set; }

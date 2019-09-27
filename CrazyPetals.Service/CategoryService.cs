@@ -27,11 +27,11 @@ namespace CrazyPetals.Service
         private IVersionControlRepository _versionControlRepository;
         private IBannerRepository _bannerRepository;
         private INotificationRepository _notificationRepository;
-        private IFilterRepository _filterRepository;
+        private ISubcategoryRepository _filterRepository;
         private IProductRepository _productRepository;
 
 
-        public CategoryService(ICategoryRepository categoryRepository, IProductRepository productRepository, IFilterRepository filterRepository, INotificationRepository notificationRepository, IBannerRepository bannerRepository, IVersionControlRepository versionControlRepository, IAppThemeRepository appThemeRepository, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
+        public CategoryService(ICategoryRepository categoryRepository, IProductRepository productRepository, ISubcategoryRepository filterRepository, INotificationRepository notificationRepository, IBannerRepository bannerRepository, IVersionControlRepository versionControlRepository, IAppThemeRepository appThemeRepository, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;
@@ -209,7 +209,7 @@ namespace CrazyPetals.Service
                     res.Message = StringConstants.CatNotFound;
                     return res;
                 }
-                var data = await _filterRepository.GetFilterAsync(CategoryId, AppId);
+                var data = await _filterRepository.GetSubcategoryAsync(CategoryId, AppId);
                 FilterResourceWrapper response = new FilterResourceWrapper
                 {
                     FilterList = new List<FilterResource>()
@@ -453,7 +453,7 @@ namespace CrazyPetals.Service
                     {
                         Id = x.Id,
                         Name = x.Name,
-                        FilterId = x.FilterId,
+                        FilterId = x.SubcategoryId,
                         Image = StringConstants.CPImageUrl + x.ProductImages.Where(y => y.IsMain == true).FirstOrDefault().Image,
                         OriginalPrice = x.OriginalPrice,
                         DiscountedPrice = x.DiscountedPrice,

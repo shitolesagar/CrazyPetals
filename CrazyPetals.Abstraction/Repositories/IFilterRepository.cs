@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace CrazyPetals.Abstraction.Repositories
 {
-    public interface IFilterRepository : IRepository<Filter>
+    public interface ISubcategoryRepository : IRepository<Subcategory>
     {
-        Task<List<Filter>> GetFilterAsync(int CategoryId, string AppId);
-        int GetIndexViewTotalCount(FilterForFilterModule filter);
-        Task<List<Filter>> GetIndexViewRecordsAsync(FilterForFilterModule filter, int skip, int pageSize);
+        Task<List<Subcategory>> GetSubcategoryAsync(int CategoryId, string AppId);
+        int GetIndexViewTotalCount(SubcategoryFilter filter);
+        Task<List<Subcategory>> GetIndexViewRecordsAsync(SubcategoryFilter filter, int skip, int pageSize);
     }
 }

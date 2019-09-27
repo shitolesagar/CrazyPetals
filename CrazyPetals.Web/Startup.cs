@@ -39,7 +39,7 @@ namespace CrazyPetals.Web
             #region Services
             services.AddScoped<IFileServices, FileServices>();
             services.AddScoped<IWebCategoryService, WebCategoryService>();
-            services.AddScoped<IFilterService, FilterService>();
+            services.AddScoped<ISubcategoryService, SubcategoryService>();
             services.AddScoped<IBannerService, BannerService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<IUserService, UserService>();
@@ -50,7 +50,7 @@ namespace CrazyPetals.Web
 
             #region Repostiory
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IFilterRepository, FilterRepository>();
+            services.AddScoped<ISubcategoryRepository, SubcategoryRepository>();
             services.AddScoped<IBannerRepository, BannerRepository>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();

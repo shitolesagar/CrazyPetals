@@ -150,7 +150,7 @@
 
                 <div class="form-group  position-relative">
 
-                    <label class="float-label">Product has a filter?</label>
+                    <label class="float-label">Product has a subcategory?</label>
                     <div class="my-custom-select width-100">
                         <select class="form-control select-dropDown" asp-for="FilterId" asp-items="ViewBag.FiltersList" value="">
                             <option value="">select</option>
@@ -253,21 +253,21 @@
     <div class="block-container m-t-20">
         <p class="f-bold f-16">Other details</p>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group m-t-10  float-container position-relative">
                     <label class="control-label float-label">Approx. Delivery Time</label>
                     <input type="text" asp-for="DeliveryTime" class="form-control" placeholder="Approx. Delivery Time" />
                     <span asp-validation-for="DeliveryTime" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group m-t-10 float-container position-relative">
                     <label class="control-label float-label">Accessories</label>
                     <input type="text" asp-for="Accessories" class="form-control" placeholder="Accessories" />
                     <span asp-validation-for="Accessories" class="text-danger"></span>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group m-t-10  float-container position-relative">
                     <label class="control-label float-label">Precaution / Instuctions</label>
                     <input type="text" asp-for="PrecautionsInstructions" class="form-control" placeholder="Precaution / Instruction" />

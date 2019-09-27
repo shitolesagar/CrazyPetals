@@ -27,13 +27,13 @@ namespace CrazyPetals.Service
         private IVersionControlRepository _versionControlRepository;
         private IBannerRepository _bannerRepository;
         private INotificationRepository _notificationRepository;
-        private IFilterRepository _filterRepository;
+        private ISubcategoryRepository _filterRepository;
         private IProductRepository _productRepository;
         private ICartDetailsRepository _cartDetailsRepository;
         private IDelivery_chargeRepository _delivery_chargeRepository;
 
 
-        public CheckoutService(ICategoryRepository categoryRepository, IDelivery_chargeRepository delivery_chargeRepository, ICartDetailsRepository cartDetailsRepository, IProductRepository productRepository, IFilterRepository filterRepository, INotificationRepository notificationRepository, IBannerRepository bannerRepository, IVersionControlRepository versionControlRepository, IAppThemeRepository appThemeRepository, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
+        public CheckoutService(ICategoryRepository categoryRepository, IDelivery_chargeRepository delivery_chargeRepository, ICartDetailsRepository cartDetailsRepository, IProductRepository productRepository, ISubcategoryRepository filterRepository, INotificationRepository notificationRepository, IBannerRepository bannerRepository, IVersionControlRepository versionControlRepository, IAppThemeRepository appThemeRepository, IEmailService emailService, IForgotPasswordRepository forgotPasswordRepository, IApplicationUserRepository applicationUserRepository, IOrderDetailsRepository orderDetailsRepository, IOrderRepository orderSummaryRepository, IUserAddressRepository userAddressRepository, IProductImagesRepository productImagesRepository, IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;

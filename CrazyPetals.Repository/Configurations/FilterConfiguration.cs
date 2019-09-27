@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CrazyPetals.Repository.Configurations
 {
-    internal class FilterConfiguration : IEntityTypeConfiguration<Filter>
+    internal class SubcategoryConfiguration : IEntityTypeConfiguration<Subcategory>
     {
-        public void Configure(EntityTypeBuilder<Filter> builder)
+        public void Configure(EntityTypeBuilder<Subcategory> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseMySqlIdentityColumn();

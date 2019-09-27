@@ -13,56 +13,56 @@ using CrazyPetals.Entities.WebViewModels;
 
 namespace CrazyPetals.Service
 {
-    public class FilterService : IFilterService
+    public class SubcategoryService : ISubcategoryService
     {
-        private readonly IFilterRepository _filterRepository;
+        private readonly ISubcategoryRepository _subcategoryRepository;
         private readonly ICategoryRepository _categoryRepository;
         private IUnitOfWork _unitOfWork;
 
-        public FilterService(IFilterRepository FilterRepository,ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+        public SubcategoryService(ISubcategoryRepository SubcategoryRepository,ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
         {
-            _filterRepository = FilterRepository;
+            _subcategoryRepository = SubcategoryRepository;
             _categoryRepository = categoryRepository;
             _unitOfWork = unitOfWork;
         }
 
-        public Task<int> AddFilterAsync(AddFilterViewModel model)
+        public Task<int> AddSubcategoryAsync(AddSubcategoryViewModel model)
         {
-            Filter Filter = new Filter()
+            Subcategory Subcategory = new Subcategory()
             {
                 AppId = StringConstants.AppId,
-                Name = model.FilterName,
+                Name = model.SubcategoryName,
                 CategoryId = model.CategoryId
             };
-            _filterRepository.Add(Filter);
+            _subcategoryRepository.Add(Subcategory);
             return _unitOfWork.SaveChangesAsync();
         }
 
-        public Task<int> Deletefilter(int id)
+        public Task<int> DeleteSubcategory(int id)
         {
-            var filterToDelete = _filterRepository.FindById(id);
-            _filterRepository.Remove(filterToDelete);
+            var subcategoryToDelete = _subcategoryRepository.FindById(id);
+            _subcategoryRepository.Remove(subcategoryToDelete);
             return _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<AddFilterViewModel> getForEditAsync(int id)
+        public async Task<AddSubcategoryViewModel> getForEditAsync(int id)
         {
-            var filterToEdit = await _filterRepository.FindByIdAsync(id);
-            if (filterToEdit == null)
+            var subcategoryToEdit = await _subcategoryRepository.FindByIdAsync(id);
+            if (subcategoryToEdit == null)
                 return null;
-            AddFilterViewModel model = new AddFilterViewModel()
+            AddSubcategoryViewModel model = new AddSubcategoryViewModel()
             {
-                CategoryId = filterToEdit.CategoryId,
-                FilterName = filterToEdit.Name
+                CategoryId = subcategoryToEdit.CategoryId,
+                SubcategoryName = subcategoryToEdit.Name
             };
             return model;
         }
 
-        public async Task EditFilterAsync(int id, AddFilterViewModel model)
+        public async Task EditSubcategoryAsync(int id, AddSubcategoryViewModel model)
         {
-            var filterToEdit = await _filterRepository.FindByIdAsync(id);
-            filterToEdit.Name = model.FilterName;
-            filterToEdit.CategoryId = model.CategoryId;
+            var subcategoryToEdit = await _subcategoryRepository.FindByIdAsync(id);
+            subcategoryToEdit.Name = model.SubcategoryName;
+            subcategoryToEdit.CategoryId = model.CategoryId;
             await _unitOfWork.SaveChangesAsync();
         }
 
@@ -77,15 +77,15 @@ namespace CrazyPetals.Service
 
         
 
-        public async Task<FilterWrapperViewModel> GetWrapperForIndexView(FilterForFilterModule filter)
+        public async Task<SubcategoryWrapperViewModel> GetWrapperForIndexView(SubcategoryFilter filter)
         {
-            FilterWrapperViewModel ResponseModel = new FilterWrapperViewModel
+            SubcategoryWrapperViewModel ResponseModel = new SubcategoryWrapperViewModel
             {
-                TotalCount = _filterRepository.GetIndexViewTotalCount(filter)
+                TotalCount = _subcategoryRepository.GetIndexViewTotalCount(filter)
             };
             ResponseModel.PagingData = new PagingData(ResponseModel.TotalCount, filter.PageSize, filter.PageIndex);
-            List<Filter> list = await _filterRepository.GetIndexViewRecordsAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
-            ResponseModel.SubcateogryList = list.Select((x, index) => new FilterListViewModel
+            List<Subcategory> list = await _subcategoryRepository.GetIndexViewRecordsAsync(filter, (filter.PageIndex - 1) * filter.PageSize, filter.PageSize);
+            ResponseModel.SubcateogryList = list.Select((x, index) => new SubcategoryListViewModel
             {
                 Id = x.Id,
                 Name = x.Name,
@@ -96,10 +96,10 @@ namespace CrazyPetals.Service
             return ResponseModel;
         }
 
-        public async Task<List<IdNameViewModel>> GetFilterListAsync(int categoryId)
+        public async Task<List<IdNameViewModel>> GetSubcategoryListAsync(int categoryId)
         {
-            var filters = await _filterRepository.GetAllAsync();
-            var list = filters.Where(x => x.CategoryId == categoryId);
+            var subcategories = await _subcategoryRepository.GetAllAsync();
+            var list = subcategories.Where(x => x.CategoryId == categoryId);
             var responseList = list.Select(x => new IdNameViewModel { Id = x.Id, Name = x.Name }).ToList();
             return responseList;
         }

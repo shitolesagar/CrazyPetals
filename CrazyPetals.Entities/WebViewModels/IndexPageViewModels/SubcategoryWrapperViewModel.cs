@@ -4,14 +4,14 @@ using System.Text;
 
 namespace CrazyPetals.Entities.WebViewModels
 {
-    public class FilterWrapperViewModel
+    public class SubcategoryWrapperViewModel
     {
-        public List<FilterListViewModel> SubcateogryList { get; set; }
+        public List<SubcategoryListViewModel> SubcateogryList { get; set; }
         public PagingData PagingData { get; set; }
         public int TotalCount { get; set; }
     }
 
-    public class FilterListViewModel
+    public class SubcategoryListViewModel
     {
         public int Number { get; set; }
         public int Id { get; set; }

@@ -45,14 +45,14 @@ $(function () {
 })
 
 function ShowSlackbarSucessMessage(alertMsg) {
-    $("#alertPopup").append("<strong>" + alertMsg + "</strong>")
+    $("#alertPopup").html("<strong>" + alertMsg + "</strong>")
         .removeAttr("hidden")
         .fadeTo(2000, 500).slideUp(500, function () {
             $("#alertPopup").slideUp(500);
         });
 }
 function ShowSlackbarErrorMessage(alertMsg) {
-    $("#alertErrorPopup").append("<strong>" + alertMsg + "</strong>")
+    $("#alertErrorPopup").html("<strong>" + alertMsg + "</strong>")
         .removeAttr("hidden")
         .fadeTo(2000, 500).slideUp(500, function () {
             $("#alertErrorPopup").slideUp(500);

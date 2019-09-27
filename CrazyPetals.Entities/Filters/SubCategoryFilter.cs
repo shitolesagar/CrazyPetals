@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CrazyPetals.Entities.Filters
 {
-    public class FilterForFilterModule:FilterBase
+    public class SubcategoryFilter:FilterBase
     {
         public int CategoryId { get; set; }
     }

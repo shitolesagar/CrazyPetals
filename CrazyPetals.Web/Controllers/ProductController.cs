@@ -15,9 +15,9 @@ namespace CrazyPetals.Web.Controllers
     {
         private readonly IProductService _productService;
         private readonly IFileServices _fileServices;
-        private readonly IFilterService _filterService;
+        private readonly ISubcategoryService _filterService;
 
-        public ProductController(IProductService productService, IFileServices fileServices, IFilterService filterService)
+        public ProductController(IProductService productService, IFileServices fileServices, ISubcategoryService filterService)
         {
             _productService = productService;
             _fileServices = fileServices;
@@ -69,7 +69,7 @@ namespace CrazyPetals.Web.Controllers
 
         public async Task<JsonResult> GetSubcategoryDropList(int categoryId)
         {
-            List<IdNameViewModel> list = await _filterService.GetFilterListAsync(categoryId);
+            List<IdNameViewModel> list = await _filterService.GetSubcategoryListAsync(categoryId);
             return Json(list);
         }
 

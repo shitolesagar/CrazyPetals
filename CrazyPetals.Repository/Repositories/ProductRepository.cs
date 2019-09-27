@@ -22,7 +22,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public Task<List<Product>> GetProductListForSearch(int take, string AppId, string Search)
         {
-            return Set.Include(x=>x.Category).ThenInclude(x=> x.Filters).Include(x=>x.ProductImages).Include(y=>y.Filter). Where(x => x.AppId == AppId && x.IsPublish == true && x.Name.Contains(Search)).Skip(0).Take(take).ToListAsync();
+            return Set.Include(x=>x.Category).ThenInclude(x=> x.Filters).Include(x=>x.ProductImages).Include(y=>y.Subcategory). Where(x => x.AppId == AppId && x.IsPublish == true && x.Name.Contains(Search)).Skip(0).Take(take).ToListAsync();
         }
 
         public Product FindById(int Id, string AppId)
@@ -48,7 +48,7 @@ namespace CrazyPetals.Repository.Repositories
             if (filter.CategoryId != 0)
                 query = query.Where(x => x.CategoryId == filter.CategoryId);
             if (filter.FilterId != 0)
-                query = query.Where(x => x.FilterId == filter.FilterId);
+                query = query.Where(x => x.SubcategoryId == filter.FilterId);
             return query.Count();
         }
 
@@ -65,8 +65,8 @@ namespace CrazyPetals.Repository.Repositories
             if (filter.CategoryId != 0)
                 query = query.Where(x => x.CategoryId == filter.CategoryId);
             if (filter.FilterId != 0)
-                query = query.Where(x => x.FilterId == filter.FilterId);
-            return query.Include(x => x.Filter).Include(x => x.Category).OrderByDescending(x => x.CreatedDate).Skip(skip).Take(pageSize).ToListAsync();
+                query = query.Where(x => x.SubcategoryId == filter.FilterId);
+            return query.Include(x => x.Subcategory).Include(x => x.Category).OrderByDescending(x => x.CreatedDate).Skip(skip).Take(pageSize).ToListAsync();
         }
         public List<Product> GetAllProductForCategory(int CategoryId, string AppId, int skip, int take)
         {
@@ -84,11 +84,11 @@ namespace CrazyPetals.Repository.Repositories
 
         public List<Product> GetAllProductForCategory(int CategoryId, string AppId)
         {
-            return Set.Where(x => x.AppId == AppId && x.IsPublish == true).Include(x => x.ProductImages).Include(y=>y.Filter).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
+            return Set.Where(x => x.AppId == AppId && x.IsPublish == true).Include(x => x.ProductImages).Include(y=>y.Subcategory).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
         }
         public List<Product> GetAllExclusiveProductForCategory(int CategoryId, string AppId)
         {
-            return Set.Where(x => x.AppId == AppId && x.IsPublish == true && x.IsExclusive == true).Include(x => x.ProductImages).Include(y => y.Filter).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
+            return Set.Where(x => x.AppId == AppId && x.IsPublish == true && x.IsExclusive == true).Include(x => x.ProductImages).Include(y => y.Subcategory).Where(x => x.CategoryId == CategoryId).Where(x => x.IsDeleted == false).ToList();
         }
 
         public List<Product> GetAllProductForRecommended(int CategoryId,int ProductId, string AppId)
@@ -98,7 +98,7 @@ namespace CrazyPetals.Repository.Repositories
 
         public Task<Product> FindByIdAsync(int id, bool includes)
         {
-            return Set.Include(x => x.Category).Include(x => x.Filter).Include(x => x.ProductImages)
+            return Set.Include(x => x.Category).Include(x => x.Subcategory).Include(x => x.ProductImages)
                 .Include(x => x.ProductColors).ThenInclude(x => x.Colors)
                 .Include(x => x.ProductSizes).ThenInclude(x => x.Size).FirstOrDefaultAsync(x => x.Id == id);
         }

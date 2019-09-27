@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace CrazyPetals.Repository.Repositories
 {
-    public class FilterRepository : Repository<Filter>, IFilterRepository
+    public class SubcategoryRepository : Repository<Subcategory>, ISubcategoryRepository
     {
-        public FilterRepository(ApplicationDbContext context) : base(context)
+        public SubcategoryRepository(ApplicationDbContext context) : base(context)
         {
         }
 
-        public Task<List<Filter>> GetFilterAsync(int CategoryId, string AppId)
+        public Task<List<Subcategory>> GetSubcategoryAsync(int CategoryId, string AppId)
         {
             return Set.Where(x => x.AppId == AppId && x.CategoryId == CategoryId).ToListAsync();
         }
 
-        public Task<List<Filter>> GetIndexViewRecordsAsync(FilterForFilterModule filter, int skip, int pageSize)
+        public Task<List<Subcategory>> GetIndexViewRecordsAsync(SubcategoryFilter filter, int skip, int pageSize)
         {
             var query = Set.AsQueryable();
             if (filter.CategoryId != 0)
@@ -27,7 +27,7 @@ namespace CrazyPetals.Repository.Repositories
             return query.Include(x => x.Category).OrderByDescending(x => x.Id).Skip(skip).Take(pageSize).ToListAsync();
         }
 
-        public int GetIndexViewTotalCount(FilterForFilterModule filter)
+        public int GetIndexViewTotalCount(SubcategoryFilter filter)
         {
             var query = Set.AsQueryable();
             if (filter.CategoryId != 0)

@@ -69,7 +69,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group  position-relative">
-                <label class="float-label">Filter</label>
+                <label class="float-label">Subcategory</label>
                 <p class=""> @(Model.FilterName ?? "NA")</p>
             </div>
         </div>
@@ -86,7 +86,12 @@
         <div class="col-md-4">
             <label class="float-label">Product has a color varient?</label>
             <p class=""> @(Model.AvailableColors ?? "NA")</p>
-
+        </div>
+        <div class="col-md-4">
+            <div class="form-group float-container position-relative">
+                <label class="control-label float-label">Material Type</label>
+                <p class=""> @(Model.MaterialType ?? "NA")</p>
+            </div>
         </div>
     </div>
 </div>
@@ -143,25 +148,20 @@
 <div class="block-container m-t-20">
     <p class="f-bold f-16">Other details</p>
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group m-t-10  float-container position-relative">
-                <label class="control-label float-label">Material Type</label>
-                <p class=""> @(Model.MaterialType ?? "NA")</p>
-            </div>
-        </div>
-        <div class="col-md-6">
+        
+        <div class="col-md-4">
             <div class="form-group m-t-10  float-container position-relative">
                 <label class="control-label float-label">Approx. Delivery Time</label>
                 <p class=""> @(Model.DeliveryTime ?? "NA")</p>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group m-t-10 float-container position-relative">
                 <label class="control-label float-label">Accessories</label>
                 <p class=""> @(Model.Accessories ?? "NA")</p>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="form-group m-t-10  float-container position-relative">
                 <label class="control-label float-label">Precaution / Instuctions</label>
                 <p class=""> @(Model.PrecautionsInstructions ?? "NA")</p>

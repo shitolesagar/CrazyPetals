@@ -1,21 +1,21 @@
-﻿@model CrazyPetals.Entities.WebViewModels.AddFilterViewModel
+﻿@model CrazyPetals.Entities.WebViewModels.AddSubcategoryViewModel
 @{
-    ViewData["Title"] = "Add Filter";
+    ViewData["Title"] = "Add Subcategory";
     string stringHtml = "<span onclick=\"goToPreviousPage()\"><img src=\"/images/icons/arrow-left.png\" class=\"vertical-middle iconWidth-25 cursor-pointer m-r-20\"></span>";
-    stringHtml = stringHtml + "<span class=\"display-inline\">Add Filter</span>";
+    stringHtml = stringHtml + "<span class=\"display-inline\">Add Subcategory</span>";
     ViewData["TabHeading"] = stringHtml;
-    ViewData["ActiveTab"] = "filter";
+    ViewData["ActiveTab"] = "subcategory";
 }
 <div class="row">
     <div class="col-md-6 detail-container">
-        <form asp-controller="Filter" asp-action="add" id="form" autocomplete="off" spellcheck="false">
+        <form asp-controller="subcategory" asp-action="add" id="form" autocomplete="off" spellcheck="false">
             <div class="detail-container">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="form-group">
-                            <label asp-for="FilterName" class="control-label float-label">Filter Name</label>
-                            <input type="text" asp-for="FilterName" class="form-control" maxlength="40" value="" />
-                            <span asp-validation-for="FilterName" class="text-danger mb-3"></span>
+                            <label asp-for="SubcategoryName" class="control-label float-label">Subcategory Name</label>
+                            <input type="text" asp-for="SubcategoryName" class="form-control" maxlength="40" value="" />
+                            <span asp-validation-for="SubcategoryName" class="text-danger mb-3"></span>
                         </div>
                     </div>
                 </div>
