@@ -86,7 +86,7 @@ namespace CrazyPetals.Web
                     .AddCookie(options =>
                     {
                         options.LoginPath = "/account/index";
-                        options.Cookie.Name = StringConstants.AppId;
+                        options.Cookie.Name = EnvironmentConstants.CookiesName;
                     });
 
             services.AddMvc(config =>
@@ -94,10 +94,8 @@ namespace CrazyPetals.Web
                 var policy = new AuthorizationPolicyBuilder()
                                  .RequireAuthenticatedUser()
                                  .Build();
-
                 config.Filters.Add(new AuthorizeFilter(policy));
-            }
-                ).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
