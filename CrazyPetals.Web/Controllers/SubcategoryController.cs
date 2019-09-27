@@ -46,7 +46,7 @@ namespace CrazyPetals.Web.Controllers
             if (!ModelState.IsValid)
                 return RedirectToAction("Add");
             await _subcategoryService.AddSubcategoryAsync(model);
-            TempData["Message"] = MessageConstants.FilterAddSuccessMessage;
+            TempData["Message"] = MessageConstants.SubcategoryAddSuccessMessage;
             return RedirectToAction("Index");
         }
 
@@ -55,9 +55,9 @@ namespace CrazyPetals.Web.Controllers
         {
             int deletedRows = await _subcategoryService.DeleteSubcategory(id);
             if (deletedRows > 0)
-                TempData["Message"] = MessageConstants.FilterDeleteSuccessMessage;
+                TempData["Message"] = MessageConstants.SubcategoryDeleteSuccessMessage;
             else
-                TempData["Message"] = MessageConstants.FilterDeleteFailedMessage;
+                TempData["Message"] = MessageConstants.SubcategoryDeleteFailedMessage;
             return RedirectToAction("Index");
         }
 
@@ -77,7 +77,7 @@ namespace CrazyPetals.Web.Controllers
             if (!ModelState.IsValid)
                 return View();
             await _subcategoryService.EditSubcategoryAsync(id, model);
-            TempData["Message"] = MessageConstants.FilterUpdateSuccessMessage;
+            TempData["Message"] = MessageConstants.SubcategoryUpdateSuccessMessage;
             return RedirectToAction("Index");
         }
     }
